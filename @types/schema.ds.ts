@@ -7,6 +7,12 @@ export type Event = {
     thumbnail: string,
 }
 
+export type Date = {
+    start: string,
+    end: string,
+    time_zone: string
+}
+
 export type CommitteeMember = {
     name: string,
     role: string,

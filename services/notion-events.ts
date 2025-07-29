@@ -38,7 +38,7 @@ export default class NotionEvents {
             description: page.properties["Public Description"].rich_text[0]?.plain_text,
             date: page.properties["Event Date"].date,
             location: page.properties.Venue?.rich_text[0]?.plain_text,
-            thumbnail: page.properties.Thumbnail.files[0]?.plain_text
+            thumbnail: page.properties.Thumbnail.files[0]?.file.url
         }
     }
 }
