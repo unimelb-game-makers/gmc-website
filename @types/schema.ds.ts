@@ -4,7 +4,7 @@ export type Event = {
     id: string,
     date: string,
     location: string,
-    thumbnail: string,
+    thumbnail: string
 }
 
 export type Date = {
@@ -17,5 +17,5 @@ export type CommitteeMember = {
     name: string,
     role: string,
     year: int,
-    image: string,
+    image: string
 }
