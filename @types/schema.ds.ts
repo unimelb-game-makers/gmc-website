@@ -43,6 +43,7 @@ export type EducationWorkshopPost = {
     title: string,
     slug: string,
     author: string,
+    thumbnail: string,
     tags: EducationTag[],
     date: string,
 }

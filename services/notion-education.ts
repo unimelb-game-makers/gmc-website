@@ -75,9 +75,8 @@ export default class NotionEducation {
                 author: page.properties.Author.rich_text[0]?.plain_text,
                 slug: page.properties.Slug.formula.string,
                 date: page.properties["Date Published"].date,
+                thumbnail: page.properties.Thumbnail.files[0]?.file.url,
                 tags: page.properties.Tags.multi_select,
             }
         }
-
-    
     }

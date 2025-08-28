@@ -13,7 +13,8 @@
     "next": "15.3.4",
     "notion-to-md": "^3.1.9",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
