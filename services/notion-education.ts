@@ -56,6 +56,7 @@ export default class NotionEducation {
             throw 'No results available';
         }
 
+
         const page = response.results[0];
         const mdBlocks = await this.n2m.pageToMarkdown(page.id);
 
@@ -72,7 +73,7 @@ export default class NotionEducation {
             return {
                 id: page.id,
                 title: page.properties.Name.title[0]?.plain_text,
-                author: page.properties.Author.rich_text[0]?.plain_text,
+                author: page.properties.Author,
                 slug: page.properties.Slug.formula.string,
                 date: page.properties["Date Published"].date,
                 thumbnail: page.properties.Thumbnail.files[0]?.file.url,
