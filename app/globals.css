@@ -24,3 +24,15 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-top: 1em;
+}
