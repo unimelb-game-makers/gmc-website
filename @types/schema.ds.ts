@@ -1,3 +1,5 @@
+import { MdStringObject } from "notion-to-md/build/types"
+
 export type Event = {
     name: string,
     description: string,
@@ -18,4 +20,35 @@ export type CommitteeMember = {
     role: string,
     year: int,
     image: string
+}
+
+export type EducationTag = {
+    color: string,
+    id: string,
+    name: string,
+}
+
+// export type EducationWorkshopPost = {
+//     id: string,
+//     title: string,
+//     slug: string,
+//     thumbnail: string,
+//     author: string,
+//     fields: EducationField[],
+//     date: string,
+// }
+
+export type EducationWorkshopPost = {
+    id: string,
+    title: string,
+    slug: string,
+    author: string,
+    thumbnail: string,
+    tags: EducationTag[],
+    date: string,
+}
+
+export type EducationPostPage = {
+    post: EducationWorkshopPost,
+    markdown: MdStringObject,
 }
