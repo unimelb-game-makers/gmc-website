@@ -58,6 +58,9 @@ export default function Home() {
         </div>
       </div>
       {/* upcomming event */}
+      <div className="h-[637px] bg-[#1A2223]">
+
+      </div>
       {/*
       <div className="m-20">
         <h1 className="text-5xl font-bold ml-50 m-5">Upcoming Events</h1>
@@ -71,14 +74,14 @@ export default function Home() {
       </div>
       */}
       {/* about */}      
-      <div className="flex flex-row gap-[41px] items-start px-[31px] py-[72px] h-[589px] bg-[#1A2223] ">
-        <div className="relative w-[390px] h-[446px]">
+      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] py-[72px] lg:h-[589px] bg-[#1A2223] ">
+        <div className="relative lg:w-[390px] lg:h-[446px]">
           <Image src={slides[0]} alt="placeholder" fill className="object-cover"/>
         </div>
         
-        <div className="w-[740px] h-[450px] flex flex-col justify-center space-y-4">
+        <div className="lg:w-[740px] h-[450px] flex flex-col justify-center space-y-4">
           <h2 className="bold text-[36px] mb-4 text-white">About Game Maker Club</h2>
-          <p className="text-white bold text-[24px] max-w-[732px] self-end">
+          <p className="text-white bold text-[24px] lg:max-w-[732px] w-full self-end">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
             lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec
             suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla
@@ -92,6 +95,9 @@ export default function Home() {
         </div>
       </div>
       {/* education */}
+      <div className="h-[611px] bg-[#1A2223]">
+
+      </div>
       <Footer />      
     </div>
     
