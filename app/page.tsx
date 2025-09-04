@@ -27,7 +27,9 @@ export default async function Home() {
 
   return (
     <div>
+      <Header />
       {/* Carousel and Club Logo */}
+      {/*
       <div className="flex w-full h-[700px] overflow-hidden shadow-md">
         <div className="relative flex-1 bg-black">
           <Image src={slides[currentSlide]} alt={`Slide ${currentSlide + 1}`} fill className="object-cover"/>
@@ -66,6 +68,7 @@ export default async function Home() {
       {/* Navbar */}
       <Navbar />
       {/* About */}
+      {/*
       <div className="p-6 max-w-4xl mx-auto mt-10 bg-blue-900">
         <h2 className="text-xl font-semibold mb-4 text-white">Who are we?</h2>
         <p className="mb-6 text-white">
@@ -87,6 +90,7 @@ export default async function Home() {
         </div>
       </div>
       {/* Events Section */}
+      {/*
       <div className="m-20">
         <h1 className="text-5xl font-bold ml-50 m-5">Upcoming Events</h1>
         <div className="max-w-6xl mx-auto flex gap-4 justify-between p-4">
@@ -97,6 +101,8 @@ export default async function Home() {
           }
         </div>
       </div>
+      */}
+      
     </div>
     
   );
