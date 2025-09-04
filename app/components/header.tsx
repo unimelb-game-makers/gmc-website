@@ -11,7 +11,7 @@ const Header = () => {
     ]
     
   return (
-    <div className='flex items-center justify-between p-[30px] bg-[#1A2223] w-[1280px] h-[142px]'>
+    <div className='flex items-center justify-between p-[30px] bg-[#1A2223] w-full h-[142px]'>
         {/* logo area */}
         <div className='flex items-center space-x-3'>
             <Image src='/gmc_logo.png' alt='gmc_logo' width={80} height={80} />
