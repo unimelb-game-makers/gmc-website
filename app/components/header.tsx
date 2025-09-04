@@ -18,7 +18,7 @@ const Header = () => {
         </div>
         <div className='flex items-center overflow-hidden'>
             {navItems.map(({name, path}, idx) => (
-                <Link key={name} href={path} className='px-[22px] py-[3px] text-[#F7F6F3] text-[32px] font-karla' style={{ lineHeight: '37px' }}>
+                <Link key={name} href={path} className='px-[22px] py-[30px] text-[#F7F6F3] text-[32px] font-karla'>
                     {name}
                 </Link>
             ))}
