@@ -18,9 +18,18 @@ export type Date = {
 export type CommitteeMember = {
     name: string,
     role: string,
-    year: int,
+    about: string,
+    social: string,
+    year: number,
     image: string
 }
+
+export type CommitteeYear = {
+    [year: number]: {
+        [role: string]: CommitteeMember[]
+    }
+}
+
 
 export type EducationTag = {
     color: string,

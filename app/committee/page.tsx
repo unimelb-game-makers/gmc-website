@@ -5,7 +5,10 @@ const page = async () => {
   const service = new NotionCommittee;
   const committeeMembers = await service.getCommittee();
 
-  // committeeMembers stored as a dictionary. Keys are the committee roles. Values is an array of objects (members).
+  /* 
+  committeeMembers is a mapping of each year to roles,
+  each role containing an array of CommitteeMember objects.
+  */
   console.log(committeeMembers);
 
   return (
