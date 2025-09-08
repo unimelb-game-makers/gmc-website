@@ -34,16 +34,17 @@ export default class NotionCommittee {
         // Matching id
         if (infoPage) {
           const member = NotionCommittee.toMember(res, infoPage);
+          const committeeName = res.properties["Committee"]?.formula?.string ?? "General";
 
-          // Init empty year/role
+          // Init empty year/committee
           if (!committeeByYear[member.year]) {
             committeeByYear[member.year] = {};
           }
-          if (!committeeByYear[member.year][member.role]) {
-            committeeByYear[member.year][member.role] = [];
+          if (!committeeByYear[member.year][committeeName]) {
+            committeeByYear[member.year][committeeName] = [];
           }
 
-          committeeByYear[member.year][member.role].push(member);
+          committeeByYear[member.year][committeeName].push(member);
         }
 
       }

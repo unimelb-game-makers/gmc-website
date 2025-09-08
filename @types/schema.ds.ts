@@ -26,7 +26,7 @@ export type CommitteeMember = {
 
 export type CommitteeYear = {
     [year: number]: {
-        [role: string]: CommitteeMember[]
+        [committee: string]: CommitteeMember[]
     }
 }
 
