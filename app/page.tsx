@@ -22,8 +22,8 @@ export default async function Home() {
   const prevSlide = () => setCurrentSlide((currentSlide - 1) % totalSlides);
   const nextSlide = () => setCurrentSlide((currentSlide + 1) % totalSlides);
 
-  const service = new NotionEvents;
-  const events = (await service.getEvents()).slice(0, 3);
+  //const service = new NotionEvents;
+  //const events = (await service.getEvents()).slice(0, 3);
 
   return (
     <div>
@@ -90,11 +90,11 @@ export default async function Home() {
       <div className="m-20">
         <h1 className="text-5xl font-bold ml-50 m-5">Upcoming Events</h1>
         <div className="max-w-6xl mx-auto flex gap-4 justify-between p-4">
-          {
+          {/*
             events.map((event, index) => (
                 <FeaturedEventContainer name={event.name} date="test" description={event.description} id={String(index)} location={event.location} thumbnail={event.thumbnail}/>
               ))
-          }
+          */}
         </div>
       </div>
     </div>
