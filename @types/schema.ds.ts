@@ -51,10 +51,19 @@ export type EducationWorkshopPost = {
     id: string,
     title: string,
     slug: string,
-    author: string,
+    author: {
+        id: string,
+        type: string,
+        relation: object[],
+        has_more: boolean
+    },
     thumbnail: string,
     tags: EducationTag[],
-    date: string,
+    date: {
+        start: string,
+        end: string,
+        time_zone: string,
+    }
 }
 
 export type EducationPostPage = {
