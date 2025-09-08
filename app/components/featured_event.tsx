@@ -27,7 +27,7 @@ const FeaturedEventContainer = ({
       <h1 className='text-2xl font-bold text-white'>{name}</h1>
 
       <div className="relative w-full h-48">
-        <Image src={thumbnail} alt={name} fill className="object-cover" />
+        <Image src={thumbnail ?? null} alt={name} fill className="object-cover" />
       </div>
       <div className="p-4 flex flex-col justify-between flex-grow">
         {/* <p className='text-xl text-white mb-4'>{date.start}</p> */}
