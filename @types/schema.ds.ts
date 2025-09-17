@@ -54,7 +54,9 @@ export type EducationWorkshopPost = {
     author: {
         id: string,
         type: string,
-        relation: object[],
+        relation: {
+            id: string,
+        }[],
         has_more: boolean
     },
     thumbnail: string,
@@ -69,4 +71,12 @@ export type EducationWorkshopPost = {
 export type EducationPostPage = {
     post: EducationWorkshopPost,
     markdown: MdStringObject,
+}
+
+export type EducationAuthor = {
+    id: string,
+    name: string,
+    about: string,
+    social: string,
+    image: string,
 }

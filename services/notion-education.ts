@@ -1,6 +1,6 @@
 import { Client } from "@notionhq/client";
 import { NotionToMarkdown } from "notion-to-md";
-import { EducationTag, EducationWorkshopPost, EducationPostPage } from "@/@types/schema.ds";
+import { EducationTag, EducationWorkshopPost, EducationPostPage, EducationAuthor } from "@/@types/schema.ds";
 
 export default class NotionEducation {
     client: Client
@@ -67,6 +67,25 @@ export default class NotionEducation {
             post,
             markdown
         }
+    }
+
+    async getAuthor(id: string): Promise<EducationAuthor> {
+        const committeeInfoId = process.env.NOTION_COMMITTEE_INFO ?? '';
+        const response = await this.client.pages.retrieve({
+            page_id: id,
+        })
+
+        const author: any = response;
+
+        // console.log(author);
+
+        return {
+            id: author.id,
+            name: author.properties.Name.title[0]?.plain_text,
+            about: author.properties.About.rich_text[0]?.plain_text,
+            image: author.properties.Photo.files[0]?.file.url,
+            social: author.properties.Social.url,
+        };
     }
 
     private static educationTransformer(page: any): EducationWorkshopPost {

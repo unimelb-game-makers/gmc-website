@@ -1,3 +1,4 @@
+import AuthorCredits from "@/app/components/education/author_credits";
 import NotionEducation from "@/services/notion-education";
 import React from "react";
 import ReactMarkdown from 'react-markdown'
@@ -12,16 +13,19 @@ const page = async ({params}: Props) => {
     const param = await params;
     const notion = new NotionEducation();
     const page = await notion.getSinglePost(param.slug);
+    const author = await notion.getAuthor(page.post.author.relation[0].id);
 
     return (
-        <div className="px-4 md:px-20 lg:px-40 py-10 flex flex-col items-center">
-            <div className="px-5.0">
+        <div className="px-3 md:px-20 lg:px-40 py-10 flex flex-col items-center">
+            <div className="px-5 bg-white text-black rounded-lg my-2">
                 <div>
-                    <h1>{page.post.title}</h1>
-                    <p>{page.post.date.start}</p>
+                    <p className="text-7xl font-bold pt-10">{page.post.title}</p>
+                    <p>By {author.name}</p>
+                    <p className="text-gray-800">Published {page.post.date.start}</p>
                 </div>
                 <ReactMarkdown remarkPlugins={[remarkGfm, remarkYoutubePlugin]}>{page.markdown.parent}</ReactMarkdown>
             </div>
+            <AuthorCredits author={author}/>
         </div>
     )
 }
