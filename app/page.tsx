@@ -2,7 +2,8 @@ import Image from "next/image";
 import Header from "./components/header";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
-import FeaturedEventContainer from "./components/featured_event";
+import FeaturedEventContainer from "./components/home/featured_event";
+import FeaturedEducationContainer from "./components/home/featured_education";
 import { useState,useEffect} from "react";
 import { Event } from '../@types/schema.ds';
 import { EducationTag, EducationWorkshopPost, EducationPostPage } from "@/@types/schema.ds";
@@ -29,13 +30,13 @@ export default async function Home() {
   // const educations = educationData.slice(0, 4);
 
   // before back end is ready, the following sample data is used
-  const education: EducationWorkshopPost[] = [
+  const educations: EducationWorkshopPost[] = [
   {
     id: "workshop-001",
     title: "Introduction to Artificial Intelligence",
     slug: "introduction-to-artificial-intelligence",
     author: "Jane Doe",
-    thumbnail: "https://example.com/images/ai-thumbnail.jpg",
+    thumbnail: "/images/chess.jpg",
     tags: [
       { id: "tag-001", name: "AI", color: "blue" },
       { id: "tag-002", name: "Beginner", color: "green" }
@@ -47,7 +48,7 @@ export default async function Home() {
     title: "Mastering the Notion API",
     slug: "mastering-the-notion-api",
     author: "John Smith",
-    thumbnail: "https://example.com/images/notion-api-thumbnail.jpg",
+    thumbnail: "/images/chess.jpg",
     tags: [
       { id: "tag-003", name: "API", color: "purple" },
       { id: "tag-004", name: "Productivity", color: "yellow" }
@@ -59,7 +60,7 @@ export default async function Home() {
     title: "Data Visualization with D3.js",
     slug: "data-visualization-with-d3",
     author: "Alice Johnson",
-    thumbnail: "https://example.com/images/d3-thumbnail.jpg",
+    thumbnail: "/images/chess.jpg",
     tags: [
       { id: "tag-005", name: "Data Viz", color: "red" },
       { id: "tag-006", name: "JavaScript", color: "orange" }
@@ -71,7 +72,7 @@ export default async function Home() {
     title: "Design Thinking for Developers",
     slug: "design-thinking-for-developers",
     author: "Mark Lee",
-    thumbnail: "https://example.com/images/design-thinking.jpg",
+    thumbnail: "/images/chess.jpg",
     tags: [
       { id: "tag-007", name: "Design", color: "pink" },
       { id: "tag-008", name: "UX", color: "gray" }
@@ -133,8 +134,19 @@ export default async function Home() {
       </div>
       {/* education */}
       <div className="h-[611px] bg-[#161828] relative">
-        <h1 className="text-white text-[32px] absolute left-[31px] top-[33px] font-karla">Learn How To Make Games</h1>
-
+        <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
+        <div className="flex gap-4 justify-between p-4 pt-[31px]">
+          {
+            educations.map((education, index) => (
+                <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail}/>
+              ))
+          }
+        </div>
+        <div className = "flex items-center justify-center flex-col pt-[20px]">
+          <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
+            Learn More →
+          </button>
+        </div>
       </div>
       <Footer />      
     </div>
