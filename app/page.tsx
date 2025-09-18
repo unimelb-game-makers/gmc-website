@@ -29,7 +29,7 @@ export default async function Home() {
   // const educations = educationData.slice(0, 4);
 
   // before back end is ready, the following sample data is used
-  const educations: EducationWorkshopPost[] = [
+  const education: EducationWorkshopPost[] = [
   {
     id: "workshop-001",
     title: "Introduction to Artificial Intelligence",
@@ -80,6 +80,17 @@ export default async function Home() {
   }
 ];
 
+  
+  // const [events, setEvents] = useState<Event[]>([]);
+  // useEffect(() => {
+  //   async function fetchEvents() {
+  //     const service = new NotionEvents();
+  //     const eventsData = await service.getEvents();
+      
+  //   }
+  //   fetchEvents();
+  // }, []);
+
   return (
     <div>
       <Header />
@@ -89,7 +100,7 @@ export default async function Home() {
       </div>
       {/* upcomming event */}
       <div className="relative h-[637px] bg-[#161828]">
-        <h1 className="text-white text-[32px] absolute left-[31px] top-[33px]">Upcoming Events</h1>
+        <h1 className="text-white text-[32px] absolute left-[31px] top-[33px] font-karla">Upcoming Events</h1>
         <div className="max-w-6xl mx-auto flex gap-4 justify-between p-4 absolute top-[63px]">
           {
             events.map((event, index) => (
@@ -106,8 +117,8 @@ export default async function Home() {
         </div>
         
         <div className="lg:w-[740px] h-[450px] flex flex-col justify-center space-y-4">
-          <h2 className="bold text-[36px] mb-4 text-white">About Game Maker Club</h2>
-          <p className="text-white bold text-[24px] lg:max-w-[732px] w-full self-end">
+          <h2 className="bold text-[36px] mb-4 text-white font-karla">About Game Maker Club</h2>
+          <p className="text-white bold text-[24px] lg:max-w-[732px] w-full self-end font-karla">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
             lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec
             suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla
@@ -115,14 +126,14 @@ export default async function Home() {
             leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue 
             sed lorem fermentum sodales.
           </p>
-            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center">
+            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
               About Us →
             </button>
         </div>
       </div>
       {/* education */}
       <div className="h-[611px] bg-[#161828] relative">
-        <h1 className="text-white text-[32px] absolute left-[31px] top-[33px]">Learn How To Make Games</h1>
+        <h1 className="text-white text-[32px] absolute left-[31px] top-[33px] font-karla">Learn How To Make Games</h1>
 
       </div>
       <Footer />      

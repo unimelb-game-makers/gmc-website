@@ -32,7 +32,7 @@ const ImageCarousel = () => {
                 <h1 className="text-6xl hover:text-[#d4d4d3] active:text-[#fdfdfd]">›</h1>
             </button>
             <a href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/9180/" className="absolute p-3 bg-[#2C2C2C] border rounded hover:bg-[#0e1112] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <button className="text-[#F7F6F3] flex items-center justify-center">Join Now →</button>
+                <button className="text-[#F7F6F3] flex items-center justify-center font-karla">Join Now →</button>
             </a>
         </div>
     )
