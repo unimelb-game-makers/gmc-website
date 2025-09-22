@@ -97,6 +97,7 @@ export default class NotionEducation {
                 date: page.properties["Date Published"].date,
                 thumbnail: page.properties.Thumbnail.files[0]?.file.url,
                 tags: page.properties.Tags.multi_select,
+                description: page.properties.Description.rich_text[0]?.plain_text,
             }
         }
     }

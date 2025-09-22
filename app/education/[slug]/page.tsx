@@ -17,9 +17,9 @@ const page = async ({params}: Props) => {
 
     return (
         <div className="px-3 md:px-20 lg:px-40 py-10 flex flex-col items-center">
-            <div className="px-5 bg-white text-black rounded-lg my-2">
+            <div className="px-8 py-10 bg-white text-black rounded-lg mb-10 ">
                 <div>
-                    <p className="text-7xl font-bold pt-10">{page.post.title}</p>
+                    <p className="text-7xl font-bold">{page.post.title}</p>
                     <p>By {author.name}</p>
                     <p className="text-gray-800">Published {page.post.date.start}</p>
                 </div>

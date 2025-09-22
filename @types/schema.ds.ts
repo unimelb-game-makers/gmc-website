@@ -65,7 +65,8 @@ export type EducationWorkshopPost = {
         start: string,
         end: string,
         time_zone: string,
-    }
+    },
+    description: string,
 }
 
 export type EducationPostPage = {
