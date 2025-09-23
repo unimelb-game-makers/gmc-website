@@ -138,7 +138,7 @@ export default async function Home() {
         <div className="flex gap-4 justify-between p-4 pt-[31px]">
           {
             educations.map((education, index) => (
-                <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail}/>
+                <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail} slug={education.slug}/>
               ))
           }
         </div>
