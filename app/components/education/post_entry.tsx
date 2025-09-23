@@ -2,6 +2,10 @@ import React from 'react'
 import Image from 'next/image'
 import { EducationWorkshopPost } from '@/@types/schema.ds'
 import Link from 'next/link'
+import dayjs from 'dayjs';
+import advancedFormat from 'dayjs/plugin/advancedFormat';
+
+dayjs.extend(advancedFormat);
 
 const colorMap: Record<string, string> = {
   red: 'bg-red-400',
@@ -17,7 +21,7 @@ const colorMap: Record<string, string> = {
 };
 
 const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
-  console.log(post.tags)
+  const date = dayjs(post.date.start).format("MMMM Do YYYY");
   return (
     <div className='bg-white rounded-lg text-black w-100 h-80'>
         <Link href={"education/" + post.slug}>
@@ -26,7 +30,7 @@ const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
           <p className="text-2xl font-bold">{post.title}</p>
           <div className="flex items-center justify-between text-xs text-gray-400 mt-1">
             <span>By Jun Yeo</span>
-            <span>Sep 22nd, 2025</span>
+            <span>{date}</span>
           </div>
 
           {/* Tags */}

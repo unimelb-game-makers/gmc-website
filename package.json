@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@notionhq/client": "^4.0.2",
+    "dayjs": "^1.11.18",
     "next": "15.3.4",
     "notion-to-md": "^3.1.9",
     "react": "^19.0.0",
