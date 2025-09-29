@@ -15,7 +15,7 @@ const page = async () => {
       </div>
       {/* Actual Posts*/}
 
-      <div className='grid gap-4 grid-cols-1 lg:grid-cols-2 xl:grid-cols-3'>
+      <div className='grid gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3 3xl:grid-cols-4'>
         {posts.map((post, i) => (
         <PostEntry post={post} key={i}/>
         ))}
