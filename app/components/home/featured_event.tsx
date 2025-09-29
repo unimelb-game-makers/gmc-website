@@ -28,7 +28,7 @@ const FeaturedEventContainer = ({
       <div className="flex flex-col items-center justify-center">
         <Image src="/shapes/upTriangle.png" alt="Description" width={205} height={24}/>
         <div className="bg-[#F7F6F3] text-black p-[22px] -mt-[2px] mx-auto rounded-lg shadow-sm overflow-hidden flex flex-col max-w-sm w-[217px] h-[346px]">
-          <h1 className='text-2xl font-bold text-black text-center'>{name}</h1>
+          <h1 className='font-bold text-black text-center'>{name}</h1>
           <div className="relative w-full h-48">
             <Image src={thumbnail || "/gmc_logo.png"} alt={name} fill className="object-cover" />
           </div>

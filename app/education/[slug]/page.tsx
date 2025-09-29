@@ -3,6 +3,7 @@ import React from "react";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 import remarkYoutubePlugin from "remark-youtube";
+import './markdown.css';
 
 interface Props {
     params: {slug: string};

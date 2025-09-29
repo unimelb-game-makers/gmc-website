@@ -22,7 +22,7 @@ const FeaturedEducationContainer = ({
           <Image src={thumbnail || "/gmc_logo.png"} alt={name} fill className="object-cover rounded-sm" />
         </div>
         <div className="relative p-4 text-[25px] w-[192px] top-[10px]">
-          <h2 className="text-center font-bold font-karla">{name}</h2>
+          <h2 className="text-lg text-center font-bold font-karla">{name}</h2>
         </div>
       </div>
     </Link>
