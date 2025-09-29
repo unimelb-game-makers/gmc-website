@@ -94,7 +94,6 @@ export default async function Home() {
 
   return (
     <div>
-      <Header />
       {/* sign up page */}
       <div className="flex w-full h-[603px] overflow-hidden shadow-md">
         <ImageCarousel />
@@ -148,8 +147,7 @@ export default async function Home() {
             Learn More →
           </button>
         </div>
-      </div>
-      <Footer />      
+      </div> 
     </div>
     
   );
