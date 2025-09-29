@@ -23,7 +23,7 @@ export default async function Home() {
   const eventsservice = new NotionEvents;
   const eventsData = await eventsservice.getEvents();
   const events = eventsData.slice(0, 3); // store first 3 events
-
+  
   // the following reads education data once database is properly connected
   // const eduservice = new NotionEducation;
   // const educationData = await eduservice.getPublishedWorkshopPosts();
