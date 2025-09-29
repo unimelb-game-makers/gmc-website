@@ -4,6 +4,7 @@ import React from "react";
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from "remark-gfm";
 import remarkYoutubePlugin from "remark-youtube";
+import './markdown.css';
 
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
