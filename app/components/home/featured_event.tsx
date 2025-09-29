@@ -30,7 +30,7 @@ const FeaturedEventContainer = ({
         <div className="bg-[#F7F6F3] text-black p-[22px] -mt-[2px] mx-auto rounded-lg shadow-sm overflow-hidden flex flex-col max-w-sm w-[217px] h-[346px]">
           <h1 className='text-2xl font-bold text-black text-center'>{name}</h1>
           <div className="relative w-full h-48">
-            <Image src={thumbnail ?? null} alt={name} fill className="object-cover" />
+            <Image src={thumbnail || "/gmc_logo.png"} alt={name} fill className="object-cover" />
           </div>
           <div className="flex items-start">
             <img className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" />
