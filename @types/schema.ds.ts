@@ -4,7 +4,7 @@ export type Event = {
     name: string,
     description: string,
     id: string,
-    date: string,
+    date: Date,
     location: string,
     thumbnail: string
 }
