@@ -24,73 +24,9 @@ export default async function Home() {
   const eventsData = await eventsservice.getEvents();
   const events = eventsData.slice(0, 3); // store first 3 events
   
-  // the following reads education data once database is properly connected
-  // const eduservice = new NotionEducation;
-  // const educationData = await eduservice.getPublishedWorkshopPosts();
-  // const educations = educationData.slice(0, 4);
-
-  // before back end is ready, the following sample data is used
-  const educations: EducationWorkshopPost[] = [
-  {
-    id: "workshop-001",
-    title: "Introduction to Artificial Intelligence",
-    slug: "introduction-to-artificial-intelligence",
-    author: "Jane Doe",
-    thumbnail: "/images/chess.jpg",
-    tags: [
-      { id: "tag-001", name: "AI", color: "blue" },
-      { id: "tag-002", name: "Beginner", color: "green" }
-    ],
-    date: "2025-09-10T10:00:00Z"
-  },
-  {
-    id: "workshop-002",
-    title: "Mastering the Notion API",
-    slug: "mastering-the-notion-api",
-    author: "John Smith",
-    thumbnail: "/images/chess.jpg",
-    tags: [
-      { id: "tag-003", name: "API", color: "purple" },
-      { id: "tag-004", name: "Productivity", color: "yellow" }
-    ],
-    date: "2025-08-22T14:00:00Z"
-  },
-  {
-    id: "workshop-003",
-    title: "Data Visualization with D3.js",
-    slug: "data-visualization-with-d3",
-    author: "Alice Johnson",
-    thumbnail: "/images/chess.jpg",
-    tags: [
-      { id: "tag-005", name: "Data Viz", color: "red" },
-      { id: "tag-006", name: "JavaScript", color: "orange" }
-    ],
-    date: "2025-07-15T09:30:00Z"
-  },
-  {
-    id: "workshop-004",
-    title: "Design Thinking for Developers",
-    slug: "design-thinking-for-developers",
-    author: "Mark Lee",
-    thumbnail: "/images/chess.jpg",
-    tags: [
-      { id: "tag-007", name: "Design", color: "pink" },
-      { id: "tag-008", name: "UX", color: "gray" }
-    ],
-    date: "2025-06-12T16:00:00Z"
-  }
-];
-
-  
-  // const [events, setEvents] = useState<Event[]>([]);
-  // useEffect(() => {
-  //   async function fetchEvents() {
-  //     const service = new NotionEvents();
-  //     const eventsData = await service.getEvents();
-      
-  //   }
-  //   fetchEvents();
-  // }, []);
+  const eduservice = new NotionEducation;
+  const educationData = await eduservice.getPublishedWorkshopPosts();
+  const educations = educationData.slice(0, 4);
 
   return (
     <div>
@@ -135,7 +71,7 @@ export default async function Home() {
       {/* education */}
       <div className="h-[611px] bg-[#161828] relative">
         <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
-        <div className="flex gap-4 justify-between p-4 pt-[31px]">
+        <div className="flex gap-6 p-4 pt-[31px]">
           {
             educations.map((education, index) => (
                 <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail} slug={education.slug}/>
