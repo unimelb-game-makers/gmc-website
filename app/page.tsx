@@ -101,7 +101,7 @@ export default async function Home() {
       {/* upcomming event */}
       <div className="relative h-[637px] bg-[#161828]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
-        <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[100px]"></div>
+        <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[50px]"></div>
         <div className="max-w-6xl mx-auto flex p-4 -mt-[110px]">
           {
             events.map((event, index) => (

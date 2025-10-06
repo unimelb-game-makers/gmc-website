@@ -27,15 +27,18 @@ const FeaturedEventContainer = ({
       </div>
       <div className="flex flex-col items-center justify-center">
         <Image src="/shapes/upTriangle.png" alt="Description" width={205} height={24}/>
-        <div className="bg-[#F7F6F3] text-black p-[22px] -mt-[2px] mx-auto rounded-lg shadow-sm overflow-hidden flex flex-col max-w-sm w-[217px] h-[346px]">
-          <h1 className='font-bold text-black text-center'>{name}</h1>
-          <div className="relative w-full h-48">
-            <Image src={thumbnail || "/gmc_logo.png"} alt={name} fill className="object-cover" />
+        <div className="bg-[#F7F6F3] text-black p-[22px] -mt-[2px] mx-auto rounded-lg shadow-sm overflow-hidden max-w-sm w-[217px] h-[355px] pt-2">
+          <div className='h-12 text-center'>
+            <h1 className='font-bold text-black text-center text-[clamp(0.2rem,1.5vw,1.0rem)]'>{name}</h1>
           </div>
-          <div className="flex items-start">
+          <div className="relative w-full h-48">
+            <Image src={thumbnail || "/gmc_logo.png"} alt={name} width={200} height={200} className="object-cover" />
+          </div>
+          <div className="flex items-start h-18">
             <img className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" />
             {/* some location in the database is too long */}
-            <p>{location ? location.split('\n')[0] : 'TBA'}</p>
+            {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
+            <p>{location ? (location.length < 35 ? location : location.slice(0, 35) + "...") : 'TBA'}</p>
           </div>
           <div className="flex">
             <img className="mr-[5px]" src="/Clock.svg" alt="clock logo" />
