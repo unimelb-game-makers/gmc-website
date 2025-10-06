@@ -14,22 +14,29 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
     () => committeeMembers[year] || {},
     [committeeMembers]
   );
+
+  // Reverse to get executive committee first
   const committees = useMemo(
-    () => ["ALL", ...Object.keys(membersForYear)],
+    () => [...Object.keys(membersForYear)].reverse(),
     [membersForYear]
   );
 
-  const [selectedCommittee, setSelectedCommittee] = useState("ALL");
+  // Add https to links without it, ensures that it doesn't open as a relative path
+  function openSocial(url?: string) {
+    if (!url) return;
+
+    const fullUrl = url.startsWith("http") ? url : `https://${url}`;
+    window.open(fullUrl, "_blank");
+  }
+
+  const [selectedCommittee, setSelectedCommittee] = useState(
+    committees[0] || ""
+  );
   const [filteredMembers, setFilteredMembers] = useState<CommitteeMember[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
-    if (selectedCommittee === "ALL") {
-      setFilteredMembers(Object.values(membersForYear).flat());
-    }
-    else {
       setFilteredMembers(membersForYear[selectedCommittee] || []);
-    }
   }, [selectedCommittee, membersForYear]);
 
   return (
@@ -92,24 +99,26 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                 key={member.name}
                 className="flex flex-col items-center text-center"
               >
-                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] flex items-center justify-center">
+                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] flex items-center justify-center transition-transform duration-200 ease-out hover:scale-103 hover:-translate-y-2">
                   <Image
                     src="/shapes/memberFrame.png"
                     alt="Member Frame"
                     fill
                     className="object-cover"
                   />
-                  <div className="relative w-[91.4%] h-[91.4%] rounded-full overflow-hidden">
+                  <div className="relative w-[91.4%] h-[91.4%] rounded-full overflow-hidden cursor-pointer">
                     <Image
                       src={member.image || "/images/cat.jpg"}
                       alt={member.name}
                       fill
                       className="object-cover"
+                      onClick={() => openSocial(member.social)} 
                     />
                   </div>
                 </div>
               <h3 className="mt-4 text-2xl md:text-3xl font-semibold" style={{ color: '#FFFFFF' }}>{member.name}</h3>
-              <p className="text-xl md:text-2xl" style={{ color: '#78A8E2' }}>{member.role}</p>
+              <p className="text-xl md:text-2xl" style={{ color: '#A1C7EE' }}>{member.role}</p>
+              <p className="text-xl md:text-1xl whitespace-pre-line" style={{ color: '#78A8E2' }}>{member.about}</p>
             </div>
           ))}
         </div>
