@@ -11,6 +11,7 @@ import ImageCarousel from "./components/home/image_carousel";
 
 import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
+import dayjs from "dayjs";
 
 export default async function Home() {
 
@@ -22,7 +23,11 @@ export default async function Home() {
 
   const eventsservice = new NotionEvents;
   const eventsData = await eventsservice.getEvents();
-  const events = eventsData.slice(0, 3); // store first 3 events
+  const events = eventsData.slice(0, 3).reverse(); // store first 3 events
+  // remove events which are past already
+  const upcomingEvents = events.filter(event => 
+    dayjs(event.date.start).isAfter(dayjs())
+  )
   
   // the following reads education data once database is properly connected
   // const eduservice = new NotionEducation;
@@ -101,11 +106,11 @@ export default async function Home() {
       {/* upcomming event */}
       <div className="relative h-[637px] bg-[#161828]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
-        <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[100px]"></div>
+        <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[50px]"></div>
         <div className="max-w-6xl mx-auto flex p-4 -mt-[110px]">
           {
-            events.map((event, index) => (
-                <FeaturedEventContainer key={event.id} name={event.name} date={event.date.start} description={event.description} id={String(index)} location={event.location} thumbnail={event.thumbnail}/>
+            upcomingEvents.map((event, index) => (
+                <FeaturedEventContainer key={event.id} name={event.name} date={event.date} description={event.description} id={String(index)} location={event.location} thumbnail={event.thumbnail}/>
               ))
           }
         </div>
