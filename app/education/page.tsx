@@ -8,8 +8,10 @@ const page = async () => {
   const posts = await service.getPublishedWorkshopPosts();
   // console.log(posts);
 
+  const tags = await service.getWorkshopTags();
+
   return (
-    <EducationSearch posts={posts}/>
+    <EducationSearch posts={posts} tags={tags}/>
   )
 }
 
