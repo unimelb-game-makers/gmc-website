@@ -69,6 +69,23 @@ export default class NotionEducation {
         }
     }
 
+    async getWorkshopTags(): Promise<EducationTag[]> {
+        const database = process.env.NOTION_EDUCATION ?? '';
+        const response = await this.client.databases.retrieve({
+            database_id: database
+        });
+        const tags_db = response.properties["Tags"]
+        var tags: EducationTag[] = []
+        if (tags_db.type == "multi_select") {
+            tags = tags_db.multi_select.options.map(options =>({
+                id: options.id,
+                name: options.name,
+                color: options.color,
+            }))
+        }
+        return tags
+    }
+
     async getAuthor(id: string): Promise<EducationAuthor> {
         const committeeInfoId = process.env.NOTION_COMMITTEE_INFO ?? '';
         const response = await this.client.pages.retrieve({
