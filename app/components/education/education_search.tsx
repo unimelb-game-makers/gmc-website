@@ -19,14 +19,22 @@ const colorMap: Record<string, string> = {
 
 const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: EducationTag[]}) => {
     const [query, setQuery] = useState("");
-    const [filterTags, setFilterTags] = useState([]);
-
+    const [filterTags, setFilterTags] = useState<EducationTag[]>([]);
+  
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
     };
 
+    const handleTags = (tag: EducationTag) => {
+        if (filterTags.some(filterTag => filterTag.id === tag.id)) {
+            setFilterTags(prev => prev.filter(filterTag => filterTag.id !== tag.id))
+        } else {
+            setFilterTags(prev => [...prev, tag]);
+        }
+    }
+
     const filteredPosts = posts.filter((post) => 
-        post.title.toLowerCase().includes(query.toLowerCase()) || post.description.toLowerCase().includes(query.toLowerCase())
+        (post.title.toLowerCase().includes(query.toLowerCase()) || post.description.toLowerCase().includes(query.toLowerCase())) && filterTags.every(tag => post.tags.some(postTag => postTag.id === tag.id))
     )
     
   return (
@@ -37,8 +45,8 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
             <p className='font-bold text-xl'>Tags</p>
             <div className='flex flex-wrap gap-2'>
                 {tags.map((tag) => (
-                    <button onClick={() => console.log(tag)} key={tag.id}>
-                        <span className={`text-white text-xs px-2 py-1 rounded-full ${colorMap[tag.color]}`}>
+                    <button onClick={() => handleTags(tag)} key={tag.id}>
+                        <span className={`text-white text-xs px-3 py-1.5 rounded-full ${filterTags.some(filterTag => filterTag.id === tag.id) ? colorMap[tag.color] : "bg-gray-300"}`}>
                             {tag.name}
                         </span>
                     </button>
