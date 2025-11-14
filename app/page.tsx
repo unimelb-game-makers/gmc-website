@@ -1,12 +1,7 @@
 import Image from "next/image";
-import Header from "./components/header";
-import Footer from "./components/footer";
-import Navbar from "./components/navbar";
+
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
-import { useState,useEffect} from "react";
-import { Event } from '../@types/schema.ds';
-import { EducationTag, EducationWorkshopPost, EducationPostPage } from "@/@types/schema.ds";
 import ImageCarousel from "./components/home/image_carousel";
 
 import NotionEvents from "@/services/notion-events";

@@ -55,12 +55,12 @@ export default class NotionCommittee {
 
   private static toMember(yearPage: any, infoPage: any): CommitteeMember {
     return {
-      name: infoPage.properties.Name.title[0]?.plain_text,
+      name: infoPage.properties.Name?.title[0]?.plain_text || "",
       role: yearPage.properties["Role"].select?.name ?? "",
       year: yearPage.properties["Year"].number ?? 0,
-      image: infoPage.properties["Photo"].files[0]?.file.url,
-      about: infoPage.properties["About"].rich_text[0]?.plain_text,
-      social: infoPage.properties["Social"].url,
+      image: infoPage.properties["Photo"]?.files[0]?.file.url ?? "",
+      about: infoPage.properties["About"]?.rich_text[0]?.plain_text ?? "",
+      social: infoPage.properties["Social"]?.url ?? "",
     }
   }
 }

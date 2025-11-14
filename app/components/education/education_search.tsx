@@ -1,8 +1,8 @@
 "use client"
-import { EducationPostPage, EducationTag, EducationWorkshopPost } from '@/@types/schema.ds'
+import { EducationTag, EducationWorkshopPost } from '@/@types/schema.ds'
 import React from 'react'
 import PostEntry from './post_entry'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const colorMap: Record<string, string> = {
   red: 'bg-red-400',
