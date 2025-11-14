@@ -1,4 +1,4 @@
-name: Next.js Build Check
+name: Build
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: Build Next.js
+    name: Next.js Build Check
     runs-on: ubuntu-latest
 
     steps:
