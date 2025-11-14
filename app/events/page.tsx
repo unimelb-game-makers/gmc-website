@@ -1,5 +1,4 @@
 import React from 'react'
-import NotionEvents from '@/services/notion-events'
 
 const page = async () => {
 
