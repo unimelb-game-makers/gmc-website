@@ -25,7 +25,7 @@ const Header = () => {
         {/* Desktop Navbar */}
         <div className='hidden lg:flex items-center overflow-hidden'>
             {navItems.map(({name, path}, idx) => (
-                <Link key={name} href={path} className='px-[22px] py-[15px] text-[#F7F6F3] text-[24px] font-karla transition-colors duration-200 hover:text-blue-300'>
+                <Link key={name} href={path} className='px-[22px] py-[15px] text-[#F7F6F3] text-[24px] font-karla transition-colors duration-200 hover:text-blue-300' id={String(idx)}>
                     {name}
                 </Link>
             ))}

@@ -1,14 +1,6 @@
 import React from 'react'
-import NotionEvents from '@/services/notion-events'
-
-const { Client } = require('@notionhq/client');
-
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 const page = async () => {
-  const service = new NotionEvents;
-  const events = await service.getEvents();
-  console.log(events);
 
   // const databaseId = process.env.NOTION_EVENTS
   // const response = await notion.databases.query({
