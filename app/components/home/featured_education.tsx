@@ -17,7 +17,7 @@ const FeaturedEducationContainer = ({
 }: EducationContainerProps) => {
   return (
     <Link href={`/education/${slug}`}>
-      <div className="w-[273px] h-[372px] bg-[#F7F6F3] rounded-sm overflow-hidden flex items-center justify-center flex-col max-w-sm hover:bg-[#dadce1] active:bg-[#ffffff]">
+      <div className="w-[273px] h-[372px] bg-[#F7F6F3] rounded-sm overflow-hidden flex items-center justify-center flex-col max-w-sm hover:bg-[#dadce1] active:bg-[#ffffff]" id={id}>
         <div className="relative w-[225px] h-[225px] top-[19px]">
           <Image src={thumbnail || "/gmc_logo.png"} alt={name} fill className="object-cover rounded-sm" />
         </div>
