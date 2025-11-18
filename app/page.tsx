@@ -71,7 +71,7 @@ export default async function Home() {
       {/* education */}
       <div className="h-[611px] bg-[#161828] relative">
         <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
-        <div className="flex gap-6 p-4 pt-[31px]">
+        <div className="flex gap-6 p-4 pt-[31px] overflow-x-auto">
           {
             educations.map((education, index) => (
                 <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail} slug={education.slug}/>
