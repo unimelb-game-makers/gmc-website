@@ -2,13 +2,13 @@
 import React from 'react'
 import { useState } from 'react';
 import UpcomingEventsList from './upcoming_events_list';
+import PreviousEventList from './previous_events_list';
 import { Event } from '@/@types/schema.ds';
 import dayjs from 'dayjs';
 
 const EventsSwitch = ({events}: {events: Event[]}) => {
     const [eventList, setEventList] = useState(true);
     const date = dayjs();
-    console.log(date);
     const upcomingEvents = events.filter(event => dayjs(event.date.start).isAfter(date));
     const previousEvents = events.filter(event => dayjs(event.date.start).isBefore(date));
     return (
@@ -38,7 +38,7 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
             </div>
 
             <div>
-                <UpcomingEventsList events={upcomingEvents}/>
+                {eventList ? <UpcomingEventsList events={upcomingEvents}/> : <PreviousEventList events={previousEvents}/>}
             </div>
         </div>
     )
