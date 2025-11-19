@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
@@ -63,9 +64,11 @@ export default async function Home() {
             leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue 
             sed lorem fermentum sodales.
           </p>
-            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
+          <Link href="/education/" className = "self-center">
+            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] font-karla">
               About Us →
             </button>
+          </Link>
         </div>
       </div>
       {/* education */}
@@ -79,9 +82,11 @@ export default async function Home() {
           }
         </div>
         <div className = "flex items-center justify-center flex-col pt-[20px]">
-          <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
-            Learn More →
-          </button>
+          <Link href="/education/">
+            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
+              Learn More →
+            </button>
+          </Link>
         </div>
       </div> 
     </div>
