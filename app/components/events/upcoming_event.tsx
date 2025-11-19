@@ -3,19 +3,19 @@ import React from 'react'
 import Image from 'next/image'
 import dayjs from 'dayjs'
 
-const UpcomingEvent = ({event}: {event: Event}) => {
+const UpcomingEvent = ({event, setEvent}: {event: Event, setEvent: (event:Event) => void}) => {
     const eventTime = dayjs(event.date.start).format("h:mm A, MMMM D")
     const eventDescription = event.description? (event.description.length < 35 ? event.description : event.description.slice(0, 90) + "...") : "..."
     return (
         <div className="w-64 rounded-2xl bg-gray-200 p-4 shadow-lg border border-gray-300 text-black">
-            <a href="/">
+            <button onClick={() => {setEvent(event)}}>
             {/* Title */}
                     <h2 className="text-center text-xl font-semibold mb-3">{event.name}</h2>
 
                     {/* Banner Image */}
                     <div className="w-full h-32 bg-gray-400 rounded-md overflow-hidden">
                         <Image
-                        src={event.thumbnail} // replace with your image
+                        src={event.thumbnail? event.thumbnail : "/images/wires.png"} // replace with your image
                         alt="Event Banner"
                         width={300}
                         height={200}
@@ -40,7 +40,7 @@ const UpcomingEvent = ({event}: {event: Event}) => {
                         <Image className="mr-[5px]" src="/Clock.svg" alt="clock logo" width={24} height={24}/>
                         <p>{eventTime != "00:00 AM" ? eventTime : "TBD"}</p>
                     </div>
-        </a>
+        </button>
         </div>
     )
 }

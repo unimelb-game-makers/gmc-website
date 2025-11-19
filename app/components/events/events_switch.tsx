@@ -3,11 +3,14 @@ import React from 'react'
 import { useState } from 'react';
 import UpcomingEventsList from './upcoming_events_list';
 import PreviousEventList from './previous_events_list';
+import EventInfo from './event_info';
 import { Event } from '@/@types/schema.ds';
 import dayjs from 'dayjs';
 
 const EventsSwitch = ({events}: {events: Event[]}) => {
     const [eventList, setEventList] = useState(true);
+    const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
+
     const date = dayjs();
     const upcomingEvents = events.filter(event => dayjs(event.date.start).isAfter(date));
     const previousEvents = events.filter(event => dayjs(event.date.start).isBefore(date));
@@ -38,8 +41,9 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
             </div>
 
             <div>
-                {eventList ? <UpcomingEventsList events={upcomingEvents}/> : <PreviousEventList events={previousEvents}/>}
+                {eventList ? <UpcomingEventsList events={upcomingEvents} setEvent={setSelectedEvent}/> : <PreviousEventList events={previousEvents}/>}
             </div>
+            {selectedEvent ? <EventInfo event={selectedEvent} onClose={()=>{setSelectedEvent(null)}}/> : <></>}
         </div>
     )
 }
