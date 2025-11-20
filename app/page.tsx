@@ -49,12 +49,12 @@ export default async function Home() {
       </div>
      
       {/* about */}      
-      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] py-[72px] lg:h-[589px] bg-[#161828] ">
+      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] pt-[20px] bg-[#161828] ">
         <div className="relative lg:w-[390px] lg:h-[446px]">
           <Image src={slides[0]} alt="placeholder" fill className="object-cover"/>
         </div>
         
-        <div className="lg:w-[740px] h-[450px] flex flex-col justify-center space-y-4">
+        <div className="lg:w-[740px] flex flex-col justify-center space-y-4">
           <h2 className="bold text-[36px] mb-4 text-white font-karla">About Game Maker Club</h2>
           <p className="text-white bold text-[24px] lg:max-w-[732px] w-full self-end font-karla">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
@@ -64,7 +64,7 @@ export default async function Home() {
             leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue 
             sed lorem fermentum sodales.
           </p>
-          <Link href="/education/" className = "self-center">
+          <Link href="/education/" className = "self-center pb-[30px]">
             <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] font-karla">
               About Us →
             </button>
@@ -72,7 +72,7 @@ export default async function Home() {
         </div>
       </div>
       {/* education */}
-      <div className="h-[611px] bg-[#161828] relative">
+      <div className="bg-[#161828] relative p-[15px]">
         <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
         <div className="flex gap-6 p-4 pt-[31px] overflow-x-auto">
           {
@@ -81,7 +81,7 @@ export default async function Home() {
               ))
           }
         </div>
-        <div className = "flex items-center justify-center flex-col pt-[20px]">
+        <div className = "flex items-center justify-center flex-col pt-[20px] pb-[20px]">
           <Link href="/education/">
             <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
               Learn More →
