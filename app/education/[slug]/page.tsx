@@ -27,7 +27,9 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
                     <p>By {author.name}</p>
                     <p className="text-gray-800">Published {date}</p>
                 </div>
-                <ReactMarkdown remarkPlugins={[remarkGfm, remarkYoutubePlugin]}>{page.markdown.parent}</ReactMarkdown>
+                <div className="markdown">
+                    <ReactMarkdown remarkPlugins={[remarkGfm, remarkYoutubePlugin]}>{page.markdown.parent}</ReactMarkdown>
+                </div>
             </div>
             <AuthorCredits author={author}/>
         </div>

@@ -32,7 +32,7 @@ const FeaturedEventContainer = ({
         <Image src="/shapes/upTriangle.png" alt="Description" width={205} height={24}/>
         <div className="bg-[#F7F6F3] text-black p-[22px] -mt-[2px] mx-auto rounded-lg shadow-sm overflow-hidden max-w-sm w-[217px] h-[355px] pt-2">
           <div className='h-12 text-center'>
-            <h1 className='font-bold text-black text-center text-[clamp(0.2rem,1.5vw,1.0rem)]'>{name}</h1>
+            <h1 className='font-bold text-black text-center text-[clamp(1rem,1.0vw,1.5rem)]'>{name}</h1>
           </div>
           <div className="relative w-full h-48">
             <Image src={thumbnail || "/gmc_logo.png"} alt={name} width={150} height={200} className="object-cover" />
