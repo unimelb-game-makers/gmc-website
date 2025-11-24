@@ -23,18 +23,18 @@ const colorMap: Record<string, string> = {
 const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
   const date = dayjs(post.date.start).format("MMMM Do YYYY");
   return (
-    <div className='bg-white rounded-lg text-black w-100 h-80'>
-        <Link href={"education/" + post.slug}>
-          <Image src={post.thumbnail} alt={post.id} width={600} height={160} className='object-cover rounded-t-lg w-full h-40'/>
-        <div className="p-4 bg-white-800">
-          <p className="text-2xl font-bold">{post.title}</p>
-          <div className="flex items-center justify-between text-xs text-gray-400 mt-1">
+    <div className='bg-white rounded-lg text-black w-100 h-80 flex flex-col overflow-hidden'>
+        <Link href={"education/" + post.slug} className="flex flex-col h-full">
+          <Image src={post.thumbnail} alt={post.id} width={600} height={160} className='object-cover rounded-t-lg w-full h-40 flex-shrink-0'/>
+        <div className="p-4 bg-white-800 flex-1 min-h-0 flex flex-col">
+          <h2 className="text-xl font-bold line-clamp-1 flex-shrink-0">{post.title}</h2>
+          <div className="flex items-center justify-between text-xs text-gray-400 mt-1 flex-shrink-0">
             <span>By Jun Yeo</span>
             <span>{date}</span>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-3">
+          <div className="flex flex-wrap gap-2 mt-2 flex-shrink-0">
             {post.tags.map((tag) => (
               <span className={`text-white text-xs px-2 py-1 rounded-full ${colorMap[tag.color]}`} key={tag.id}>
                 {tag.name}
@@ -43,13 +43,13 @@ const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
           </div>
 
           {/* Description */}
-          <p className="text-sm mt-3">
+          <p className="text-sm mt-2 line-clamp-2">
             {post.description}
           </p>
         </div>
       </Link>
     </div>
-    
+
   )
 }
 
