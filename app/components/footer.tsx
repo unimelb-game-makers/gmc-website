@@ -7,9 +7,9 @@ const Footer = () => {
     <div className='flex justify-between space-x-[15px] p-[10px] bg-[#012E65] w-full h-[100px] font-karla'>
       <div className='flex p-[10px] items-center'>
         {/* Our Logo */}
-        <a href="/" className='mx-2'>
+        <Link href="/" className='mx-2'>
           <Image src="/gmc_logo.png" alt="gmc_logo" width={80} height={80}/>
-        </a>
+        </Link>
         {/* UMSU */}
         <a href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/9180/">
           <Image src="/icons/umsu_clubs.svg" alt="umsu" width={40} height={40} className='w-auto h-12'/>

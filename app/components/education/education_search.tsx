@@ -1,8 +1,8 @@
 "use client"
-import { EducationPostPage, EducationTag, EducationWorkshopPost } from '@/@types/schema.ds'
+import { EducationTag, EducationWorkshopPost } from '@/@types/schema.ds'
 import React from 'react'
 import PostEntry from './post_entry'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 const colorMap: Record<string, string> = {
   red: 'bg-red-400',
@@ -20,6 +20,7 @@ const colorMap: Record<string, string> = {
 const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: EducationTag[]}) => {
     const [query, setQuery] = useState("");
     const [filterTags, setFilterTags] = useState<EducationTag[]>([]);
+    const [menuOpen, setMenuOpen] = useState(false);
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
@@ -38,25 +39,35 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
     )
     
   return (
-    <div className="px-3 md:px-20 lg:px-30 py-10 flex space-x-20 text-black">
+    <div className="px-3 md:px-20 lg:px-30 py-10 flex flex-col lg:flex-row space-x-0 md:space-x-20 text-black">
+      <div className="relative min-h-[1vh] w-full lg:w-80">
+        <button
+          className="bg-white w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full p-3 rounded-xl font-bold text-xl lg:hidden flex justify-between items-center"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          Tag Selection
+          <span>{menuOpen ? "▲" : "▼"}</span>
+        </button>
       {/* Search/Filter Menu*/}
-      <div>
-        <div className='bg-white w-80 h-100 rounded-xl p-3'>
-            <p className='font-bold text-xl'>Tags</p>
-            <div className='flex flex-wrap gap-2'>
-                {tags.map((tag) => (
-                    <button onClick={() => handleTags(tag)} key={tag.id}>
-                        <span className={`text-white text-xs px-3 py-1.5 rounded-full ${filterTags.some(filterTag => filterTag.id === tag.id) ? colorMap[tag.color] : "bg-gray-300"}`}>
-                            {tag.name}
-                        </span>
-                    </button>
-                ))}
-            </div>
+        <div className={`bg-white rounded-xl p-3 mt-2 lg:block ${menuOpen ? "block" : "hidden"} w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full`}>
+          <h2 className='text-xl font-bold mx-2'>Tags</h2>
+          <hr className=' my-2'></hr>
+          <div className='bg-white rounded-xl p-3'>
+              <div className='flex flex-wrap gap-2'>
+                  {tags.map((tag) => (
+                      <button onClick={() => handleTags(tag)} key={tag.id}>
+                          <span className={`text-white text-xs px-3 py-1.5 rounded-full ${filterTags.some(filterTag => filterTag.id === tag.id) ? colorMap[tag.color] : "bg-gray-300"}`}>
+                              {tag.name}
+                          </span>
+                      </button>
+                  ))}
+              </div>
+          </div>
         </div>
       </div>
-      <div className='w-screen'>
+      <div className='w-full'>
         {/* Search Bar */}
-        <div className='bg-white max-w-full rounded-xl'>
+        <div className='bg-white w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full rounded-xl'>
           <input
             type="text"
             value={query}
@@ -66,7 +77,7 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
         />
         </div>
         {/* Actual Posts*/}
-        <div className='grid grid-cols-1 [@media(min-width:1500px)]:grid-cols-2 [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
+        <div className='grid grid-cols-1 justify-items-center mx-auto [@media(min-width:1300px)]:grid-cols-2 [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
           {filteredPosts.map((post, i) => (
           <PostEntry post={post} key={i}/>
           ))}
