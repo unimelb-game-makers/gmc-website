@@ -51,7 +51,7 @@ export type EducationWorkshopPost = {
     id: string,
     title: string,
     slug: string,
-    author: {
+    author: EducationAuthor | {
         id: string,
         type: string,
         relation: {
