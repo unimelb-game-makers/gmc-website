@@ -11,7 +11,7 @@ const Header = () => {
   const navItems = [
         { name: "Events", path: '/events/'},
         { name: "About", path: '/about/'},
-        { name: "Blog", path: '/education/'},
+        { name: "Education", path: '/education/'},
         { name: "Contact", path: '/contact/'},
         { name: "Committee", path: '/committee/'}
     ];
@@ -19,7 +19,9 @@ const Header = () => {
   return (
     <nav className='flex items-center justify-between px-[15px] bg-[#012E65] w-full relative'>
         <div className='flex items-center space-x-3 py-[15px]'>
-            <Image src='/gmc_logo.png' alt='gmc_logo' width={80} height={80} />
+            <Link href={'/'}>
+                <Image src='/gmc_logo.png' alt='gmc_logo' width={80} height={80} />
+            </Link>
         </div>
         
         {/* Desktop Navbar */}
