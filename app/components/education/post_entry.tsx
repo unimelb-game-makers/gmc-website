@@ -25,7 +25,7 @@ const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
   const authorName = 'name' in post.author ? post.author.name : 'Unknown Author';
 
   return (
-    <div className='bg-white rounded-lg text-black w-100 h-80 flex flex-col overflow-hidden'>
+    <div className='bg-white rounded-lg text-black w-full [@media(min-width:1300px)]:w-100 h-80 flex flex-col overflow-hidden'>
         <Link href={"education/" + post.slug} className="flex flex-col h-full">
           <Image src={post.thumbnail} alt={post.id} width={600} height={160} className='object-cover rounded-t-lg w-full h-40 flex-shrink-0'/>
         <div className="p-4 bg-white-800 flex-1 min-h-0 flex flex-col">
