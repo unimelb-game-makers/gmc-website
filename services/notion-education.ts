@@ -30,9 +30,9 @@ export default class NotionEducation {
             ]
         });
 
-        return response.results.map(res => {
-            return NotionEducation.educationTransformer(res);
-        });
+        return Promise.all(response.results.map(async (res) => {
+            return await this.educationTransformer(res);
+        }));
     }
 
     async getSinglePost(slug: string): Promise<EducationPostPage> {
@@ -61,7 +61,7 @@ export default class NotionEducation {
         const mdBlocks = await this.n2m.pageToMarkdown(page.id);
 
         markdown = this.n2m.toMarkdownString(mdBlocks);
-        post = NotionEducation.educationTransformer(page);
+        post = await this.educationTransformer(page);
 
         return {
             post,
@@ -94,8 +94,6 @@ export default class NotionEducation {
 
         const author: any = response;
 
-        // console.log(author);
-
         return {
             id: author.id,
             name: author.properties.Name.title[0]?.plain_text,
@@ -105,16 +103,27 @@ export default class NotionEducation {
         };
     }
 
-    private static educationTransformer(page: any): EducationWorkshopPost {
-            return {
-                id: page.id,
-                title: page.properties.Name.title[0]?.plain_text,
-                author: page.properties.Author,
-                slug: page.properties.Slug.formula.string,
-                date: page.properties["Date Published"].date,
-                thumbnail: page.properties.Thumbnail.files[0]?.file.url,
-                tags: page.properties.Tags.multi_select,
-                description: page.properties.Description.rich_text[0]?.plain_text,
+    private async educationTransformer(page: any): Promise<EducationWorkshopPost> {
+        const authorRelation = page.properties.Author.relation[0];
+        let author = page.properties.Author;
+
+        if (authorRelation?.id) {
+            try {
+                author = await this.getAuthor(authorRelation.id);
+            } catch (error) {
+                console.error('Failed to fetch author:', error);
             }
         }
+
+        return {
+            id: page.id,
+            title: page.properties.Name.title[0]?.plain_text,
+            author: author,
+            slug: page.properties.Slug.formula.string,
+            date: page.properties["Date Published"].date,
+            thumbnail: page.properties.Thumbnail.files[0]?.file.url,
+            tags: page.properties.Tags.multi_select,
+            description: page.properties.Description.rich_text[0]?.plain_text,
+        }
     }
+}

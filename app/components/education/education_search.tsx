@@ -77,7 +77,7 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
         />
         </div>
         {/* Actual Posts*/}
-        <div className='grid grid-cols-1 justify-items-center mx-auto [@media(min-width:1300px)]:grid-cols-2 [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
+        <div className='grid grid-cols-1 mx-auto [@media(min-width:1300px)]:grid-cols-2 [@media(min-width:1300px)]:justify-items-center [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
           {filteredPosts.map((post, i) => (
           <PostEntry post={post} key={i}/>
           ))}
