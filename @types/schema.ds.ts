@@ -51,14 +51,7 @@ export type EducationWorkshopPost = {
     id: string,
     title: string,
     slug: string,
-    author: EducationAuthor | {
-        id: string,
-        type: string,
-        relation: {
-            id: string,
-        }[],
-        has_more: boolean
-    },
+    author: EducationAuthor,
     thumbnail: string,
     tags: EducationTag[],
     date: {
