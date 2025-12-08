@@ -9,6 +9,8 @@ import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
 import dayjs from "dayjs";
 
+export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
+
 export default async function Home() {
 
   const slides = [

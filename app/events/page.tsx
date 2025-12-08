@@ -3,6 +3,8 @@ import EventsSwitch from '../components/events/events_switch'
 import NotionEvents from '@/services/notion-events';
 import Image from 'next/image';
 
+export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
+
 const page = async () => {
   const notion = new NotionEvents();
   const events = await notion.getEvents();

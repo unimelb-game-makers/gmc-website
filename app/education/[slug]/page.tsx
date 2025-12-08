@@ -11,7 +11,7 @@ import advancedFormat from 'dayjs/plugin/advancedFormat';
 
 dayjs.extend(advancedFormat);
 
-export const revalidate = 86400; // Revalidate every 1 day (in seconds)
+export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
 const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
     const { slug } = await params;

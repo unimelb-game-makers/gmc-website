@@ -3,6 +3,8 @@ import { CommitteeYear } from "@/@types/schema.ds";
 import Image from "next/image";
 import CommitteeList from "./committee-list";
 
+export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
+
 export default async function Committee() {
   const notion = new NotionCommittee();
   const committeeMembers: CommitteeYear = await notion.getCommittee();
