@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^4.4.1",
     "@notionhq/client": "^4.0.2",
     "dayjs": "^1.11.18",
     "next": "15.3.4",

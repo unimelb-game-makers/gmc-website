@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 const karla = Karla({
   variable: '--font-karla',
   subsets: ['latin'],
+  weight: ['200', '300', '400', '500', '600', '700', '800'],
 });
 
 export const metadata: Metadata = {
