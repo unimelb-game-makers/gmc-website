@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaArrowRightLong, FaYoutube } from "react-icons/fa6";
+import { FaArrowRightLong } from "react-icons/fa6";
 import Image from 'next/image';
 import ContactForm from "./ContactForm";
 
