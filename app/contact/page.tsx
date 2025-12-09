@@ -74,7 +74,7 @@ export default function Contact() {
               <Image src="/icons/contact-instagram.png" alt="Instagram" width={50} height={50} className="w-[50px] h-[50px]" />
               <h3 className="m-0 text-[1.5rem] font-bold text-black">Follow us on Instagram!</h3>
             </div>
-            <a href="https://www.instagram.com/stego.studios/" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.instagram.com/gmc.unimelb/?hl=en" target="_blank" rel="noopener noreferrer">
               <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
                 Follow <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
               </button>
@@ -86,7 +86,7 @@ export default function Contact() {
               <Image src="/icons/contact-discord.png" alt="Discord" width={50} height={50} className="w-[50px] h-[50px]" />
               <h3 className="m-0 text-[1.5rem] font-bold text-black">Join our discord!</h3>
             </div>
-            <a href="https://discord.gg/eA6RbnkS" target="_blank" rel="noopener noreferrer">
+            <a href="https://discord.com/invite/YWD4jRQ7xY" target="_blank" rel="noopener noreferrer">
               <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
                 Join <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
               </button>
@@ -98,7 +98,7 @@ export default function Contact() {
               <Image src="/icons/contact-youtube.png" alt="YouTube" width={50} height={50} className="w-[50px] h-[50px]" />
               <h3 className="m-0 text-[1.5rem] font-bold text-black">Check out our YouTube!</h3>
             </div>
-            <a href="https://www.youtube.com/@StegoStudios" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.youtube.com/@UniMelbGameMakers" target="_blank" rel="noopener noreferrer">
               <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
                 Go <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
               </button>
@@ -110,7 +110,7 @@ export default function Contact() {
               <Image src="/icons/contact-itch.png" alt="Itch.io" width={50} height={50} className="w-[50px] h-[50px]" />
               <h3 className="m-0 text-[1.5rem] font-bold text-black">Play our games on Itch!</h3>
             </div>
-            <a href="https://stegostudios.itch.io/" target="_blank" rel="noopener noreferrer">
+            <a href="https://gmcunimelb.itch.io/" target="_blank" rel="noopener noreferrer">
               <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
                 Play! <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
               </button>
