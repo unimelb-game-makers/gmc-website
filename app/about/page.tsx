@@ -1,5 +1,6 @@
 import React from 'react'
 import PhotoWall from "../components/about/photowall";
+import {DotPoint} from "../components/about/dotpoint";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -25,6 +26,31 @@ const page = async () => {
                 </p>
             </div>
         </div>
+
+        {/* our mission */}
+        <div className="bg-[#161828] px-[30px] py-[40px]">
+        {/* Title — left aligned */}
+        <h2 className="text-white text-[36px] font-karla bold mb-8 text-left">What We Do</h2>
+
+        {/* Dotpoints — centered as a block */}
+        <div className="max-w-[720px] mx-auto">
+            <div className="flex flex-col gap-10">
+            <DotPoint
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                iconSrc="/images/wires.png"
+            />
+            <DotPoint
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                iconSrc="/images/wires.png"
+            />
+            <DotPoint
+                text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                iconSrc="/images/wires.png"
+            />
+            </div>
+        </div>
+        </div>
+
     </div>
 
   )
