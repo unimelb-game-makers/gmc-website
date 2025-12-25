@@ -14,8 +14,8 @@ export default class NotionEducation {
     async getPublishedWorkshopPosts(): Promise<EducationWorkshopPost[]> {
         const database = process.env.NOTION_EDUCATION ?? '';
 
-        const response = await this.client.databases.query({
-            database_id: database,
+        const response = await this.client.dataSources.query({
+            data_source_id: database,
             filter: {
                 property: 'Published',
                 checkbox: {
@@ -40,8 +40,8 @@ export default class NotionEducation {
 
         const database = process.env.NOTION_EDUCATION ?? '';
 
-        const response = await this.client.databases.query({
-            database_id: database,
+        const response = await this.client.dataSources.query({
+            data_source_id: database,
             filter: {
                 property: 'Slug',
                 formula: {
@@ -71,8 +71,8 @@ export default class NotionEducation {
 
     async getWorkshopTags(): Promise<EducationTag[]> {
         const database = process.env.NOTION_EDUCATION ?? '';
-        const response = await this.client.databases.retrieve({
-            database_id: database
+        const response = await this.client.dataSources.retrieve({
+            data_source_id: database
         });
         const tags_db = response.properties["Tags"]
         var tags: EducationTag[] = []
