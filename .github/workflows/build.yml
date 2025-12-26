@@ -31,7 +31,7 @@ jobs:
       - name: Set Notion env vars
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_EVENTS: ${{ secrets.NOTION_EVENTS }}
+          NOTION_PROJECTS: ${{ secrets.NOTION_PROJECTS }}
           NOTION_COMMITTEE_INFO: ${{ secrets.NOTION_COMMITTEE_INFO }}
           NOTION_COMMITTEE_YEAR: ${{ secrets.NOTION_COMMITTEE_YEAR }}
           NOTION_EDUCATION: ${{ secrets.NOTION_EDUCATION }}
@@ -41,7 +41,7 @@ jobs:
       - name: Build Next.js
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_EVENTS: ${{ secrets.NOTION_EVENTS }}
+          NOTION_PROJECTS: ${{ secrets.NOTION_PROJECTS }}
           NOTION_COMMITTEE_INFO: ${{ secrets.NOTION_COMMITTEE_INFO }}
           NOTION_COMMITTEE_YEAR: ${{ secrets.NOTION_COMMITTEE_YEAR }}
           NOTION_EDUCATION: ${{ secrets.NOTION_EDUCATION }}
