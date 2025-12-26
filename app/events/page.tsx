@@ -2,12 +2,14 @@ import React from 'react'
 import EventsSwitch from '../components/events/events_switch'
 import NotionEvents from '@/services/notion-events';
 import Image from 'next/image';
+import { Client } from "@notionhq/client";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
 const page = async () => {
   const notion = new NotionEvents();
   const events = await notion.getEvents();
+  console.log(events);
 
   return (
     <div>
