@@ -27,7 +27,7 @@ export default class NotionEvents {
 
     private static eventTransformer(page: any): Event {
         return {
-            id: page.id,
+            id: page.id, 
             name: page.properties["Event Name"]?.title[0]?.plain_text ?? null,
             description: page.properties.Description?.rich_text?.[0]?.plain_text ?? null,
             date: page.properties.Date?.date ?? null,
