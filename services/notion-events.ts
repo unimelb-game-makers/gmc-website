@@ -9,19 +9,13 @@ export default class NotionEvents {
     }
 
     async getEvents(): Promise<Event[]> {
-        const database = process.env.NOTION_EVENTS ?? '';
+        const database = process.env.NOTION_PROJECTS ?? '';
 
-        const response = await this.client.databases.query({
-            database_id: database,
-            filter: {
-                property: 'Public Checkbox',
-                checkbox: {
-                    equals: true,
-                }
-            },
+        const response = await this.client.dataSources.query({
+            data_source_id: database,
             sorts: [
                 {
-                    property: 'Event Date',
+                    property: 'Date',
                     direction: 'descending',
                 }
             ]
@@ -33,12 +27,12 @@ export default class NotionEvents {
 
     private static eventTransformer(page: any): Event {
         return {
-            id: page.id,
-            name: page.properties["Public Name"]?.rich_text?.[0]?.plain_text ?? null,
-            description: page.properties["Public Description"]?.rich_text?.[0]?.plain_text ?? null,
-            date: page.properties["Event Date"]?.date ?? null,
+            id: page.id, 
+            name: page.properties["Event Name"]?.title[0]?.plain_text ?? null,
+            description: page.properties.Description?.rich_text?.[0]?.plain_text ?? null,
+            date: page.properties.Date?.date ?? null,
             location: page.properties.Venue?.rich_text?.[0]?.plain_text ?? null,
-            thumbnail: page.properties.Thumbnail?.files?.[0]?.file?.url ?? null
+            thumbnail: page.properties.Thumbnail?.files?.[0]?.file?.url ?? null,
         }
     }
 }
