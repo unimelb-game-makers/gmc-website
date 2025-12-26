@@ -12,6 +12,9 @@ module.exports = {
         geistMono: ['var(--font-geist-mono)', 'monospace'],
         karla: ['var(--font-karla)', 'sans-serif'],
       },
+      animation: {
+        "spin-slow": "spin 25s linear infinite",
+      },
     },
   },
   plugins: [],
