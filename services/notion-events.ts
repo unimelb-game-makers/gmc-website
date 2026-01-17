@@ -13,12 +13,28 @@ export default class NotionEvents {
 
         const response = await this.client.dataSources.query({
             data_source_id: database,
+            filter: {
+                and: [
+                    {
+                        property: 'Date',
+                        date: {
+                            is_not_empty: true,
+                        }
+                    },
+                    {
+                        property: 'Event Name',
+                        title: {
+                            is_not_empty: true,
+                        }
+                    }
+                ]
+            },
             sorts: [
                 {
                     property: 'Date',
-                    direction: 'descending',
+                    direction: 'ascending',
                 }
-            ]
+            ],
         });
         return response.results.map(res => {
             return NotionEvents.eventTransformer(res);
