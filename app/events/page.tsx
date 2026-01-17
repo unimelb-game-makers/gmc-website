@@ -8,7 +8,6 @@ export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 const page = async () => {
   const notion = new NotionEvents();
   const events = await notion.getEvents();
-  console.log(events);
 
   return (
     <div>
