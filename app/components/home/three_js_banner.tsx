@@ -83,6 +83,12 @@ function PlaneGrid({
         const x = col * spacingX - xOffset + offsetX
         const y = row * spacingY - yOffset
 
+        // Skip planes that are past x = -30
+        if (x < -30) {
+          imageIndex++
+          continue
+        }
+
         // Calculate opacity based on x position
         let opacity = 1
 
