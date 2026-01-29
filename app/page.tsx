@@ -5,6 +5,8 @@ import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
 import ImageCarousel from "./components/home/image_carousel";
 
+import ThreeJSBanner from "./components/home/three_js_banner";
+
 import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
 import dayjs from "dayjs";
@@ -34,9 +36,7 @@ export default async function Home() {
   return (
     <div>
       {/* sign up page */}
-      <div className="flex w-full h-[603px] overflow-hidden shadow-md">
-        <ImageCarousel />
-      </div>
+      <ThreeJSBanner />
       {/* upcomming event */}
       <div className="relative h-[637px] bg-[#161828]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
