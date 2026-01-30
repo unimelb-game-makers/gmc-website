@@ -2,7 +2,7 @@
 
 import React, { useRef } from 'react'
 import { Canvas, useLoader, useFrame } from '@react-three/fiber'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { PerspectiveCamera } from '@react-three/drei'
 import * as THREE from 'three'
 
 // Upright standing plane component
@@ -14,7 +14,8 @@ interface StandingPlaneProps {
 }
 
 function StandingPlane({ position = [0, 0, 0], rotation = [0, 0, 0], imageUrl, opacity = 1 }: StandingPlaneProps) {
-  const texture = imageUrl ? useLoader(THREE.TextureLoader, imageUrl) : null
+  const imageFiltered = imageUrl ? imageUrl : "/images/wires.png"
+  const texture = useLoader(THREE.TextureLoader, imageFiltered)
 
   return (
     <mesh position={position} rotation={rotation}>

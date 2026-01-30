@@ -3,7 +3,6 @@ import Link from "next/link";
 
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
-import ImageCarousel from "./components/home/image_carousel";
 
 import ThreeJSBanner from "./components/home/three_js_banner";
 
