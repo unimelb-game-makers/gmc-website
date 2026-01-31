@@ -10,7 +10,7 @@ const page = async () => {
   const events = await notion.getEvents();
 
   return (
-    <div>
+    <div className='py-35'>
       <div className='m-5'>
         <h1 className='text-7xl font-bold font-akira drop-shadow-teal text-center'>Events</h1>
 

@@ -4,12 +4,12 @@ import Link from 'next/link'
 
 const HeroBanner = () => {
   return (
-    <div className="relative bg-[#161616]">
+    <div className="relative bg-[#161616] pt-30">
         {/* Three.js background */}
         <ThreeJSBanner />
 
         {/* Overlay content */}
-        <div className="absolute inset-0 flex items-center pointer-events-none">
+        <div className="mt-5 absolute inset-0 flex items-center pointer-events-none">
             <div className="ml-15 md:ml-30 pointer-events-auto">
                 <h1 className="text-5xl md:text-8xl font-bold font-akira text-gmc-orange leading-tight drop-shadow-[6px_6px_0_#245760]">
                     GAME<br />

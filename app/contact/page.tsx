@@ -41,7 +41,7 @@ export default function Contact() {
   }, [showPopup]);
 
   return (
-    <div>
+    <div className='py-35'>
       {showPopup && (
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
           <div className="relative bg-white p-6 rounded-lg shadow-lg text-center">

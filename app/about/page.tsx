@@ -57,7 +57,7 @@ const page = async () => {
   ];
 
   return (
-    <div>
+    <div className='py-35'>
          {/* who are we */}
         <div className="flex flex-col lg:flex-row gap-[41px] items-center p-[30px]">
             <div className="relative w-full h-[280px] sm:h-[340px] lg:w-[650px] lg:h-[446px] overflow-hidden">

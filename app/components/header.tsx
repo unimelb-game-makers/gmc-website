@@ -17,7 +17,7 @@ const Header = () => {
     ];
 
   return (
-    <nav className='w-full flex justify-center mt-12 mb-8'>
+    <nav className='absolute top-0 left-0 w-full flex justify-center mt-12 z-50'>
         <div className='relative flex items-center w-11/12'>
             {/* Logo positioned in front of navbar */}
             <Link href='/' className='absolute -left-12 z-10'>

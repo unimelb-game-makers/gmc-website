@@ -8,6 +8,7 @@ import './markdown.css';
 
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
+import { div } from "three/tsl";
 
 dayjs.extend(advancedFormat);
 
@@ -21,18 +22,20 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
     const date = dayjs(page.post.date.start).format("MMMM Do YYYY");
 
     return (
-        <div className="px-3 md:px-20 lg:px-40 py-10 flex flex-col items-center">
-            <div className="px-8 py-10 bg-white text-black rounded-lg mb-10 ">
-                <div>
-                    <p className="text-7xl font-bold">{page.post.title}</p>
-                    <p>By {author.name}</p>
-                    <p className="text-gray-800">Published {date}</p>
+        <div className='py-35'>
+            <div className="px-3 md:px-20 lg:px-40 py-10 flex flex-col items-center">
+                <div className="px-8 py-10 bg-white text-black rounded-lg mb-10 ">
+                    <div>
+                        <p className="text-7xl font-bold">{page.post.title}</p>
+                        <p>By {author.name}</p>
+                        <p className="text-gray-800">Published {date}</p>
+                    </div>
+                    <div className="markdown">
+                        <ReactMarkdown remarkPlugins={[remarkGfm, remarkYoutubePlugin]}>{page.markdown.parent}</ReactMarkdown>
+                    </div>
                 </div>
-                <div className="markdown">
-                    <ReactMarkdown remarkPlugins={[remarkGfm, remarkYoutubePlugin]}>{page.markdown.parent}</ReactMarkdown>
-                </div>
+                <AuthorCredits author={author}/>
             </div>
-            <AuthorCredits author={author}/>
         </div>
     )
 }
