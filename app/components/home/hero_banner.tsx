@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const HeroBanner = () => {
   return (
-    <div className="relative">
+    <div className="relative bg-[#161616]">
         {/* Three.js background */}
         <ThreeJSBanner />
 

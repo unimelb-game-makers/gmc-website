@@ -57,9 +57,9 @@ const page = async () => {
   ];
 
   return (
-    <div className="bg-[#161828]">
+    <div>
          {/* who are we */}
-        <div className="flex flex-col lg:flex-row gap-[41px] items-center p-[30px] bg-[#161828]">
+        <div className="flex flex-col lg:flex-row gap-[41px] items-center p-[30px]">
             <div className="relative w-full h-[280px] sm:h-[340px] lg:w-[650px] lg:h-[446px] overflow-hidden">
                 <PhotoWall />
             </div>
@@ -77,7 +77,7 @@ const page = async () => {
         </div>
 
         {/* our mission */}
-        <div className="bg-[#161828] px-[30px] py-[40px]">
+        <div className="px-[30px] py-[40px]">
         <h2 className="text-white text-[36px] font-karla bold mb-8 text-left">Our Mission</h2>
         <div className="max-w-[720px] mx-auto">
             <div className="flex flex-col gap-10">
@@ -98,7 +98,7 @@ const page = async () => {
         </div>
 
         {/* what do we do */}
-        <div className="bg-[#161828] px-[30px] py-[40px]">
+        <div className="px-[30px] py-[40px]">
             <h2 className="text-white font-karla bold text-[36px] text-left mb-8">What do we do</h2>
             <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 w-[90%] mx-auto">
                 {cards.map((c) => (
@@ -114,7 +114,7 @@ const page = async () => {
         </div>
 
         {/* FAQ */}
-        <section className="bg-[#161828] px-[30px] py-[40px]">
+        <section className="px-[30px] py-[40px]">
             <h2 className="text-white font-karla bold text-[36px] text-left mb-8">FAQ</h2>
 
             <div className="w-[90%] mx-auto">

@@ -37,7 +37,7 @@ export default async function Home() {
       {/* sign up page */}
       <HeroBanner />
       {/* upcomming event */}
-      <div className="relative h-[637px] bg-[#161828]">
+      <div className="relative h-[637px]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
         <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[50px]"></div>
         <div className="max-w-6xl mx-auto flex p-4 -mt-[110px]">
@@ -50,7 +50,7 @@ export default async function Home() {
       </div>
      
       {/* about */}      
-      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] pt-[20px] bg-[#161828] ">
+      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] pt-[20px]">
         <div className="relative lg:w-[390px] lg:h-[446px]">
           <Image src={slides[0]} alt="placeholder" fill className="object-cover"/>
         </div>
@@ -73,7 +73,7 @@ export default async function Home() {
         </div>
       </div>
       {/* education */}
-      <div className="bg-[#161828] relative p-[15px]">
+      <div className="relative p-[15px]">
         <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
         <div className="flex gap-6 p-4 pt-[31px] overflow-x-auto text-black">
           {
