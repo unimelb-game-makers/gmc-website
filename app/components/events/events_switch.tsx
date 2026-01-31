@@ -7,7 +7,7 @@ import EventInfo from './event_info';
 import { Event } from '@/@types/schema.ds';
 import dayjs from 'dayjs';
 
-import { FaHourglass, FaHourglassHalf } from 'react-icons/fa';
+import { FaHourglass } from 'react-icons/fa';
 
 const EventsSwitch = ({events}: {events: Event[]}) => {
     const [eventList, setEventList] = useState(true);
