@@ -7,13 +7,13 @@ const UpcomingEvent = ({event, setEvent}: {event: Event, setEvent: (event:Event)
     const eventTime = dayjs(event.date.start).format("h:mm A, MMMM D")
     const eventDescription = event.description? (event.description.length < 35 ? event.description : event.description.slice(0, 90) + "...") : "..."
     return (
-        <div className="w-64 rounded-2xl bg-gray-200 p-4 shadow-lg border border-gray-300 text-black">
+        <div className="w-64 rounded-2xl bg-gmc-cream p-4 text-black">
             <button onClick={() => {setEvent(event)}}>
             {/* Title */}
-                    <h2 className="text-center text-xl font-semibold mb-3">{event.name}</h2>
+                    <h2 className="h-12 text-center text-xl font-semibold mb-3">{event.name}</h2>
 
                     {/* Banner Image */}
-                    <div className="w-full h-32 bg-gray-400 rounded-md overflow-hidden">
+                    <div className="w-56 h-32 bg-gray-400 rounded-md overflow-hidden justify-center">
                         <Image
                         src={event.thumbnail? event.thumbnail : "/images/wires.png"} // replace with your image
                         alt="Event Banner"
