@@ -8,7 +8,6 @@ import './markdown.css';
 
 import dayjs from 'dayjs';
 import advancedFormat from 'dayjs/plugin/advancedFormat';
-import { div } from "three/tsl";
 
 dayjs.extend(advancedFormat);
 

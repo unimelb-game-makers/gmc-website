@@ -1,6 +1,5 @@
 import React from 'react'
 import ThreeJSBanner from './three_js_banner'
-import Link from 'next/link'
 
 const HeroBanner = () => {
   return (
@@ -13,7 +12,7 @@ const HeroBanner = () => {
             <div className="ml-15 md:ml-30 pointer-events-auto">
                 <h1 className="text-5xl md:text-8xl font-bold font-akira text-gmc-orange leading-tight drop-shadow-[6px_6px_0_#245760]">
                     GAME<br />
-                    MAKER'S<br />
+                    MAKER&apos;S<br />
                     CLUB
                 </h1>
                 <a href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/9180/">
