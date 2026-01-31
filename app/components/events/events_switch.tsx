@@ -42,7 +42,7 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
                     <div className="w-20 h-100 bg-gmc-orange mt-8" />
                 </div>
                 
-                <div className='h-200 overflow-y-auto ml-10 mr-10 flex-1'>
+                <div className='h-200 overflow-y-auto ml-10 mr-10 flex-1 gmc-scrollbar'>
                     {eventList ? <UpcomingEventsList events={upcomingEvents} setEvent={setSelectedEvent}/> : <PreviousEventList events={previousEvents} setEvent={setSelectedEvent}/>}
                 </div>
 

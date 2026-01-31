@@ -46,6 +46,19 @@ body {
   .drop-shadow-orange {
     filter: drop-shadow(-4px 4px 4px #E97851);
   }
+
+  .gmc-scrollbar::-webkit-scrollbar {
+    background: #ffffff;
+    border-radius: 0px;
+  }
+  .gmc-scrollbar::-webkit-scrollbar-thumb {
+    background: #F3AD64;     /* track background */
+    border-radius: 0px;
+  }
+
+  .gmc-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #E97851;     /* thumb hover color */
+  }
 }
 /* 
 h1 {
