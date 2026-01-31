@@ -28,6 +28,21 @@ body {
   background: var(--background);
   color: var(--foreground);
 }
+
+/* Custom component classes */
+@layer components {
+  .text-vertical-textured {
+    @apply font-black font-akira bg-clip-text text-transparent bg-repeat;
+    background-image: url('/patterns/pattern_01.png');
+    background-size: 20px 20px;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  .drop-shadow-teal {
+    filter: drop-shadow(0 4px 4px #73b3b6);
+  }
+}
 /* 
 h1 {
   font-size: 3rem;
