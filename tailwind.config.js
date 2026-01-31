@@ -18,6 +18,18 @@ module.exports = {
       animation: {
         "spin-slow": "spin 25s linear infinite",
       },
+      colors: {
+        'gmc-teal': {
+          dark: '#245760',
+          DEFAULT: '#3A7D8D',
+          light: '#73b3b6'
+        },
+        'gmc-orange': {
+          dark: '#E97851',
+          DEFAULT: '#F3AD64'
+        },
+        'gmc-cream': '#EDEBD8'
+      }
     },
   },
   plugins: [],
