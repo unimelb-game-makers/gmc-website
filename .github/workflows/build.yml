@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - main  # or your default branch
-      - deployment
+      - development
 
 jobs:
   build:
