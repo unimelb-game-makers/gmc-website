@@ -4,7 +4,7 @@ import Link from "next/link";
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
 
-import ThreeJSBanner from "./components/home/three_js_banner";
+import HeroBanner from "./components/home/hero_banner";
 
 import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
@@ -35,7 +35,7 @@ export default async function Home() {
   return (
     <div>
       {/* sign up page */}
-      <ThreeJSBanner />
+      <HeroBanner />
       {/* upcomming event */}
       <div className="relative h-[637px] bg-[#161828]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
