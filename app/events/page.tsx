@@ -22,7 +22,7 @@ const page = async () => {
             <div className='flex justify-center flex-1'>
               <div className="w-max-1280 h-max bg-gray-400 overflow-hidden justify-center">
                 <Image
-                src={"/images/chess.jpg"}
+                src={"/images/maker_lab_photo.jpg"}
                 alt="Maker Labs"
                 width={300}
                 height={200}
@@ -48,7 +48,7 @@ const page = async () => {
 
               <div className="w-max-1280 h-max bg-gray-400 overflow-hidden justify-center ml-20">
                 <Image
-                src={"/images/chess.jpg"}
+                src={"/images/gmcc_photo.jpg"}
                 alt="Maker Labs"
                 width={300}
                 height={200}
