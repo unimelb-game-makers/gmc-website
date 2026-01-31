@@ -12,7 +12,9 @@ const page = async () => {
   const tags = await service.getWorkshopTags();
 
   return (
-    <EducationSearch posts={posts} tags={tags}/>
+    <div className='py-35'>
+      <EducationSearch posts={posts} tags={tags}/>
+    </div>
   )
 }
 
