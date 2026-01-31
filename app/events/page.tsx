@@ -12,7 +12,8 @@ const page = async () => {
   return (
     <div>
       <div className='m-5'>
-        <h1 className='text-7xl font-bold'>Events</h1>
+        <h1 className='text-7xl font-bold font-akira drop-shadow-teal text-center'>Events</h1>
+
         <EventsSwitch events={events}/>
         <div>
           <h1 className='text-5xl font-bold mt-5'>Regular Events</h1>
