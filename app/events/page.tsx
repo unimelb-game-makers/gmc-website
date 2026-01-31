@@ -15,21 +15,49 @@ const page = async () => {
         <h1 className='text-7xl font-bold font-akira drop-shadow-teal text-center'>Events</h1>
 
         <EventsSwitch events={events}/>
-        <div>
-          <h1 className='text-5xl font-bold mt-5'>Regular Events</h1>
+        <div className='mt-20 flex'>
+          <h1 className='text-vertical-textured text-8xl'>Regular</h1>
+          <div className='w-full'>
+            {/* Maker Lab Desc */}
+            <div className='flex justify-center flex-1'>
+              <div className="w-max-1280 h-max bg-gray-400 overflow-hidden justify-center">
+                <Image
+                src={"/images/chess.jpg"}
+                alt="Maker Labs"
+                width={300}
+                height={200}
+                className="object-cover w-full h-full"
+                />
+              </div>
+              <div className='ml-20'>
+                <h1 className='drop-shadow-teal text-5xl font-akira'>MAKER LABS</h1>
+                <div className='mt-10 bg-gmc-cream max-w-3xl p-4'>
+                  <p className='text-black font-tasa-orbiter font-bold text-2xl'>Our Weekly Maker Labs are casual meetups where members chat about games and game development, share what they’re working on, and learn from each other. 
+                    Open to all skill levels, it’s the perfect place to connect, get feedback, and stay inspired.</p>
+                </div>
+              </div>
+            </div>
 
-          <h1 className='text-4xl font-bold my-10'>Weekly Maker Lab</h1>
-          <div className='bg-gray-300 rounded-2xl p-10 mx-10 max-w-[1400px] flex flex-col md:flex-row justify-between text-black'>
-            <p className='text-2xl'>Regular meetings every week, where we get together to discuss all aspects of creating games.</p>
-            <Image src={"/images/cat.jpg"} alt={"makerlab"} width={400} height={300} className='rounded-2xl md:ml-6 mt-6 md:mt-0'/>
-          </div>
+            <div className='flex justify-center flex-1 mt-20'>
+              <div className=''>
+                <h1 className='drop-shadow-orange text-5xl font-akira'>GAME JAMS</h1>
+                <div className='mt-10 bg-gmc-cream max-w-3xl p-4'>
+                  <p className='text-black font-tasa-orbiter font-bold text-2xl'>Game Jams are our high-energy events held once or twice each semester, where members team up to design and build games from scratch over a short period of time. They’re a great chance to experiment, collaborate, and turn creative ideas into playable games—no matter your experience level.</p>
+                </div>
+              </div>
 
-          <h1 className='text-4xl font-bold m-10 mt-20 text-right'>Regular Game Jams</h1>
-          <div className='bg-gray-300 rounded-2xl p-10 mx-10 max-w-[1400px] flex flex-col md:flex-row justify-between text-black ml-auto'>
-            <Image src={"/images/cat.jpg"} alt={"makerlab"} width={400} height={300} className='rounded-2xl md:mr-6 mt-6 md:mt-0 md:order-first order-last'/>
-            <p className='text-2xl md:ml-10'>Bi-Semesterly game jams where people can compete to earn prizes, or just for the fun of the game.</p>
+              <div className="w-max-1280 h-max bg-gray-400 overflow-hidden justify-center ml-20">
+                <Image
+                src={"/images/chess.jpg"}
+                alt="Maker Labs"
+                width={300}
+                height={200}
+                className="object-cover w-full h-full"
+                />
+              </div>
+
+            </div>
           </div>
-          
         </div>
       </div>
     </div>

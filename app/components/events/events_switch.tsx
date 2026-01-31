@@ -20,10 +20,10 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
         <div className='m-2'>
             <div className='flex items-start'>
                 <div className="relative overflow-hidden">
-                    <h1 className={`text-vertical-textured text-6xl transition-transform duration-300 ease-in-out ${eventList ? 'translate-y-0' : '-translate-y-full'}`}>
+                    <h1 className={`text-vertical-textured text-8xl transition-transform duration-300 ease-in-out ${eventList ? 'translate-y-0' : '-translate-y-[120%]'}`}>
                         Upcoming
                     </h1>
-                    <h1 className={`text-vertical-textured text-6xl transition-transform duration-300 ease-in-out absolute top-0 left-0 ${!eventList ? 'translate-y-0' : 'translate-y-full'}`}>
+                    <h1 className={`text-vertical-textured text-8xl transition-transform duration-300 ease-in-out absolute top-0 left-0 ${!eventList ? 'translate-y-0' : 'translate-y-[120%]'}`}>
                         Previous
                     </h1>
                 </div>
@@ -42,15 +42,8 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
                     <div className="w-20 h-100 bg-gmc-orange mt-8" />
                 </div>
                 
-                <div className='h-200 overflow-y-auto ml-10 mr-10 flex-1 relative'>
-                    {/* Upcoming Events */}
-                    <div className={`transition-opacity duration-300 ease-in-out ${eventList ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
-                        <UpcomingEventsList events={upcomingEvents} setEvent={setSelectedEvent}/>
-                    </div>
-                    {/* Previous Events */}
-                    <div className={`transition-opacity duration-300 ease-in-out ${!eventList ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
-                        <PreviousEventList events={previousEvents} setEvent={setSelectedEvent}/>
-                    </div>
+                <div className='h-200 overflow-y-auto ml-10 mr-10 flex-1'>
+                    {eventList ? <UpcomingEventsList events={upcomingEvents} setEvent={setSelectedEvent}/> : <PreviousEventList events={previousEvents} setEvent={setSelectedEvent}/>}
                 </div>
 
             </div>
