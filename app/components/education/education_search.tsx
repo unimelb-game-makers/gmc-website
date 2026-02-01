@@ -20,7 +20,6 @@ const colorMap: Record<string, string> = {
 const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: EducationTag[]}) => {
     const [query, setQuery] = useState("");
     const [filterTags, setFilterTags] = useState<EducationTag[]>([]);
-    const [menuOpen, setMenuOpen] = useState(false);
   
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setQuery(e.target.value);
