@@ -14,7 +14,7 @@ const page = async () => {
   return (
     <div className='py-35'>
       <h1 className='text-center drop-shadow-teal font-akira text-6xl'>EDUCATION</h1>
-      <div className='mt-10 flex justify-start'>
+      <div className='mt-10 flex justify-start items-start'>
         <h1 className='text-vertical-textured text-6xl'>FILTER</h1>
         <EducationSearch posts={posts} tags={tags}/>
       </div>
