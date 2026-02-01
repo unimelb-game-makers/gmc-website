@@ -39,35 +39,50 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
     )
     
   return (
-    <div className="px-3 md:px-20 lg:px-30 py-10 flex flex-col lg:flex-row space-x-0 md:space-x-20 text-black">
-      <div className="relative min-h-[1vh] w-full lg:w-80">
-        <button
+    <div className="">
+        {/* <button
           className="bg-white w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full p-3 rounded-xl font-bold text-xl lg:hidden flex justify-between items-center"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           Tag Selection
           <span>{menuOpen ? "▲" : "▼"}</span>
-        </button>
+        </button> */}
       {/* Search/Filter Menu*/}
-        <div className={`bg-white rounded-xl p-3 mt-2 lg:block ${menuOpen ? "block" : "hidden"} w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full`}>
+      <div className='bg-gmc-cream h-100 w-60'>
+        {/* Search Title */}
+        <div className='bg-gmc-teal-dark px-5 py-2'>
+          <h1 className='font-arsenica text-center font-bold text-4xl'>SEARCH</h1>
+        </div>
+        {/* Search Bar */}
+        <div className='bg-[#7E7E7E] rounded-xl mt-2 w-100% mx-3'>
+          <input
+            type="text"
+            value={query}
+            onChange={handleChange}
+            placeholder=""
+            className="w-full px-3 py-1 focus:outline-none text-white font-tasa-orbiter"
+            />
+        </div>
+        <div className="mx-3 h-px bg-gray-400 my-4" />
+          <div className='mx-3 flex flex-wrap gap-2'>
+            {tags.map((tag) => (
+              <button onClick={() => handleTags(tag)} key={tag.id}>
+                <span className={`text-white text-xs px-3 py-1.5 rounded-full ${filterTags.some(filterTag => filterTag.id === tag.id) ? colorMap[tag.color] : "bg-gray-300"}`}>
+                  {tag.name}
+                </span>
+              </button>
+            ))}
+          </div>
+      </div>
+        {/* <div className={`bg-white rounded-xl p-3 mt-2 lg:block ${menuOpen ? "block" : "hidden"} w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full`}>
           <h2 className='text-xl font-bold mx-2'>Tags</h2>
           <hr className=' my-2'></hr>
           <div className='bg-white rounded-xl p-3'>
-              <div className='flex flex-wrap gap-2'>
-                  {tags.map((tag) => (
-                      <button onClick={() => handleTags(tag)} key={tag.id}>
-                          <span className={`text-white text-xs px-3 py-1.5 rounded-full ${filterTags.some(filterTag => filterTag.id === tag.id) ? colorMap[tag.color] : "bg-gray-300"}`}>
-                              {tag.name}
-                          </span>
-                      </button>
-                  ))}
-              </div>
           </div>
-        </div>
-      </div>
+        </div> */}
       <div className='w-full'>
         {/* Search Bar */}
-        <div className='bg-white w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full rounded-xl'>
+        {/* <div className='bg-white w-full max-w-[90vw] md:max-w-[85vw] lg:max-w-full rounded-xl'>
           <input
             type="text"
             value={query}
@@ -75,13 +90,13 @@ const EducationSearch = ({posts, tags} : {posts: EducationWorkshopPost[], tags: 
             placeholder="Search..."
             className="w-full p-2 border rounded-md focus:outline-none text-black"
         />
-        </div>
+        </div> */}
         {/* Actual Posts*/}
-        <div className='grid grid-cols-1 mx-auto [@media(min-width:1300px)]:grid-cols-2 [@media(min-width:1300px)]:justify-items-center [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
+        {/* <div className='grid grid-cols-1 mx-auto [@media(min-width:1300px)]:grid-cols-2 [@media(min-width:1300px)]:justify-items-center [@media(min-width:1800px)]:grid-cols-3 [@media(min-width:2400px)]:grid-cols-4 gap-x-24 gap-y-16 mt-12'>
           {filteredPosts.map((post, i) => (
           <PostEntry post={post} key={i}/>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   )
