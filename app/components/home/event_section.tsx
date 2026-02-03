@@ -256,7 +256,7 @@ export default function EventsSection({ eventsData }: Props) {
                             <div className="mt-3 min-h-[42px] text-sm text-white/90">
                               {isActive && (
                                 <>
-                                  <div>// {dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
+                                  <div>{dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
                                   <div>{e.location ?? "TBA"}</div>
                                 </>
                               )}
