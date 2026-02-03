@@ -9,7 +9,7 @@ export function SectionTitle({
   fronttext, backtext
 }: SectionTitleProps) {
   return (
-    <div className="relative pt-12 pb-3 text-center">
+    <div className="relative pt-12 pb-3 text-center max-w-full overflow-hidden">
       {/* Back: vertical texture */}
       <div aria-hidden className="absolute inset-0 flex items-center justify-center leading-none
                                     pointer-events-none z-0">

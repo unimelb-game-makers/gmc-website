@@ -48,15 +48,15 @@ export default async function Home() {
               {/* back strip */}
               <div
                 aria-hidden
-                className="absolute left-40 top-35 h-24 w-[420px] z-0 bg-black"/>
+                className="absolute left-40 top-35 h-24 lg:w-[420px] z-0 bg-black"/>
               {/* foreground content */}
               <div className="relative z-10 mx-auto w-fit flex items-stretch">
                 {/* left image */}
                 <div className="w-44 flex-shrink-0">
-                  <img src="/gmc_logo_image.png" alt="" className="h-full w-full object-cover"/>
+                  <img src="/gmc_logo_image.png" alt="" className="lg:h-full lg:w-full object-cover"/>
                 </div>
                 {/* right text box */}
-                <div className="max-w-2xl bg-gmc-cream border border-neutral-300 px-8 py-6">
+                <div className="max-w-2xl bg-gmc-cream border border-neutral-300 px-3 lg:px-8 lg:py-6">
                   <p className="text-lg font-semibold leading-snug text-neutral-900">
                     The University of Melbourne Game Makers Club is a student-led community 
                     for anyone interested in creating games. We bring together programmers, 
