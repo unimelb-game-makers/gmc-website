@@ -77,7 +77,7 @@ export default async function Home() {
       {/* upcomming event */}
       <div className="relative bg-[#161616] pt-15 pb-15">
         <SectionTitle fronttext="UPCOMMING EVENTS" backtext="EVENTS"/>
-        <section className="w-full py-6">
+        <section className="w-full py-0">
           <EventsSection
         eventsData={eventsData}/>
         </section>
