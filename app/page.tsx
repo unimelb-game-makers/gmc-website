@@ -1,7 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
 
-import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
 import { SectionTitle } from "./components/home/title";
 import EventsSection from "./components/home/event_section";
@@ -10,17 +8,10 @@ import HeroBanner from "./components/home/hero_banner";
 
 import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
-import dayjs from "dayjs";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
 export default async function Home() {
-
-  const slides = [
-    '/images/cat.jpg',
-    '/images/chess.jpg',
-    '/images/console.jpg',
-  ];
 
   const eventsservice = new NotionEvents;
   const eventsData = await eventsservice.getEvents();
