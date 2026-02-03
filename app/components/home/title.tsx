@@ -15,7 +15,7 @@ export function SectionTitle({
                                     pointer-events-none z-0">
         <div
             className="whitespace-nowrap
-                    text-7xl sm:text-8xl lg:text-9xl
+                    lg:text-9xl [font-size:min(12vw,60ch)]
                     opacity-50 font-extrabold tracking-wide
                     text-vertical-textured
                     rotate-90 origin-center">

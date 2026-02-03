@@ -27,7 +27,7 @@ export default async function Home() {
   
   const eduservice = new NotionEducation;
   const educationData = await eduservice.getPublishedWorkshopPosts();
-  const educations = educationData.slice(0, 4);
+  const educations = educationData.slice(0, 3);
 
   return (
     <div>
@@ -85,28 +85,62 @@ export default async function Home() {
 
       {/* education */}
       <div className="relative bg-[#161616] pt-15 pb-15">
-        
+        <SectionTitle fronttext="LEARN HOW TO MAKE GAMES" backtext="EDUCATION" />
+        {/* MOBILE */}
+        <div className="sm:hidden pl-11 pr-8.5 pt-10 pb-10">
+          <div className="grid grid-cols-[45px_1fr]">
+            {/* LEFT STRIP spanning both rows */}
+            <div className="bg-gmc-teal-light" />
+            {/* RIGHT side content stacked (events then button) */}
+            <div className="flex flex-col">
+              {/* Events vertically */}
+              <div className="flex flex-col gap-6 p-4 pt-[31px] text-black">
+                {educations.map((education, index) => (
+                  <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug}/>
+                ))}
+              </div>
 
+              {/* Button row */}
+              <div className="flex justify-center p-4 pt-0">
+                <Link href="/education/">
+                  <button
+                    className="mt-4 px-5 py-3 font-bold font-arsenica text-xl rounded-tr-xl rounded-bl-xl
+                      bg-gmc-orange-dark hover:bg-gmc-orange text-white">
+                    Learn More →
+                  </button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* DESKTOP */}
+        <div className="hidden sm:block pl-15 pr-15 pt-10 pb-10">
+          <div className="flex">
+            {/* LEFT: cards + button stacked */}
+            <div className="flex-1 w-[60%]">
+              {/* Events horizontally scrollable */}
+              <div className="flex flex-nowrap gap-8 p-5 pt-[31px] w-[95%] overflow-x-auto min-w-0 text-black">
+                {educations.map((education, index) => (
+                  <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug} />
+                ))}
+              </div>
+
+              {/* Button centered */}
+              <Link href="/education/" className="flex justify-center">
+                <button
+                  className="mt-8 px-15 py-3 font-bold font-arsenica text-4xl rounded-tr-xl rounded-bl-xl bg-gmc-orange-dark hover:bg-gmc-orange  text-white">
+                  Learn More →
+                </button>
+              </Link>
+            </div>
+
+            {/* RIGHT STRIP */}
+            <div className="w-[56px] bg-gmc-teal-light" />
+          </div>
+        </div>
       </div>
 
-
-      <div className="relative p-[15px]">
-        <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
-        <div className="flex gap-6 p-4 pt-[31px] overflow-x-auto text-black">
-          {
-            educations.map((education, index) => (
-                <FeaturedEducationContainer key={education.id} name = {education.title} id={String(index)}  thumbnail={education.thumbnail} slug={education.slug}/>
-              ))
-          }
-        </div>
-        <div className = "flex items-center justify-center flex-col pt-[20px] pb-[20px]">
-          <Link href="/education/">
-            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] self-center font-karla">
-              Learn More →
-            </button>
-          </Link>
-        </div>
-      </div> 
     </div>
     
   );
