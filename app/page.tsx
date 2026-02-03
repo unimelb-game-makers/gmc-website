@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
+import { SectionTitle } from "./components/home/title";
 
 import HeroBanner from "./components/home/hero_banner";
 
@@ -36,6 +37,47 @@ export default async function Home() {
     <div>
       {/* sign up page */}
       <HeroBanner />
+     
+      {/* about */}
+      <div className="relative bg-[#161616] pt-30 pb-15">
+        <SectionTitle fronttext="ABOUT US" backtext="ABOUT"/>
+        <section className="w-full py-6">
+          <div className="mx-auto max-w-5xl px-4">
+            {/* relative wrapper for layering */}
+            <div className="relative">
+              {/* back strip */}
+              <div
+                aria-hidden
+                className="absolute left-40 top-35 h-24 w-[420px] z-0 bg-black"/>
+              {/* foreground content */}
+              <div className="relative z-10 mx-auto w-fit flex items-stretch">
+                {/* left image */}
+                <div className="w-44 flex-shrink-0">
+                  <img src="/gmc_logo_image.png" alt="" className="h-full w-full object-cover"/>
+                </div>
+                {/* right text box */}
+                <div className="max-w-2xl bg-gmc-cream border border-neutral-300 px-8 py-6">
+                  <p className="text-lg font-semibold leading-snug text-neutral-900">
+                    The University of Melbourne Game Makers Club is a student-led community 
+                    for anyone interested in creating games. We bring together programmers, 
+                    artists, designers, and storytellers to collaborate, learn, and build 
+                    games in a welcoming, hands-on environment. From game jams and workshops 
+                    to talks and socials, we help members of all skill levels turn ideas 
+                    into playable experiences.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <Link href="/about/" className = "flex justify-center">
+              <button className="mt-8 px-15 py-3 font-bold font-arsenica text-4xl rounded-tr-xl rounded-bl-xl 
+              bg-gmc-orange-dark hover:bg-gmc-orange text-white">
+                About Us →
+              </button>
+            </Link>
+      </div>
+
       {/* upcomming event */}
       <div className="relative h-[637px]">
         <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
@@ -46,30 +88,6 @@ export default async function Home() {
                 <FeaturedEventContainer key={event.id} name={event.name} date={event.date} description={event.description} id={String(index)} location={event.location} thumbnail={event.thumbnail}/>
               ))
           }
-        </div>
-      </div>
-     
-      {/* about */}      
-      <div className="flex flex-col lg:flex-row gap-[41px] items-start px-[31px] pt-[20px]">
-        <div className="relative lg:w-[390px] lg:h-[446px]">
-          <Image src={slides[0]} alt="placeholder" fill className="object-cover"/>
-        </div>
-        
-        <div className="lg:w-[740px] flex flex-col justify-center space-y-4">
-          <h2 className="bold text-[36px] mb-4 text-white font-karla">About Game Maker Club</h2>
-          <p className="text-white bold text-[24px] lg:max-w-[732px] w-full self-end font-karla">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et
-            lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec
-            suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla
-            faucibus. Maecenas et augue sed lorem fermentum sodales.Aenean fringilla 
-            leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue 
-            sed lorem fermentum sodales.
-          </p>
-          <Link href="/education/" className = "self-center pb-[30px]">
-            <button className="w-[187px] h-[66px] bg-[#4FA0CF] px-4 py-2 rounded hover:bg-[#266b94] text-[#F7F6F3] font-karla">
-              About Us →
-            </button>
-          </Link>
         </div>
       </div>
       {/* education */}
