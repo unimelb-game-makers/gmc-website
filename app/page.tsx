@@ -4,6 +4,7 @@ import Link from "next/link";
 import FeaturedEventContainer from "./components/home/featured_event";
 import FeaturedEducationContainer from "./components/home/featured_education";
 import { SectionTitle } from "./components/home/title";
+import EventsSection from "./components/home/event_section";
 
 import HeroBanner from "./components/home/hero_banner";
 
@@ -23,11 +24,6 @@ export default async function Home() {
 
   const eventsservice = new NotionEvents;
   const eventsData = await eventsservice.getEvents();
-  const events = eventsData.slice(0, 3).reverse(); // store first 3 events
-  // remove events which are past already
-  const upcomingEvents = events.filter(event => 
-    dayjs(event.date.start).isAfter(dayjs())
-  )
   
   const eduservice = new NotionEducation;
   const educationData = await eduservice.getPublishedWorkshopPosts();
@@ -79,18 +75,21 @@ export default async function Home() {
       </div>
 
       {/* upcomming event */}
-      <div className="relative h-[637px]">
-        <h1 className="text-white text-[32px] p-[31px] font-karla">Upcoming Events</h1>
-        <div className="w-6/7 h-1 bg-[#F7F6F3] mx-auto rounded mt-[50px]"></div>
-        <div className="max-w-6xl mx-auto flex p-4 -mt-[110px]">
-          {
-            upcomingEvents.map((event, index) => (
-                <FeaturedEventContainer key={event.id} name={event.name} date={event.date} description={event.description} id={String(index)} location={event.location} thumbnail={event.thumbnail}/>
-              ))
-          }
-        </div>
+      <div className="relative bg-[#161616] pt-15 pb-15">
+        <SectionTitle fronttext="UPCOMMING EVENTS" backtext="EVENTS"/>
+        <section className="w-full py-6">
+          <EventsSection
+        eventsData={eventsData}/>
+        </section>
       </div>
+
       {/* education */}
+      <div className="relative bg-[#161616] pt-15 pb-15">
+        
+
+      </div>
+
+
       <div className="relative p-[15px]">
         <h1 className="text-white text-[32px] pt-[33px] pl-[33px] pb-0 font-karla">Learn How To Make Games</h1>
         <div className="flex gap-6 p-4 pt-[31px] overflow-x-auto text-black">
