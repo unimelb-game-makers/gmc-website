@@ -62,7 +62,7 @@ const page = async () => {
   ];
 
   return (
-    <div className='pt-35 pb-15 bg-[#252525]'>
+    <div className='pt-35 pb-15 lg:pb-25 bg-[#252525]'>
       {/* about us */}
       <section className="w-full py-12">
         <div className="mx-auto w-full max-w-6xl px-4">
@@ -135,8 +135,21 @@ const page = async () => {
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
               {/* CONTENT */}
               <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
-                {/* IMAGE */}
-                <div className="relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                {/* mobile image */}
+                <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
+                  {/* IMAGE */}
+                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
+                    <img
+                      src="/images/cat.jpg"
+                      alt="Section image"
+                      className="w-full h-[220px] lg:h-full object-cover"
+                    />
+                  </div>
+                  {/* MOBILE strip */}
+                  <div className="w-6 bg-gmc-teal lg:hidden shrink-0" />
+                </div>
+                {/* desktop IMAGE */}
+                <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
@@ -166,12 +179,17 @@ const page = async () => {
               {/* CONTENT */}
               <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
                 {/* mobile IMAGE */}
-                <div className="lg:hidden relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
-                    src="/images/cat.jpg"
-                    alt="Section image"
-                    className="w-full h-[200px] lg:h-full object-cover"
-                  />
+                <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
+                  {/* MOBILE strip */}
+                  <div className="w-6 bg-gmc-orange-dark lg:hidden shrink-0" />
+                  {/* IMAGE */}
+                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
+                    <img
+                      src="/images/cat.jpg"
+                      alt="Section image"
+                      className="w-full h-[220px] lg:h-full object-cover"
+                    />
+                  </div>
                 </div>
                 {/* TEXT */}
                 <div className="flex-1">
@@ -185,7 +203,7 @@ const page = async () => {
                   </div>
                 </div>
                 {/* desktop IMAGE */}
-                <div className="hidden lg:relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                <div className="hidden lg:block relative lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
@@ -199,8 +217,21 @@ const page = async () => {
             <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
               {/* CONTENT */}
               <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
-                {/* IMAGE */}
-                <div className="relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                {/* mobile image */}
+                <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
+                  {/* IMAGE */}
+                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
+                    <img
+                      src="/images/cat.jpg"
+                      alt="Section image"
+                      className="w-full h-[220px] lg:h-full object-cover"
+                    />
+                  </div>
+                  {/* MOBILE strip */}
+                  <div className="w-6 bg-gmc-teal lg:hidden shrink-0" />
+                </div>
+                {/* desktop IMAGE */}
+                <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
@@ -230,12 +261,17 @@ const page = async () => {
               {/* CONTENT */}
               <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
                 {/* mobile IMAGE */}
-                <div className="lg:hidden relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
-                    src="/images/cat.jpg"
-                    alt="Section image"
-                    className="w-full h-[200px] lg:h-full object-cover"
-                  />
+                <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
+                  {/* MOBILE strip */}
+                  <div className="w-6 bg-gmc-orange-dark lg:hidden shrink-0" />
+                  {/* IMAGE */}
+                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
+                    <img
+                      src="/images/cat.jpg"
+                      alt="Section image"
+                      className="w-full h-[220px] lg:h-full object-cover"
+                    />
+                  </div>
                 </div>
                 {/* TEXT */}
                 <div className="flex-1">
@@ -249,7 +285,7 @@ const page = async () => {
                   </div>
                 </div>
                 {/* desktop IMAGE */}
-                <div className="hidden lg:relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
