@@ -6,7 +6,7 @@ import Image from 'next/image';
 import ContactForm from "./ContactForm";
 
 export default function Contact() {
-  const [showPopup, setShowPopup] = useState(false);
+  const [showPopup, setShowPopup] = useState(true); // Temporarily enabled for styling
   const [isMobile, setIsMobile] = useState(false);
 
   const handleSuccess = () => {
@@ -43,14 +43,14 @@ export default function Contact() {
   return (
     <div className='py-35'>
       {showPopup && (
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
-          <div className="relative bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="flex justify-center">
-              <Image src="/images/wires.png" alt="Wires" width={150} height={150} />
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black/40 backdrop-blur-[2px]">
+          <div className="relative bg-gmc-cream p-10 md:p-14 rounded-2xl shadow-2xl text-center w-full max-w-[400px] md:max-w-[550px] lg:max-w-[650px] mx-4 border border-gmc-teal/20">
+            <div className="flex justify-center mb-6">
+              <Image src="/images/wires.png" alt="Wires" width={140} height={140} className="drop-shadow-lg md:scale-125" />
             </div>
-            <p className="text-2xl font-bold text-black mb-4">Message sent! Thank you!</p>
+            <p className="text-2xl md:text-3xl font-bold text-black mb-6 font-karla">Message sent! Thank you!</p>
             <button
-              className="bg-[#4FA0CF] text-white py-2 px-4 rounded-lg transition-transform duration-200 ease-out hover:-translate-y-0.5"
+              className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer w-[160px] md:w-[200px] h-10 md:h-12 transition-all duration-300 ease-out flex items-center justify-center mx-auto hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg"
               onClick={() => setShowPopup(false)}
             >
               Close
