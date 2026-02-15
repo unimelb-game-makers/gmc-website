@@ -1,44 +1,15 @@
-import React from 'react'
-import PhotoWall from "../components/about/photowall";
-import {DotPoint} from "../components/about/dotpoint";
-import {FeatureCard} from "../components/about/card";
+import React from 'react';
+import Image from "next/image";
 import {FAQItem} from "../components/about/faqQuestion";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
-type CardProps = {
-  title: string;
-  imageSrc: string;
-  description: string;
-  href: string;
-};
 type FAQItemProps = {
   question: string;
   answer: React.ReactNode;
 };
 
 const page = async () => {
-    const cards: CardProps[] = [
-    {
-      title: "Game Jams",
-      imageSrc: "/images/cat.jpg",
-      description: "Build a game in a weekend with a team and a theme.",
-      href: "/events",
-    },
-    {
-      title: "Education",
-      imageSrc: "/images/cat.jpg",
-      description: "Learn Unity, Godot, art, and design through hands-on sessions.",
-      href: "/education",
-    },
-    {
-      title: "Social Events",
-      imageSrc: "/images/cat.jpg",
-      description: "Event Description Words here lorem ipsum text here etc",
-      href: "/events",
-    },
-  ];
-
   const faqs: FAQItemProps[] = [
     {
       question: "How can I join the game makers club?",
@@ -76,9 +47,9 @@ const page = async () => {
           <div className="mt-8 flex flex-col gap-8 lg:flex-row lg:items-stretch">
             {/* Image */}
             <div
-              className="relative w-auto h-[240px] sm:h-[320px] lg:h-full lg:w-[420px] overflow-hidden">
-              <img
-                src="gmc-cat.png" alt="Section image" className="h-full w-full object-cover"/>
+              className="relative w-full h-[240px] sm:h-[320px] lg:h-auto lg:w-[420px] overflow-hidden">
+              <Image
+                src="/images/gmc-cat.png" alt="gmc cat" fill sizes="(min-width: 1024px) 420px, 100vw" className="object-cover" priority/>
             </div>
             {/* Text Box */}
             <div className="flex flex-1 items-center bg-gmc-cream border border-neutral-300 px-6 py-6">
@@ -138,10 +109,11 @@ const page = async () => {
                 {/* mobile image */}
                 <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
                   {/* IMAGE */}
-                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
-                    <img
+                  <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
+                    <Image
                       src="/images/cat.jpg"
-                      alt="Section image"
+                      alt="cut cat picture"
+                      fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
                   </div>
@@ -150,9 +122,10 @@ const page = async () => {
                 </div>
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
+                  <Image
                     src="/images/cat.jpg"
-                    alt="Section image"
+                    alt="cut cat picture"
+                    fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
@@ -183,10 +156,11 @@ const page = async () => {
                   {/* MOBILE strip */}
                   <div className="w-6 bg-gmc-orange-dark lg:hidden shrink-0" />
                   {/* IMAGE */}
-                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
-                    <img
+                  <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
+                    <Image
                       src="/images/cat.jpg"
-                      alt="Section image"
+                      alt="cut cat picture"
+                      fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
                   </div>
@@ -204,9 +178,10 @@ const page = async () => {
                 </div>
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
+                  <Image
                     src="/images/cat.jpg"
-                    alt="Section image"
+                    alt="cut cat picture"
+                    fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
@@ -220,10 +195,11 @@ const page = async () => {
                 {/* mobile image */}
                 <div className="lg:hidden flex items-stretch gap-4 lg:flex-1 lg:gap-8">
                   {/* IMAGE */}
-                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
-                    <img
+                  <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
+                    <Image
                       src="/images/cat.jpg"
-                      alt="Section image"
+                      alt="cut cat picture"
+                      fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
                   </div>
@@ -232,9 +208,10 @@ const page = async () => {
                 </div>
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
+                  <Image
                     src="/images/cat.jpg"
-                    alt="Section image"
+                    alt="cut cat picture"
+                    fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
@@ -265,10 +242,11 @@ const page = async () => {
                   {/* MOBILE strip */}
                   <div className="w-6 bg-gmc-orange-dark lg:hidden shrink-0" />
                   {/* IMAGE */}
-                  <div className="relative flex-1 lg:w-[260px] lg:shrink-0 overflow-hidden bg-neutral-200">
-                    <img
+                  <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
+                    <Image
                       src="/images/cat.jpg"
-                      alt="Section image"
+                      alt="cut cat picture"
+                      fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
                   </div>
@@ -286,9 +264,10 @@ const page = async () => {
                 </div>
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
-                  <img
+                  <Image
                     src="/images/cat.jpg"
-                    alt="Section image"
+                    alt="cute cat picture"
+                    fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
