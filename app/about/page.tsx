@@ -62,7 +62,7 @@ const page = async () => {
   ];
 
   return (
-    <div className='py-35 bg-[#252525]'>
+    <div className='pt-35 pb-15 bg-[#252525]'>
       {/* about us */}
       <section className="w-full py-12">
         <div className="mx-auto w-full max-w-6xl px-4">
@@ -132,105 +132,128 @@ const page = async () => {
 
           <div className="mt-12 space-y-14">
             {/* game jams */}
-            <div className="flex items-stretch gap-8">
-              {/* content */}
-              <div className="flex-1 flex items-stretch gap-8">
-                {/* image wrapper (stretches to row height) */}
-                <div className="relative w-[260px] shrink-0 overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* CONTENT */}
+              <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
+                {/* IMAGE */}
+                <div className="relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
-                {/* text */}
+                {/* TEXT */}
                 <div className="flex-1">
-                  <div className="flex justify-end">
-                    <h3 className="text-3xl font-extrabold text-white">Game Jams</h3>
-                  </div>
-                  <div className="mt-3 bg-gmc-cream px-6 py-5 text-black">
+                  <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-0 lg:text-right">
+                    Game Jams
+                  </h3>
+                  <div className="bg-gmc-cream px-6 py-5 text-black">
                     <p className="text-sm sm:text-base font-semibold leading-snug">
                       We hold regular game jams once or twice each semester, where members come together to create games from scratch in a short, focused timeframe. Participants form teams, brainstorm ideas, and build playable games while learning new skills and experimenting with creative concepts. Game jams are open to all experience levels and are a fun, supportive way to collaborate, challenge yourself, and make something memorable with fellow game makers.
                     </p>
                   </div>
                 </div>
               </div>
-              {/* strip */}
-              <div className="w-12 bg-gmc-teal shrink-0" />
+              {/* DESKTOP vertical strip */}
+              <div className="hidden lg:block w-12 bg-gmc-teal shrink-0" />
             </div>
 
             {/* product */}
-            <div className="flex items-stretch gap-8">
-              {/* strip */}
-              <div className="w-12 bg-gmc-orange-dark shrink-0" />
-              {/* content */}
-              <div className="flex-1 flex items-stretch gap-8">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* DESKTOP vertical strip */}
+              <div className="hidden lg:block w-12 bg-gmc-orange-dark shrink-0" />
+              {/* CONTENT */}
+              <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
+                {/* mobile IMAGE */}
+                <div className="lg:hidden relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                  <img
+                    src="/images/cat.jpg"
+                    alt="Section image"
+                    className="w-full h-[200px] lg:h-full object-cover"
+                  />
+                </div>
+                {/* TEXT */}
                 <div className="flex-1">
-                  <h3 className="text-4xl font-extrabold text-white">Production Division</h3>
-                  <div className="mt-3 bg-gmc-cream px-6 py-5 text-black">
+                  <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-0 lg:text-left">
+                    Product Devision
+                  </h3>
+                  <div className="bg-gmc-cream px-6 py-5 text-black">
                     <p className="text-sm sm:text-base font-semibold leading-snug">
                       Our Production Division (Stego Studios) gives students the chance to work in dedicated teams to create a game over an extended period of time. Through an application-based process, members take on roles in programming, art, design, and audio while learning how to collaborate on a long-term project. The division focuses on skill development, teamwork, and hands-on experience, providing a supportive environment for students to grow their confidence and turn ideas into a finished game.
                     </p>
                   </div>
                 </div>
-                {/* image wrapper (stretches to row height) */}
-                <div className="relative w-[260px] shrink-0 overflow-hidden">
+                {/* desktop IMAGE */}
+                <div className="hidden lg:relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
               </div>
             </div>
 
             {/* education */}
-            <div className="flex items-stretch gap-8">
-              {/* content */}
-              <div className="flex-1 flex items-stretch gap-8">
-                {/* image wrapper (stretches to row height) */}
-                <div className="relative w-[260px] shrink-0 overflow-hidden">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* CONTENT */}
+              <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
+                {/* IMAGE */}
+                <div className="relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
+                {/* TEXT */}
                 <div className="flex-1">
-                  <div className="flex justify-end">
-                    <h3 className="text-4xl font-extrabold text-white">Education</h3>
-                  </div>
-                  <div className="mt-3 bg-gmc-cream px-6 py-5 text-black">
+                  <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-0 lg:text-right">
+                    Education
+                  </h3>
+                  <div className="bg-gmc-cream px-6 py-5 text-black">
                     <p className="text-sm sm:text-base font-semibold leading-snug">
                       We hold regular workshops that introduce students to the basics of making games. Our sessions cover beginner-friendly topics like getting started with game engines, simple programming concepts, and core game design ideas. Open to all experience levels, these workshops are designed to be approachable, hands-on, and a great starting point for anyone curious about how games are made.
                     </p>
                   </div>
                 </div>
               </div>
-              {/* strip */}
-              <div className="w-12 bg-gmc-teal shrink-0" />
+              {/* DESKTOP vertical strip */}
+              <div className="hidden lg:block w-12 bg-gmc-teal shrink-0" />
             </div>
 
             {/* social events */}
-            <div className="flex items-stretch gap-8">
-              {/* strip */}
-              <div className="w-12 bg-gmc-orange-dark shrink-0" />
-              {/* content */}
-              <div className="flex-1 flex items-stretch gap-8">
+            <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
+              {/* DESKTOP vertical strip */}
+              <div className="hidden lg:block w-12 bg-gmc-orange-dark shrink-0" />
+              {/* CONTENT */}
+              <div className="flex flex-col lg:flex-row flex-1 gap-4 lg:gap-8">
+                {/* mobile IMAGE */}
+                <div className="lg:hidden relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
+                  <img
+                    src="/images/cat.jpg"
+                    alt="Section image"
+                    className="w-full h-[200px] lg:h-full object-cover"
+                  />
+                </div>
+                {/* TEXT */}
                 <div className="flex-1">
-                  <h3 className="text-4xl font-extrabold text-white">Social Events</h3>
-                  <div className="mt-3 bg-gmc-cream px-6 py-5 text-black">
+                  <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-0 lg:text-left">
+                    Social Events
+                  </h3>
+                  <div className="bg-gmc-cream px-6 py-5 text-black">
                     <p className="text-sm sm:text-base font-semibold leading-snug">
                       Social Events are all about bringing people together who love games and making games. From casual hangouts and game nights to themed socials, these events create a relaxed space to meet new people, chat about games, and build connections outside of development sessions. Whether you’re a long-time member or brand new, our socials are a great way to feel part of the community.
                     </p>
                   </div>
                 </div>
-                {/* image wrapper (stretches to row height) */}
-                <div className="relative w-[260px] shrink-0 overflow-hidden">
+                {/* desktop IMAGE */}
+                <div className="hidden lg:relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <img
                     src="/images/cat.jpg"
                     alt="Section image"
-                    className="absolute inset-0 h-full w-full object-cover"
+                    className="w-full h-[200px] lg:h-full object-cover"
                   />
                 </div>
               </div>
@@ -242,7 +265,7 @@ const page = async () => {
 
 
       {/* FAQ */}
-      <section className="relative w-full py-20 overflow-hidden">
+      <section className="relative w-full pt-20 overflow-hidden">
         <section className="mx-auto max-w-6xl px-4 relative z-10">
             <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-teal">
             FAQ
