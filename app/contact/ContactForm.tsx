@@ -94,7 +94,7 @@ export default function ContactForm({ isMobile, onSuccess }: ContactFormProps) {
   }, [cooldown]);
 
   return (
-    <div className="flex-1 p-[30px] md:p-[40px] bg-gmc-cream rounded-3xl text-black shadow-xl">
+    <div className="flex-1 p-[30px] md:p-[40px] bg-gmc-cream rounded-2xl text-black shadow-xl">
       <h2 className="text-[1.7rem] mt-0 lg:text-[2rem] mb-[25px] font-bold font-karla">Send us an email!</h2>
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-[20px]">
         <input type="text" name="from_name" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}

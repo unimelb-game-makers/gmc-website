@@ -80,7 +80,7 @@ export default function Contact() {
           </div>
 
           <div className="flex-1 flex flex-col gap-[20px]">
-            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-3xl p-[25px] transition-all duration-300">
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
               <div className="flex items-center gap-[15px]">
                 <Image src="/icons/contact-instagram.png" alt="Instagram" width={50} height={50} className="w-[50px] h-[50px]" />
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Follow us on Instagram!</h3>
@@ -92,7 +92,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-3xl p-[25px] transition-all duration-300">
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
               <div className="flex items-center gap-[15px]">
                 <Image src="/icons/contact-discord.png" alt="Discord" width={50} height={50} className="w-[50px] h-[50px]" />
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Join our discord!</h3>
@@ -104,7 +104,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-3xl p-[25px] transition-all duration-300">
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
               <div className="flex items-center gap-[15px]">
                 <Image src="/icons/contact-youtube.png" alt="YouTube" width={50} height={50} className="w-[50px] h-[50px]" />
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Check out our YouTube!</h3>
@@ -116,7 +116,7 @@ export default function Contact() {
               </a>
             </div>
 
-            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-3xl p-[25px] transition-all duration-300">
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
               <div className="flex items-center gap-[15px]">
                 <Image src="/icons/contact-itch.png" alt="Itch.io" width={50} height={50} className="w-[50px] h-[50px]" />
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Play our games on Itch!</h3>
