@@ -86,7 +86,7 @@ export default function Contact() {
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Follow us on Instagram!</h3>
               </div>
               <a href="https://www.instagram.com/gmc.unimelb/?hl=en" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-tilt-warp text-[1.1rem] md:text-[1.2rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px] font-bold">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
                   Follow <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
                 </button>
               </a>
@@ -98,7 +98,7 @@ export default function Contact() {
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Join our discord!</h3>
               </div>
               <a href="https://discord.com/invite/YWD4jRQ7xY" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-tilt-warp text-[1.1rem] md:text-[1.2rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px] font-bold">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
                   Join <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
                 </button>
               </a>
@@ -110,7 +110,7 @@ export default function Contact() {
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Check out our YouTube!</h3>
               </div>
               <a href="https://www.youtube.com/@UniMelbGameMakers" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-tilt-warp text-[1.1rem] md:text-[1.2rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px] font-bold">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
                   Go <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
                 </button>
               </a>
@@ -122,7 +122,7 @@ export default function Contact() {
                 <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Play our games on Itch!</h3>
               </div>
               <a href="https://gmcunimelb.itch.io/" target="_blank" rel="noopener noreferrer">
-                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-tilt-warp text-[1.1rem] md:text-[1.2rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px] font-bold">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
                   Play! <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
                 </button>
               </a>

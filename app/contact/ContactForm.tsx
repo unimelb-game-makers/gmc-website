@@ -140,7 +140,7 @@ export default function ContactForm({ isMobile, onSuccess }: ContactFormProps) {
           </div>
           <button
             type="submit"
-            className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] font-tilt-warp text-[1rem] cursor-pointer w-full h-10 md:w-[180px] md:h-10 md:text-[1.2rem] font-bold transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg self-start mt-[10px]"
+            className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] font-arsenica font-bold text-[1rem] cursor-pointer w-full h-10 md:w-[180px] md:h-10 md:text-[1.3rem] transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg self-start mt-[10px]"
             disabled={isSending || cooldown > 0 || !firstName || !lastName || !email || !message || !isChecked}
           >
             {isSending ? 'Sending...' : cooldown > 0 ? `${cooldown}s` : <>Send <FaArrowRightLong size={isMobile ? "1rem" : "1.2rem"} /></>}
