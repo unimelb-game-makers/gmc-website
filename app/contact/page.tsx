@@ -61,7 +61,7 @@ export default function Contact() {
       <div className={`relative p-[20px] md:p-[50px] text-[#FFFFFF] font-tilt-warp ${showPopup ? "blur-[5px]" : ""}`}>
 
         <div className="text-center mb-[50px] max-w-[800px] mx-auto p-[20px]">
-          <h1 className="text-[2.5rem] md:text-[4rem] lg:text-[5rem] m-0 font-akira drop-shadow-teal">Contact Us</h1>
+          <h1 className="text-[2rem] md:text-[3rem] lg:text-[3.5rem] m-0 font-akira drop-shadow-teal">Contact Us</h1>
         </div>
 
         <div className="flex flex-col [@media(min-width:840px)]:flex-row justify-center gap-[20px] md:gap-[30px] lg:gap-[40px] max-w-[1200px] mx-auto items-stretch">

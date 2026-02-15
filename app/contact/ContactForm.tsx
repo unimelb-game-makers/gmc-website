@@ -95,16 +95,16 @@ export default function ContactForm({ isMobile, onSuccess }: ContactFormProps) {
 
   return (
     <div className="flex-1 p-[30px] md:p-[40px] bg-gmc-cream rounded-3xl text-black shadow-xl">
-      <h2 className="text-[2rem] mt-0 lg:text-[2.5rem] mb-[25px] font-bold font-karla">Send us an email!</h2>
+      <h2 className="text-[1.7rem] mt-0 lg:text-[2rem] mb-[25px] font-bold font-karla">Send us an email!</h2>
       <form ref={form} onSubmit={sendEmail} className="flex flex-col gap-[20px]">
         <input type="text" name="from_name" placeholder="First Name" value={firstName} onChange={(e) => setFirstName(e.target.value)}
-          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-gmc-cream/70 text-gmc-cream focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
+          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-white/50 text-white/90 focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
         <input type="text" name="from_last_name" placeholder="Last Name" value={lastName} onChange={(e) => setLastName(e.target.value)}
-          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-gmc-cream/70 text-gmc-cream focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
+          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-white/50 text-white/90 focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
         <input type="email" name="reply_to" placeholder="Email Address" value={email} onChange={(e) => setEmail(e.target.value)}
-          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-gmc-cream/70 text-gmc-cream focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
+          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-white/50 text-white/90 focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300" />
         <textarea name="message" placeholder="Message" rows={isMobile ? 7 : 12} value={message} onChange={(e) => setMessage(e.target.value)}
-          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-gmc-cream/70 text-gmc-cream focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300"></textarea>
+          className="appearance-none bg-[#7E7E7E] border-none p-[15px] font-karla text-[1.125rem] w-full box-border resize-none rounded-2xl placeholder:text-white/50 text-white/90 focus:ring-2 focus:ring-gmc-orange-dark outline-none transition-all duration-300"></textarea>
         {showErrorMessage && <p className="text-[#FF6347] mt-[5px] font-karla">{errorMessage}</p>}
         <div className="flex flex-col items-start gap-[20px] md:items-center mt-[10px]">
           <div className="flex items-center gap-[10px] font-karla md:self-start">
