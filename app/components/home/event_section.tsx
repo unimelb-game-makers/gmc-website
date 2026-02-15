@@ -20,6 +20,7 @@ export default function EventsSection({ eventsData }: Props) {
   // -------- Desktop carousel state --------
   const [activeIdx, setActiveIdx] = useState(0)
   const scrollerRef = useRef<HTMLDivElement | null>(null)
+  const isProgrammaticScrollRef = useRef(false)
   // -------- Mobile paging state (2 per page) --------
   const [mobilePage, setMobilePage] = useState(0)
   const totalMobilePages = Math.ceil(upcomingEvents.length / 2) // 0..N-1
@@ -39,26 +40,33 @@ export default function EventsSection({ eventsData }: Props) {
   const scrollToIndex = (idx: number) => {
     const el = scrollerRef.current
     if (!el) return
+
     const child = el.querySelector<HTMLElement>(`[data-idx="${idx}"]`)
-    child?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" })
+    if (!child) return
+
+    isProgrammaticScrollRef.current = true
+    child.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" })
+
+    // unlock after scroll settles (tune if needed)
+    window.setTimeout(() => {
+      isProgrammaticScrollRef.current = false
+    }, 350)
   }
+
 
   // Desktop prev/next (one card)
   const prevDesktop = () => {
-    setActiveIdx(i => {
-      const nextIdx = Math.max(0, i - 1)
-      requestAnimationFrame(() => scrollToIndex(nextIdx))
-      return nextIdx
-    })
+    const nextIdx = Math.max(0, activeIdx - 1)
+    setActiveIdx(nextIdx)
+    scrollToIndex(nextIdx)
   }
 
   const nextDesktop = () => {
-    setActiveIdx(i => {
-      const nextIdx = Math.min(upcomingEvents.length - 1, i + 1)
-      requestAnimationFrame(() => scrollToIndex(nextIdx))
-      return nextIdx
-    })
+    const nextIdx = Math.min(upcomingEvents.length - 1, activeIdx + 1)
+    setActiveIdx(nextIdx)
+    scrollToIndex(nextIdx)
   }
+
 
   // Desktop: always select left-most visible card (bulletproof)
   useEffect(() => {
@@ -68,24 +76,25 @@ export default function EventsSection({ eventsData }: Props) {
     let raf = 0
 
     const updateActive = () => {
-      const r = el.getBoundingClientRect()
-      const x = r.left + 12 // if you have bigger left padding, bump to 20/24
-      const y = r.top + r.height / 2
+      if (isProgrammaticScrollRef.current) return
 
-      const hit = document.elementFromPoint(x, y) as HTMLElement | null
-      if (!hit) return
+      const rootRect = el.getBoundingClientRect()
+      const leftEdge = rootRect.left
+      const children = Array.from(el.children) as HTMLElement[]
 
-      const card = hit.closest("[data-idx]") as HTMLElement | null
-      if (!card) return
-
-      const idxStr = card.getAttribute("data-idx")
-      if (!idxStr) return
-
-      const idx = Number(idxStr)
-      if (!Number.isFinite(idx)) return
-
-      setActiveIdx(idx)
+      for (const child of children) {
+        const rect = child.getBoundingClientRect()
+        if (rect.right > leftEdge + 1) {
+          const idxStr = child.getAttribute("data-idx")
+          if (!idxStr) return
+          const idx = Number(idxStr)
+          if (!Number.isFinite(idx)) return
+          setActiveIdx(idx)
+          break
+        }
+      }
     }
+
 
     const onScroll = () => {
       cancelAnimationFrame(raf)
@@ -111,9 +120,9 @@ export default function EventsSection({ eventsData }: Props) {
   const nextMobile = () => setMobilePage(p => Math.min(totalMobilePages - 1, p + 1))
 
   return (
-    <section className="w-full bg-neutral-900 py-12">
-      <div className="mx-auto max-w-6xl px-4">
-        <div className="relative bg-neutral-800/40 p-6 sm:p-8">
+    <section className="w-full py-12">
+      <div className="mx-auto max-w-[95%] px-4">
+        <div className="relative p-6 sm:p-8">
           <div className="flex gap-6 sm:gap-10">
             {/* Left strip (partial height) */}
             <div className="relative w-12 sm:w-16 shrink-0">

@@ -28,8 +28,8 @@ export default async function Home() {
       {/* about */}
       <div className="relative bg-[#161616] pt-30 pb-15">
         <SectionTitle fronttext="ABOUT US" backtext="ABOUT"/>
-        <section className="w-full py-6">
-          <div className="mx-auto max-w-5xl px-4">
+        <section className="w-full py-15">
+          <div className="mx-auto w-full lg:w-[75%] px-4">
             {/* relative wrapper for layering */}
             <div className="relative">
               {/* back strip */}
@@ -43,7 +43,7 @@ export default async function Home() {
                   <img src="/gmc_logo_image.png" alt="" className="lg:h-full lg:w-full object-cover"/>
                 </div>
                 {/* right text box */}
-                <div className="max-w-2xl bg-gmc-cream border border-neutral-300 px-3 lg:px-8 lg:py-6">
+                <div className="max-w-full bg-gmc-cream border border-neutral-300 px-3 lg:px-8 lg:py-6">
                   <p className="text-lg font-semibold leading-snug text-neutral-900">
                     The University of Melbourne Game Makers Club is a student-led community 
                     for anyone interested in creating games. We bring together programmers, 
@@ -67,7 +67,7 @@ export default async function Home() {
 
       {/* upcomming event */}
       <div className="relative bg-[#161616] pt-15 pb-15">
-        <SectionTitle fronttext="UPCOMMING EVENTS" backtext="EVENTS"/>
+        <SectionTitle fronttext="UPCOMING EVENTS" backtext="EVENTS"/>
         <section className="w-full py-0">
           <EventsSection
         eventsData={eventsData}/>
@@ -111,10 +111,12 @@ export default async function Home() {
             {/* LEFT: cards + button stacked */}
             <div className="flex-1 w-[60%]">
               {/* Events horizontally scrollable */}
-              <div className="flex flex-nowrap gap-8 p-5 pt-[31px] w-[95%] overflow-x-auto min-w-0 text-black">
-                {educations.map((education, index) => (
-                  <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug} />
-                ))}
+              <div className="flex justify-center">
+                <div className="flex justify-center flex-nowrap gap-8 p-5 pt-[31px] w-full overflow-x-auto min-w-0 text-black">
+                  {educations.map((education, index) => (
+                    <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug} />
+                  ))}
+                </div>
               </div>
 
               {/* Button centered */}
