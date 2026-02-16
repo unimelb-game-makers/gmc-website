@@ -6,7 +6,7 @@ import Image from 'next/image';
 import ContactForm from "./ContactForm";
 
 export default function Contact() {
-  const [showPopup, setShowPopup] = useState(true); // Temporarily enabled for styling
+  const [showPopup, setShowPopup] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   const handleSuccess = () => {
