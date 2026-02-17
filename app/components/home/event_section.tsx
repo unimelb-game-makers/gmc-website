@@ -133,7 +133,7 @@ export default function EventsSection({ eventsData }: Props) {
             <div className="min-w-0 flex-1">
               {/* ===== Desktop title + divider ===== */}
               <div className="hidden sm:block">
-                <h2 className="text-xl font-semibold text-white">{activeTitle}</h2>
+                <h2 className="text-3xl font-semibold text-white font-tasa-orbiter">{activeTitle}</h2>
                 <div className="mt-2 h-px w-full bg-white/50" />
               </div>
 
@@ -209,75 +209,74 @@ export default function EventsSection({ eventsData }: Props) {
 
               {/* ===== DESKTOP MODE (sm+): carousel ===== */}
               <div className="hidden sm:block">
-                <div className="mt-6 flex items-center gap-6">
-                  {/* scroller */}
-                  <div
-                    ref={scrollerRef}
-                    className="
-                      events-scroller
-                      flex min-w-0 flex-1 gap-8
-                      overflow-x-auto scroll-smooth
-                      snap-x snap-mandatory
-                      scroll-pl-4 pr-2
-                      [-ms-overflow-style:none]
-                      [scrollbar-width:none]
-                    "
-                  >
-                    <style>{`
-                      .events-scroller::-webkit-scrollbar { display: none; }
-                    `}</style>
+                {/* scroller */}
+                <div
+                  ref={scrollerRef}
+                  className="
+                    events-scroller
+                    mt-6 flex min-w-0 gap-8
+                    overflow-x-auto scroll-smooth
+                    snap-x snap-mandatory
+                    scroll-pl-4 pr-2
+                    [-ms-overflow-style:none]
+                    [scrollbar-width:none]
+                  "
+                >
+                  <style>{`
+                    .events-scroller::-webkit-scrollbar { display: none; }
+                  `}</style>
 
-                    {upcomingEvents.length === 0 ? (
-                      <div className="text-white/70">No upcoming events.</div>
-                    ) : (
-                      upcomingEvents.map((e, idx) => {
-                        const isActive = idx === activeIdx
+                  {upcomingEvents.length === 0 ? (
+                    <div className="text-white/70">No upcoming events.</div>
+                  ) : (
+                    upcomingEvents.map((e, idx) => {
+                      const isActive = idx === activeIdx
 
-                        return (
+                      return (
+                        <div
+                          key={e.id}
+                          data-idx={idx}
+                          className={[
+                            "snap-start shrink-0 w-[260px] sm:w-[320px] overflow-hidden rounded-md",
+                            "transition-all duration-200 ease-out origin-left",
+                            isActive ? "scale-100 opacity-100" : "scale-90 opacity-70",
+                          ].join(" ")}
+                        >
                           <div
-                            key={e.id}
-                            data-idx={idx}
                             className={[
-                              "snap-start shrink-0 w-[260px] sm:w-[320px]",
-                              "transition-all duration-200 ease-out origin-left",
-                              isActive ? "scale-105 opacity-100" : "scale-95 opacity-70",
+                              "h-[160px] w-full overflow-hidden rounded-md bg-neutral-200",
+                              "transition-shadow duration-200",
+                              isActive
+                                ? "shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
+                                : "shadow-none",
                             ].join(" ")}
                           >
-                            <div
-                              className={[
-                                "h-[160px] w-full overflow-hidden rounded-md bg-neutral-200",
-                                "transition-shadow duration-200",
-                                isActive
-                                  ? "shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
-                                  : "shadow-none",
-                              ].join(" ")}
-                            >
-                              {e.thumbnail ? (
-                                <img
-                                  src={e.thumbnail}
-                                  alt=""
-                                  className="h-full w-full object-cover"
-                                />
-                              ) : null}
-                            </div>
-
-                            {/* meta only for active (reserve height) */}
-                            <div className="mt-3 min-h-[42px] text-sm text-white/90">
-                              {isActive && (
-                                <>
-                                  <div>{dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
-                                  <div>{e.location ?? "TBA"}</div>
-                                </>
-                              )}
-                            </div>
+                            {e.thumbnail ? (
+                              <img
+                                src={e.thumbnail}
+                                alt=""
+                                className="h-full w-full object-cover"
+                              />
+                            ) : null}
                           </div>
-                        )
-                      })
+
+                        </div>
+                      )
+                    })
+                  )}
+                </div>
+
+                {/* desktop scroll buttons + active event meta */}
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="min-h-[42px] text-m text-white/90">
+                    {upcomingEvents[activeIdx] && (
+                      <>
+                        <div>{dayjs(upcomingEvents[activeIdx].date.start).format("DD-MM-YYYY hh:mma")}</div>
+                        <div>{upcomingEvents[activeIdx].location ?? "TBA"}</div>
+                      </>
                     )}
                   </div>
-
-                  {/* desktop buttons */}
-                  <div className="shrink-0 flex gap-3">
+                  <div className="flex gap-3">
                     <button
                       onClick={prevDesktop}
                       disabled={activeIdx === 0 || upcomingEvents.length === 0}

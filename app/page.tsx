@@ -24,7 +24,9 @@ export default async function Home() {
     <div>
       {/* sign up page */}
       <HeroBanner />
-     
+
+      <div className="w-full h-20 bg-gmc-teal-dark" />
+
       {/* about */}
       <div className="relative bg-[#161616] pt-30 pb-15">
         <SectionTitle fronttext="ABOUT US" backtext="ABOUT"/>
