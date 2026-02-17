@@ -56,7 +56,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${karla.variable} ${akira.variable} ${arsenica.variable} ${tasaOrbiter.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${karla.variable} ${akira.variable} ${arsenica.variable} ${tasaOrbiter.variable} font-tasa-orbiter antialiased`}
       >
         <div className="min-h-screen flex flex-col">
           <Header />
