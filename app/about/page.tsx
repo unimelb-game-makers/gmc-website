@@ -39,7 +39,7 @@ const page = async () => {
         <div className="mx-auto w-full max-w-6xl px-4">
           {/* Title */}
           <h1
-            className="flex justify-center relative z-10 text-4xl sm:text-5xl lg:text-6xl
+            className="font-akira flex justify-center relative z-10 text-4xl sm:text-5xl lg:text-6xl
               font-extrabold text-white drop-shadow-teal tracking-wide leading-none-translate-y-5">
             ABOUT US
           </h1>
@@ -67,14 +67,21 @@ const page = async () => {
       </section>
 
       {/* our mission */}
-      <section className="relative w-full py-20 overflow-hidden">
-        <div className="mx-auto max-w-6xl px-4 relative z-10">
-          {/* Title */}
-           <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-teal">
-            OUR MISSION
-          </h1>
+      <section className="w-full py-20">
+        <h1 className="font-akira text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-teal">
+          OUR MISSION
+        </h1>
+
+        <div className="mx-auto max-w-6xl px-2 flex items-start gap-8">
+          {/* Large Vertical Background Text */}
+          <div
+            aria-hidden
+            className="text-vertical-textured text-8xl">
+            MISSION
+          </div>
+
           {/* Text box */}
-          <div className="mt-10 mx-auto max-w-4xl px-8 py-8">
+          <div className="flex-1 mt-10 max-w-4xl px-8 py-8">
             <ol className="list-decimal pl-6 space-y-5 text-lg sm:text-xl font-semibold leading-relaxed text-white">
               <li>To facilitate social activity & community surrounding games & game development</li>
               <li>To educate members in game development</li>
@@ -84,20 +91,12 @@ const page = async () => {
             </ol>
           </div>
         </div>
-        {/* Large Vertical Background Text */}
-        <div
-          aria-hidden
-          className="hidden lg:flex absolute left-0 top-0 h-full items-center
-            text-vertical-textured text-[100px]
-            pointer-events-none select-none z-0">
-          MISSION
-        </div>
       </section>
 
       {/* what we do */}
       <section className="w-full py-14">
         <div className="mx-auto max-w-6xl px-4">
-          <h2 className="text-center text-4xl sm:text-5xl font-extrabold text-white drop-shadow-teal">
+          <h2 className="font-akira text-center text-4xl sm:text-5xl font-extrabold text-white drop-shadow-teal">
             WHAT WE DO
           </h2>
 
@@ -280,25 +279,25 @@ const page = async () => {
 
 
       {/* FAQ */}
-      <section className="relative w-full pt-20 overflow-hidden">
-        <section className="mx-auto max-w-6xl px-4 relative z-10">
-            <h1 className="text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-teal">
-            FAQ
-          </h1>
-
-            <div className="w-[90%] mx-auto">
-                {faqs.map((f) => (
-                <FAQItem key={String(f.question)} question={f.question} answer={f.answer} />
-                ))}
-            </div>
-        </section>
-        {/* Large Vertical Background Text */}
-        <div
-          aria-hidden
-          className="hidden lg:flex absolute left-0 top-1/2 -translate-y-1/2 items-center
-            text-vertical-textured text-[100px]
-            pointer-events-none select-none z-0">
+      <section className="w-full pt-20">
+        <h1 className="font-akira text-center text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white drop-shadow-teal">
           FAQ
+        </h1>
+
+        <div className="mx-auto max-w-6xl px-2 flex items-start gap-8">
+          {/* Large Vertical Background Text */}
+          <div
+            aria-hidden
+            className="text-vertical-textured text-8xl">
+            FAQ
+          </div>
+
+          {/* FAQ Questions */}
+          <div className="flex-1">
+            {faqs.map((f) => (
+              <FAQItem key={String(f.question)} question={f.question} answer={f.answer} />
+            ))}
+          </div>
         </div>
       </section>
     </div>
