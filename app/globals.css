@@ -2,8 +2,8 @@
 @config "../tailwind.config.js";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #171717;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -51,15 +51,19 @@ body {
     background: #ffffff;
     border-radius: 0px;
   }
+
   .gmc-scrollbar::-webkit-scrollbar-thumb {
-    background: #F3AD64;     /* track background */
+    background: #F3AD64;
+    /* track background */
     border-radius: 0px;
   }
 
   .gmc-scrollbar::-webkit-scrollbar-thumb:hover {
-    background: #E97851;     /* thumb hover color */
+    background: #E97851;
+    /* thumb hover color */
   }
 }
+
 /* 
 h1 {
   font-size: 3rem;
