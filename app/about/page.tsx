@@ -110,8 +110,8 @@ const page = async () => {
                   {/* IMAGE */}
                   <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
                     <Image
-                      src="/images/cat.jpg"
-                      alt="cut cat picture"
+                      src="/images/gmcc_photo.jpg"
+                      alt="gmcc"
                       fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
@@ -122,8 +122,8 @@ const page = async () => {
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <Image
-                    src="/images/cat.jpg"
-                    alt="cut cat picture"
+                    src="/images/gmcc_photo.jpg"
+                    alt="gmcc"
                     fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
@@ -157,8 +157,8 @@ const page = async () => {
                   {/* IMAGE */}
                   <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
                     <Image
-                      src="/images/cat.jpg"
-                      alt="cut cat picture"
+                      src="/images/pd.JPEG"
+                      alt="pd"
                       fill
                       className="w-full h-[220px] lg:h-full object-cover"
                     />
@@ -167,7 +167,7 @@ const page = async () => {
                 {/* TEXT */}
                 <div className="flex-1">
                   <h3 className="text-2xl lg:text-3xl font-extrabold text-white mb-3 lg:mb-0 lg:text-left">
-                    Product Devision
+                    Production Division
                   </h3>
                   <div className="bg-gmc-cream px-6 py-5 text-black">
                     <p className="text-sm sm:text-base font-semibold leading-snug">
@@ -178,8 +178,8 @@ const page = async () => {
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <Image
-                    src="/images/cat.jpg"
-                    alt="cut cat picture"
+                    src="/images/pd.JPEG"
+                    alt="pd"
                     fill
                     className="w-full h-[200px] lg:h-full object-cover"
                   />
@@ -196,7 +196,7 @@ const page = async () => {
                   {/* IMAGE */}
                   <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
                     <Image
-                      src="/images/cat.jpg"
+                      src="/images/workshops.jpg"
                       alt="cut cat picture"
                       fill
                       className="w-full h-[220px] lg:h-full object-cover"
@@ -208,7 +208,7 @@ const page = async () => {
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <Image
-                    src="/images/cat.jpg"
+                    src="/images/workshops.jpg"
                     alt="cut cat picture"
                     fill
                     className="w-full h-[200px] lg:h-full object-cover"
@@ -243,7 +243,7 @@ const page = async () => {
                   {/* IMAGE */}
                   <div className="relative flex-1 h-[220px] overflow-hidden bg-neutral-200">
                     <Image
-                      src="/images/cat.jpg"
+                      src="/images/social.jpg"
                       alt="cut cat picture"
                       fill
                       className="w-full h-[220px] lg:h-full object-cover"
@@ -264,7 +264,7 @@ const page = async () => {
                 {/* desktop IMAGE */}
                 <div className="hidden lg:block relative w-full lg:w-[260px] shrink-0 overflow-hidden bg-neutral-200">
                   <Image
-                    src="/images/cat.jpg"
+                    src="/images/social.jpg"
                     alt="cute cat picture"
                     fill
                     className="w-full h-[200px] lg:h-full object-cover"
