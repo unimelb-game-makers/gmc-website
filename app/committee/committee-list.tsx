@@ -48,13 +48,9 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
             <button
               key={committee}
               onClick={() => setSelectedCommittee(committee)}
-              className={`px-4 py-2 rounded-md transition-transform duration-100 ease-out transform hover:scale-105 hover:-translate-y-0.5 cursor-pointer text-lg font-bold ${
-                selectedCommittee === committee ? "text-white" : "text-black"
+              className={`px-4 py-2 font-arsenica rounded-md transition-transform duration-100 ease-out transform hover:scale-105 hover:-translate-y-0.5 cursor-pointer text-lg font-bold ${
+                selectedCommittee === committee ? "bg-gmc-teal-dark text-white" : "bg-transparent text-black"
               }`}
-              style={{
-                backgroundColor:
-                  selectedCommittee === committee ? "#012E65" : "transparent",
-              }}
             >
               {committee.toUpperCase()}
             </button>
@@ -65,7 +61,7 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
         <div className="lg:hidden w-full max-w-xs mx-auto relative">
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full px-4 py-2 rounded-md bg-[#D9D9D9] text-black text-lg font-bold border-2 border-[#012E65] flex justify-between items-center"
+            className="w-full px-4 py-2 rounded-md bg-[#D9D9D9] font-arsenica text-black text-lg font-bold border-2 border-[#012E65] flex justify-between items-center"
           >
             <span>{selectedCommittee.toUpperCase()}</span>
             <svg className={`w-5 h-5 transition-transform ${isDropdownOpen ? 'transform rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -80,7 +76,7 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                       setSelectedCommittee(committee);
                       setIsDropdownOpen(false);
                     }}
-                    className="px-4 py-2 text-black text-lg font-bold hover:bg-[#012E65] hover:text-white cursor-pointer"
+                    className="px-4 py-2 text-black font-arsenica text-lg font-bold hover:bg-gmc-teal-dark hover:text-white cursor-pointer"
                   >
                     {committee.toUpperCase()}
                   </li>

@@ -3,7 +3,7 @@ import Image from 'next/image'
  
 export default function NotFound() {
   return (
-    <div className='flex justify-center'>
+    <div className='py-35 flex justify-center'>
         <div>
             <div className="flex justify-center">
                 <Image src="/images/wires.png" width={400} height={400} alt="wires"/>
