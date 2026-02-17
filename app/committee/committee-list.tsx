@@ -1,8 +1,21 @@
 "use client";
 
 import { CommitteeMember, CommitteeYear } from "@/@types/schema.ds";
-import Image from "next/image";
 import { useEffect, useState, useMemo } from "react";
+import PartyEntry from "../components/committee/party_entry";
+
+// Simple string hash → deterministic number in a range
+function hashName(name: string, seed: number = 0): number {
+  let hash = seed;
+  for (let i = 0; i < name.length; i++) {
+    hash = (hash * 31 + name.charCodeAt(i)) | 0;
+  }
+  return Math.abs(hash);
+}
+
+function statFromName(name: string, seed: number, min: number, max: number): number {
+  return min + (hashName(name, seed) % (max - min + 1));
+}
 
 interface CommitteeListProps {
   committeeMembers: CommitteeYear;
@@ -24,7 +37,6 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
   // Add https to links without it, ensures that it doesn't open as a relative path
   function openSocial(url?: string) {
     if (!url) return;
-
     const fullUrl = url.startsWith("http") ? url : `https://${url}`;
     window.open(fullUrl, "_blank");
   }
@@ -88,34 +100,18 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
       </div>
 
       <div className="w-full p-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-16 md:gap-y-30">
+        <div className="flex flex-col items-center gap-10">
           {filteredMembers.slice().reverse()
             .map((member: CommitteeMember) => (
-              <div
+              <PartyEntry
                 key={member.name}
-                className="flex flex-col items-center text-center"
-              >
-                <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-[350px] lg:h-[350px] flex items-center justify-center transition-transform duration-200 ease-out hover:scale-103 hover:-translate-y-2">
-                  <Image
-                    src="/shapes/memberFrame.png"
-                    alt="Member Frame"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="relative w-[91.4%] h-[91.4%] rounded-full overflow-hidden cursor-pointer">
-                    <Image
-                      src={member.image || "/images/cat.jpg"}
-                      alt={member.name}
-                      fill
-                      className="object-cover"
-                      onClick={() => openSocial(member.social)} 
-                    />
-                  </div>
-                </div>
-              <h3 className="mt-4 text-2xl md:text-3xl font-semibold" style={{ color: '#FFFFFF' }}>{member.name}</h3>
-              <p className="text-xl md:text-2xl" style={{ color: '#A1C7EE' }}>{member.role}</p>
-              <p className="text-xl md:text-1xl whitespace-pre-line" style={{ color: '#78A8E2' }}>{member.about}</p>
-            </div>
+                name={member.name}
+                role={member.role}
+                image={member.image}
+                hp={statFromName(member.name, 1, 0, 99) * 10}
+                sp={statFromName(member.name, 2, 0, 60) * 10}
+                level={statFromName(member.name, 3, 0, 100)}
+              />
           ))}
         </div>
       </div>

@@ -14,8 +14,15 @@ export default class NotionCommittee {
 
     // Get database info
     const [committeeInfoRes, committeeYearRes] = await Promise.all([
-      this.client.dataSources.query({ data_source_id: committeeInfoId }),
-      this.client.dataSources.query({ data_source_id: committeeYearId })
+      this.client.dataSources.query({ data_source_id: committeeInfoId}),
+      this.client.dataSources.query({ data_source_id: committeeYearId,
+        sorts: [
+          {
+            property: "Role",
+            direction: "descending"
+          }
+        ],
+       })
     ]);
 
     // Storing each row with row id as key

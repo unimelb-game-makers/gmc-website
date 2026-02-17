@@ -2,6 +2,7 @@ import NotionCommittee from "@/services/notion-committee";
 import { CommitteeYear } from "@/@types/schema.ds";
 import Image from "next/image";
 import CommitteeList from "./committee-list";
+import PartyEntry from "../components/committee/party_entry";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -23,6 +24,7 @@ export default async function Committee() {
           />
         </div>
         <CommitteeList committeeMembers={committeeMembers} />
+        {/* <PartyEntry name="Thaha Bashir" role="Lvl 100 President" image="/images/cat.jpg" hp={550} sp={250} /> */}
       </main>
     </div>
   );
