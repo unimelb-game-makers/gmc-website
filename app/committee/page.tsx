@@ -14,18 +14,20 @@ export default async function Committee() {
       <main className="flex min-h-screen flex-col items-center">
         <div className="relative w-full">
           <Image
-            src="/images/chess.jpg"
+            src="/images/committee.png"
             alt="Committee"
             width={1920}
             height={1080}
             priority
             className="w-full h-auto"
           />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <h1 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold text-center" style={{ textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)' }}>Meet The Committee</h1>
+        </div>
+        <div className="flex items-start w-full py-10">
+          <h1 className="text-vertical-textured text-8xl shrink-0">Committee</h1>
+          <div className="flex-1 min-w-0">
+            <CommitteeList committeeMembers={committeeMembers} />
           </div>
         </div>
-        <CommitteeList committeeMembers={committeeMembers} />
       </main>
     </div>
   );
