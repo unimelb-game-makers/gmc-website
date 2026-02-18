@@ -35,13 +35,6 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
     [membersForYear]
   );
 
-  // Add https to links without it, ensures that it doesn't open as a relative path
-  function openSocial(url?: string) {
-    if (!url) return;
-    const fullUrl = url.startsWith("http") ? url : `https://${url}`;
-    window.open(fullUrl, "_blank");
-  }
-
   const [selectedCommittee, setSelectedCommittee] = useState(
     committees[0] || ""
   );
