@@ -3,6 +3,7 @@
 import { CommitteeMember, CommitteeYear } from "@/@types/schema.ds";
 import { useEffect, useState, useMemo } from "react";
 import PartyEntry from "../components/committee/party_entry";
+import InfoCard from "../components/committee/info_card";
 
 // Simple string hash → deterministic number in a range
 function hashName(name: string, seed: number = 0): number {
@@ -46,14 +47,21 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
   );
   const [filteredMembers, setFilteredMembers] = useState<CommitteeMember[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [selectedMember, setSelectedMember] = useState<CommitteeMember | null>(null);
 
   useEffect(() => {
-      setFilteredMembers(membersForYear[selectedCommittee] || []);
+      const members = membersForYear[selectedCommittee] || [];
+      setFilteredMembers(members);
+      // Select the first member when committee changes
+      if (members.length > 0) {
+        setSelectedMember(members[members.length - 1]);
+      }
   }, [selectedCommittee, membersForYear]);
 
   return (
     <>
-      <div className="sticky top-[5px] z-10 w-full flex justify-center py-2">
+      {/* Filter bar — full width on top */}
+      <div className="top-[5px] z-10 w-full flex justify-center py-2">
         {/* Desktop Filter Bar */}
         <div className="hidden lg:flex bg-[#D9D9D9] rounded-lg p-1 justify-center space-x-2">
           {committees.map((committee) => (
@@ -99,20 +107,47 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
         </div>
       </div>
 
-      <div className="w-full p-8">
-        <div className="flex flex-col items-center gap-10">
-          {filteredMembers.slice().reverse()
-            .map((member: CommitteeMember) => (
-              <PartyEntry
-                key={member.name}
-                name={member.name}
-                role={member.role}
-                image={member.image}
-                hp={statFromName(member.name, 1, 0, 99) * 10}
-                sp={statFromName(member.name, 2, 0, 60) * 10}
-                level={statFromName(member.name, 3, 0, 100)}
+      {/* InfoCard + PartyEntry list side by side, centered */}
+      <div className="w-full flex justify-center p-8">
+        <div className="flex gap-4 items-start">
+          {/* InfoCard on the left (desktop only) */}
+          {selectedMember && (
+            <div className="hidden lg:block shrink-0">
+              <InfoCard
+                name={selectedMember.name}
+                role={selectedMember.role}
+                image={selectedMember.image}
+                about={selectedMember.about}
+                social={selectedMember.social}
+                hp={statFromName(selectedMember.name, 1, 0, 99) * 10}
+                sp={statFromName(selectedMember.name, 2, 0, 60) * 10}
+                level={statFromName(selectedMember.name, 3, 0, 100)}
+                atk={statFromName(selectedMember.name, 4, 0, 999)}
+                def={statFromName(selectedMember.name, 5, 0, 999)}
               />
-          ))}
+            </div>
+          )}
+
+          {/* PartyEntry list */}
+          <div className="flex flex-col gap-10">
+            {filteredMembers.slice().reverse()
+              .map((member: CommitteeMember) => (
+                <div
+                  key={member.name}
+                  onClick={() => setSelectedMember(member)}
+                  className="cursor-pointer"
+                >
+                  <PartyEntry
+                    name={member.name}
+                    role={member.role}
+                    image={member.image}
+                    hp={statFromName(member.name, 1, 0, 99) * 10}
+                    sp={statFromName(member.name, 2, 0, 60) * 10}
+                    level={statFromName(member.name, 3, 0, 100)}
+                  />
+                </div>
+            ))}
+          </div>
         </div>
       </div>
     </>

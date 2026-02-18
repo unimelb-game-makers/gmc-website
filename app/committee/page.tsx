@@ -2,7 +2,6 @@ import NotionCommittee from "@/services/notion-committee";
 import { CommitteeYear } from "@/@types/schema.ds";
 import Image from "next/image";
 import CommitteeList from "./committee-list";
-import PartyEntry from "../components/committee/party_entry";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -23,8 +22,12 @@ export default async function Committee() {
             className="w-full h-auto"
           />
         </div>
-        <CommitteeList committeeMembers={committeeMembers} />
-        {/* <PartyEntry name="Thaha Bashir" role="Lvl 100 President" image="/images/cat.jpg" hp={550} sp={250} /> */}
+        <div className="flex items-start w-full py-10">
+          <h1 className="text-vertical-textured text-8xl shrink-0">Committee</h1>
+          <div className="flex-1 min-w-0">
+            <CommitteeList committeeMembers={committeeMembers} />
+          </div>
+        </div>
       </main>
     </div>
   );
