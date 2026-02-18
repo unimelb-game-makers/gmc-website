@@ -38,7 +38,7 @@ export function FAQItem({ question, answer }: FAQItemProps) {
       {/* Answer */}
       {open && (
         <div className="pb-5">
-          <div className="text-white/80 font-karla text-[18px] leading-relaxed">
+          <div className="text-white/80 font-karla text-[18px] leading-relaxed whitespace-pre-line">
             {answer}
           </div>
         </div>
