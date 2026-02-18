@@ -26,7 +26,7 @@ const page = async () => {
         "Not at all! Game development isn’t just programming. We need artists, designers, writers, musicians, sound designers, producers, and playtesters. Even if you’re just curious and want to learn, that’s more than enough. Many of our members start with zero experience.",
     },
     {
-      question: "Can I join game jams as a beginner",
+      question: "Can I join game jams as a beginner?",
       answer:
         "Absolutely. Game jams are one of the best ways to learn. You’ll usually work in a team, so you won’t be doing everything alone. Beginners are encouraged to join — you’ll pick up new skills quickly, meet other members, and probably surprise yourself with what you can create in a short time.",
     },
