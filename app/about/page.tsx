@@ -13,22 +13,22 @@ const page = async () => {
   const faqs: FAQItemProps[] = [
     {
       question: "How can I join the game makers club?",
-      answer: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.",
+      answer: "Getting involved is easy — just grab a free membership through our UMSU page. Once you’ve signed up, jump into our Discord to meet other members, stay updated on events, and start collaborating. You can also follow us on Instagram to keep up with what we’re building and what’s coming up next.",
     },
     {
       question: "How can I start making games?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.",
+        "Just give it a go! Pick a beginner-friendly engine like Unity or Godot and try building something small — a simple platformer, a puzzle game, even a one-level experiment. Start tiny, finish it, then build from there.\n\nYou can also jump straight into one of our game jams. Game jams are short, themed events where you work in a team to create a game in a limited time. They’re beginner-friendly, fast-paced, and one of the quickest ways to learn. You don’t need to know everything — you’ll figure things out alongside your team.\n\n We also run regular maker labs and workshops where you can ask questions, learn the basics, and get help from other members. No matter where you’re starting from, there’s a place to jump in.",
     },
     {
-      question: "Do I have to know programming to join the club",
+      question: "Do I have to know programming to join the club?",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.",
+        "Not at all! Game development isn’t just programming. We need artists, designers, writers, musicians, sound designers, producers, and playtesters. Even if you’re just curious and want to learn, that’s more than enough. Many of our members start with zero experience.",
     },
     {
       question: "Can I join game jams as a beginner",
       answer:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur et lorem at enim ultrices congue. Nullam tincidunt volutpat nunc nec suscipit. Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.Aenean fringilla leo sed sapien tincidunt, vel malesuada nulla faucibus. Maecenas et augue sed lorem fermentum sodales.",
+        "Absolutely. Game jams are one of the best ways to learn. You’ll usually work in a team, so you won’t be doing everything alone. Beginners are encouraged to join — you’ll pick up new skills quickly, meet other members, and probably surprise yourself with what you can create in a short time.",
     },
   ];
 
