@@ -21,37 +21,42 @@ const colorMap: Record<string, string> = {
 };
 
 const PostEntry = ({post}: {post: EducationWorkshopPost}) => {
-  const date = dayjs(post.date.start).format("MMMM Do YYYY");
-  const authorName = 'name' in post.author ? post.author.name : 'Unknown Author';
+  const date = dayjs(post.date.start).format("DD-MM-YYYY");
 
   return (
-    <div className='bg-white rounded-lg text-black w-full [@media(min-width:1300px)]:w-100 h-80 flex flex-col overflow-hidden'>
-        <Link href={"education/" + post.slug} className="flex flex-col h-full">
-          <Image src={post.thumbnail} alt={post.id} width={600} height={160} className='object-cover rounded-t-lg w-full h-40 flex-shrink-0'/>
-        <div className="p-4 bg-white-800 flex-1 min-h-0 flex flex-col">
-          <h2 className="text-xl font-bold line-clamp-1 flex-shrink-0">{post.title}</h2>
-          <div className="flex items-center justify-between text-xs text-gray-400 mt-1 flex-shrink-0">
-            <span>By {authorName}</span>
-            <span>{date}</span>
+    <div className='text-white w-full'>
+        <Link href={"education/" + post.slug}>
+          {/* Image container with tags overlay */}
+          <div className="relative">
+            <Image
+              src={post.thumbnail}
+              alt={post.id}
+              width={400}
+              height={200}
+              className='object-cover rounded-lg w-full h-40'
+            />
+            {/* Tags overlaid at bottom of image */}
+            <div className="absolute bottom-2 left-2 flex flex-wrap gap-1">
+              {post.tags.map((tag) => (
+                <span
+                  className={`text-white text-xs font-bold px-3 py-0.5 rounded-full ${colorMap[tag.color]}`}
+                  key={tag.id}
+                >
+                  {tag.name}
+                </span>
+              ))}
+            </div>
           </div>
+      </Link>
 
-          {/* Tags */}
-          <div className="flex flex-wrap gap-2 mt-2 flex-shrink-0">
-            {post.tags.map((tag) => (
-              <span className={`text-white text-xs px-2 py-1 rounded-full ${colorMap[tag.color]}`} key={tag.id}>
-                {tag.name}
-              </span>
-            ))}
-          </div>
+      {/* Date */}
+      <p className="text-gray-400 text-sm mt-2 font-tasa-orbiter">{date}</p>
 
-          {/* Description */}
-          <p className="text-sm mt-2 line-clamp-2">
-            {post.description}
-          </p>
-        </div>
+      {/* Title */}
+      <Link href={"education/" + post.slug}>
+        <h2 className="text-lg mt-1 font-tasa-orbiter font-bold">{post.title}</h2>
       </Link>
     </div>
-
   )
 }
 

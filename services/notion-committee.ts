@@ -14,8 +14,42 @@ export default class NotionCommittee {
 
     // Get database info
     const [committeeInfoRes, committeeYearRes] = await Promise.all([
-      this.client.dataSources.query({ data_source_id: committeeInfoId }),
-      this.client.dataSources.query({ data_source_id: committeeYearId })
+      this.client.dataSources.query({ data_source_id: committeeInfoId,
+        "filter": {
+          "and": [
+            {
+              "or": [
+                {
+                  "property": "Name",
+                  "rich_text": {
+                    "is_not_empty": true
+                  }
+                },
+                {
+                  "property": "Display Name",
+                  "rich_text": {
+                    "is_not_empty": true
+                  }
+                }
+              ]
+            },
+            {
+              "property": "Photo",
+              "files": {
+                "is_not_empty": true
+              }
+            }
+          ]
+        }
+      }),
+      this.client.dataSources.query({ data_source_id: committeeYearId,
+        sorts: [
+          {
+            property: "Role",
+            direction: "descending"
+          }
+        ],
+       })
     ]);
 
     // Storing each row with row id as key
@@ -55,7 +89,7 @@ export default class NotionCommittee {
 
   private static toMember(yearPage: any, infoPage: any): CommitteeMember {
     return {
-      name: infoPage.properties.Name?.title[0]?.plain_text || "",
+      name: infoPage.properties["Display Name"]?.rich_text[0]?.plain_text || infoPage.properties.Name?.title[0]?.plain_text || "",
       role: yearPage.properties["Role"].select?.name ?? "",
       year: yearPage.properties["Year"].number ?? 0,
       image: infoPage.properties["Photo"]?.files[0]?.file.url ?? "",

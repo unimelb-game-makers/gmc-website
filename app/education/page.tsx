@@ -12,7 +12,13 @@ const page = async () => {
   const tags = await service.getWorkshopTags();
 
   return (
-    <EducationSearch posts={posts} tags={tags}/>
+    <div className='py-35'>
+      <h1 className='text-center drop-shadow-teal font-akira text-6xl'>EDUCATION</h1>
+      <div className='mt-10 flex justify-start items-start'>
+        <h1 className='text-vertical-textured text-6xl'>FILTER</h1>
+        <EducationSearch posts={posts} tags={tags}/>
+      </div>
+    </div>
   )
 }
 

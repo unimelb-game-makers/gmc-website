@@ -28,7 +28,7 @@ export default function Contact() {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
-  
+
   useEffect(() => {
     if (showPopup) {
       document.body.style.overflow = 'hidden';
@@ -41,16 +41,16 @@ export default function Contact() {
   }, [showPopup]);
 
   return (
-    <div>
+    <div className='py-35'>
       {showPopup && (
-        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50">
-          <div className="relative bg-white p-6 rounded-lg shadow-lg text-center">
-            <div className="flex justify-center">
-              <Image src="/images/wires.png" alt="Wires" width={150} height={150} />
+        <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black/40 backdrop-blur-[2px]">
+          <div className="relative bg-gmc-cream p-10 md:p-14 rounded-2xl shadow-2xl text-center w-full max-w-[400px] md:max-w-[550px] lg:max-w-[650px] mx-4 border border-gmc-teal/20">
+            <div className="flex justify-center mb-6">
+              <Image src="/images/wires.png" alt="Wires" width={140} height={140} className="drop-shadow-lg md:scale-125" />
             </div>
-            <p className="text-2xl font-bold text-black mb-4">Message sent! Thank you!</p>
-            <button 
-              className="bg-[#4FA0CF] text-white py-2 px-4 rounded-lg transition-transform duration-200 ease-out hover:-translate-y-0.5"
+            <p className="text-2xl md:text-3xl font-bold text-black mb-6 font-karla">Message sent! Thank you!</p>
+            <button
+              className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer w-[160px] md:w-[200px] h-10 md:h-12 transition-all duration-300 ease-out flex items-center justify-center mx-auto hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg"
               onClick={() => setShowPopup(false)}
             >
               Close
@@ -61,66 +61,77 @@ export default function Contact() {
       <div className={`relative p-[20px] md:p-[50px] text-[#FFFFFF] font-tilt-warp ${showPopup ? "blur-[5px]" : ""}`}>
 
         <div className="text-center mb-[50px] max-w-[800px] mx-auto p-[20px]">
-          <h1 className="text-[2.5rem] md:text-[3rem] lg:text-[3.5rem] m-0">Contact Us</h1>
+          <h1 className="text-[2rem] md:text-[3rem] lg:text-[3.5rem] m-0 font-akira drop-shadow-teal">Contact Us</h1>
         </div>
 
-        <div className="flex flex-col [@media(min-width:840px)]:flex-row justify-center gap-[50px] max-w-[1200px] mx-auto">
-          
-          <ContactForm isMobile={isMobile} onSuccess={handleSuccess} />
+        <div className="flex flex-col [@media(min-width:840px)]:flex-row justify-center gap-[20px] md:gap-[30px] lg:gap-[40px] max-w-[1200px] mx-auto items-stretch">
+
+          {/* Vertical EMAIL text for desktop - shared space */}
+          {!isMobile && (
+            <div className="flex items-center justify-center w-[60px] md:w-[80px] lg:w-[100px]">
+              <span className="text-vertical-textured text-[4rem] md:text-[6rem] lg:text-[7rem] opacity-15 select-none leading-none">
+                EMAIL
+              </span>
+            </div>
+          )}
+
+          <div className="flex-[1.5] flex flex-col">
+            <ContactForm isMobile={isMobile} onSuccess={handleSuccess} />
+          </div>
 
           <div className="flex-1 flex flex-col gap-[20px]">
-            <div className="flex flex-col gap-[15px] bg-[#D9D9D9] rounded-3xl p-[20px]">
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
               <div className="flex items-center gap-[15px]">
-              <Image src="/icons/contact-instagram.png" alt="Instagram" width={50} height={50} className="w-[50px] h-[50px]" />
-              <h3 className="m-0 text-[1.5rem] font-bold text-black">Follow us on Instagram!</h3>
+                <Image src="/icons/contact-instagram.png" alt="Instagram" width={50} height={50} className="w-[50px] h-[50px]" />
+                <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Follow us on Instagram!</h3>
+              </div>
+              <a href="https://www.instagram.com/gmc.unimelb/?hl=en" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
+                  Follow <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
+                </button>
+              </a>
             </div>
-            <a href="https://www.instagram.com/gmc.unimelb/?hl=en" target="_blank" rel="noopener noreferrer">
-              <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
-                Follow <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
-              </button>
-            </a>
+
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
+              <div className="flex items-center gap-[15px]">
+                <Image src="/icons/contact-discord.png" alt="Discord" width={50} height={50} className="w-[50px] h-[50px]" />
+                <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Join our discord!</h3>
+              </div>
+              <a href="https://discord.com/invite/YWD4jRQ7xY" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
+                  Join <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
+                </button>
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
+              <div className="flex items-center gap-[15px]">
+                <Image src="/icons/contact-youtube.png" alt="YouTube" width={50} height={50} className="w-[50px] h-[50px]" />
+                <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Check out our YouTube!</h3>
+              </div>
+              <a href="https://www.youtube.com/@UniMelbGameMakers" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
+                  Go <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
+                </button>
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-[15px] bg-gmc-cream rounded-2xl p-[25px] transition-all duration-300">
+              <div className="flex items-center gap-[15px]">
+                <Image src="/icons/contact-itch.png" alt="Itch.io" width={50} height={50} className="w-[50px] h-[50px]" />
+                <h3 className="m-0 text-[1.5rem] font-bold text-black font-karla">Play our games on Itch!</h3>
+              </div>
+              <a href="https://gmcunimelb.itch.io/" target="_blank" rel="noopener noreferrer">
+                <button className="bg-gmc-orange-dark text-white border-none rounded-[0px_30px_0px_30px] w-full h-10 md:h-10 font-arsenica font-bold text-[1.1rem] md:text-[1.3rem] cursor-pointer transition-all duration-300 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-[2px] hover:brightness-110 active:translate-y-0 shadow-lg md:w-[220px]">
+                  Play! <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
+                </button>
+              </a>
+            </div>
           </div>
 
-          <div className="flex flex-col gap-[15px] bg-[#D9D9D9] rounded-3xl p-[20px]">
-            <div className="flex items-center gap-[15px]">
-              <Image src="/icons/contact-discord.png" alt="Discord" width={50} height={50} className="w-[50px] h-[50px]" />
-              <h3 className="m-0 text-[1.5rem] font-bold text-black">Join our discord!</h3>
-            </div>
-            <a href="https://discord.com/invite/YWD4jRQ7xY" target="_blank" rel="noopener noreferrer">
-              <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
-                Join <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
-              </button>
-            </a>
-          </div>
-
-          <div className="flex flex-col gap-[15px] bg-[#D9D9D9] rounded-3xl p-[20px]">
-            <div className="flex items-center gap-[15px]">
-              <Image src="/icons/contact-youtube.png" alt="YouTube" width={50} height={50} className="w-[50px] h-[50px]" />
-              <h3 className="m-0 text-[1.5rem] font-bold text-black">Check out our YouTube!</h3>
-            </div>
-            <a href="https://www.youtube.com/@UniMelbGameMakers" target="_blank" rel="noopener noreferrer">
-              <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
-                Go <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
-              </button>
-            </a>
-          </div>
-
-          <div className="flex flex-col gap-[15px] bg-[#D9D9D9] rounded-3xl p-[20px]">
-            <div className="flex items-center gap-[15px]">
-              <Image src="/icons/contact-itch.png" alt="Itch.io" width={50} height={50} className="w-[50px] h-[50px]" />
-              <h3 className="m-0 text-[1.5rem] font-bold text-black">Play our games on Itch!</h3>
-            </div>
-            <a href="https://gmcunimelb.itch.io/" target="_blank" rel="noopener noreferrer">
-              <button className="bg-[#4FA0CF] text-white border-none rounded-lg w-full py-[8px] font-tilt-warp text-[1.2rem] cursor-pointer transition-transform duration-200 ease-out flex items-center justify-center gap-[10px] hover:-translate-y-0.5 md:w-[300px] md:py-[10px] md:text-[1.5rem] font-bold">
-                Play! <FaArrowRightLong size={isMobile ? "1.2rem" : "1.5rem"} />
-              </button>
-            </a>
-          </div>
         </div>
 
       </div>
-
     </div>
-  </div>
   );
 }
