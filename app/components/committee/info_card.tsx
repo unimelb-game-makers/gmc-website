@@ -70,7 +70,7 @@ export default function InfoCard({
       </div>
 
       {/* About */}
-      <p className="m-5 text-lg font-bold text-black mt-4">{about || ''}</p>
+      <p className="m-5 font-bold text-black mt-4">{about || ''}</p>
 
       {/* Profile button */}
       {social && (

@@ -1,7 +1,7 @@
 "use client";
 
 import { CommitteeMember, CommitteeYear } from "@/@types/schema.ds";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import PartyEntry from "../components/committee/party_entry";
 import InfoCard from "../components/committee/info_card";
 
@@ -48,14 +48,55 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
   const [filteredMembers, setFilteredMembers] = useState<CommitteeMember[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [selectedMember, setSelectedMember] = useState<CommitteeMember | null>(null);
+  const [displayedMember, setDisplayedMember] = useState<CommitteeMember | null>(null);
+  const [animState, setAnimState] = useState<"idle" | "exit" | "enter">("idle");
+  const [listAnim, setListAnim] = useState<"idle" | "exit" | "enter">("idle");
+  const animTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  const selectMember = useCallback((member: CommitteeMember) => {
+    if (member.name === displayedMember?.name) return;
+    setSelectedMember(member);
+    // If no current member, just show immediately
+    if (!displayedMember) {
+      setDisplayedMember(member);
+      setAnimState("enter");
+      animTimeout.current = setTimeout(() => setAnimState("idle"), 300);
+      return;
+    }
+
+    // Start exit animation
+    setAnimState("exit");
+    animTimeout.current = setTimeout(() => {
+      setDisplayedMember(member);
+      setAnimState("enter");
+      animTimeout.current = setTimeout(() => setAnimState("idle"), 300);
+    }, 250);
+  }, [displayedMember]);
 
   useEffect(() => {
       const members = membersForYear[selectedCommittee] || [];
-      setFilteredMembers(members);
-      // Select the first member when committee changes
-      if (members.length > 0) {
-        setSelectedMember(members[members.length - 1]);
-      }
+
+      // Start exit animation for both list and info card
+      setListAnim("exit");
+      setAnimState("exit");
+
+      const timeout = setTimeout(() => {
+        setFilteredMembers(members);
+        if (members.length > 0) {
+          const member = members[members.length - 1];
+          setSelectedMember(member);
+          setDisplayedMember(member);
+        }
+        setListAnim("enter");
+        setAnimState("enter");
+
+        setTimeout(() => {
+          setListAnim("idle");
+          setAnimState("idle");
+        }, 300);
+      }, 250);
+
+      return () => clearTimeout(timeout);
   }, [selectedCommittee, membersForYear]);
 
   return (
@@ -111,31 +152,47 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
       <div className="w-full flex justify-center p-8">
         <div className="flex gap-4 items-start">
           {/* InfoCard on the left (desktop only) */}
-          {selectedMember && (
-            <div className="hidden lg:block shrink-0">
+          {displayedMember && (
+            <div
+              className={`hidden lg:block shrink-0 transition-all duration-250 ease-in-out ${
+                animState === "exit"
+                  ? "opacity-0 -translate-x-6"
+                  : animState === "enter"
+                  ? "opacity-100 translate-x-0"
+                  : "opacity-100 translate-x-0"
+              }`}
+            >
               <InfoCard
-                name={selectedMember.name}
-                role={selectedMember.role}
-                image={selectedMember.image}
-                about={selectedMember.about}
-                social={selectedMember.social}
-                hp={statFromName(selectedMember.name, 1, 0, 99) * 10}
-                sp={statFromName(selectedMember.name, 2, 0, 60) * 10}
-                level={statFromName(selectedMember.name, 3, 0, 100)}
-                atk={statFromName(selectedMember.name, 4, 0, 999)}
-                def={statFromName(selectedMember.name, 5, 0, 999)}
+                name={displayedMember.name}
+                role={displayedMember.role}
+                image={displayedMember.image}
+                about={displayedMember.about}
+                social={displayedMember.social}
+                hp={statFromName(displayedMember.name, 1, 0, 99) * 10}
+                sp={statFromName(displayedMember.name, 2, 0, 60) * 10}
+                level={statFromName(displayedMember.name, 3, 0, 100)}
+                atk={statFromName(displayedMember.name, 4, 0, 999)}
+                def={statFromName(displayedMember.name, 5, 0, 999)}
               />
             </div>
           )}
 
           {/* PartyEntry list */}
-          <div className="flex flex-col gap-10">
+          <div className={`flex flex-col gap-10 transition-all duration-250 ease-in-out ${
+            listAnim === "exit"
+              ? "opacity-0 translate-y-4"
+              : listAnim === "enter"
+              ? "opacity-100 translate-y-0"
+              : "opacity-100 translate-y-0"
+          }`}>
             {filteredMembers.slice().reverse()
               .map((member: CommitteeMember) => (
                 <div
                   key={member.name}
-                  onClick={() => setSelectedMember(member)}
-                  className="cursor-pointer"
+                  onClick={() => selectMember(member)}
+                  className={`cursor-pointer transition-transform duration-300 ease-in-out ${
+                    selectedMember?.name === member.name ? "translate-x-0" : "translate-x-4"
+                  }`}
                 >
                   <PartyEntry
                     name={member.name}
