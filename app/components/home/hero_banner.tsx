@@ -16,7 +16,7 @@ const HeroBanner = () => {
                     CLUB
                 </h1>
                 <a href="https://umsu.unimelb.edu.au/buddy-up/clubs/clubs-listing/join/9180/">
-                    <button className="mt-8 px-15 py-3 bg-gmc-cream text-gmc-teal font-bold font-arsenica text-4xl transition-colors rounded-tr-xl rounded-bl-xl">
+                    <button className="mt-8 px-15 py-3 bg-gmc-cream text-gmc-teal font-extrabold font-arsenica text-4xl rounded-tr-xl rounded-bl-xl transition-all duration-200 hover:text-gmc-teal-dark hover:scale-105 cursor-pointer">
                         JOIN NOW
                     </button>
                 </a>
