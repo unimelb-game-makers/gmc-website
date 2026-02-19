@@ -39,7 +39,7 @@ const EventInfo = ({event, onClose}: {event: Event, onClose: ()=>void}) => {
             <Image className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" width={24} height={24}/>
             {/* some location in the database is too long */}
             {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
-            <p>{event.location ? (event.location.length < 35 ? event.location : event.location.slice(0, 35) + "...") : 'TBA'}</p>
+            <p>{event.location ? event.location : 'TBA'}</p>
         </div>
         {/* Time */}
         <div className="flex shrink-0">

@@ -35,7 +35,7 @@ const UpcomingEvent = ({event, setEvent}: {event: Event, setEvent: (event:Event)
                         <Image className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" width={24} height={24}/>
                         {/* some location in the database is too long */}
                         {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
-                        <p>{event.location ? (event.location.length < 35 ? event.location : event.location.slice(0, 35) + "...") : 'TBA'}</p>
+                        <p>{event.location ? (event.location.length < 20 ? event.location : event.location.slice(0, 20) + "...") : 'TBA'}</p>
                     </div>
                     {/* Time */}
                     <div className="flex">
