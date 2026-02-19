@@ -14,13 +14,15 @@ const UpcomingEvent = ({event, setEvent}: {event: Event, setEvent: (event:Event)
 
                     {/* Banner Image */}
                     <div className="w-56 h-32 bg-gray-400 rounded-md overflow-hidden justify-center">
-                        <Image
-                        src={event.thumbnail? event.thumbnail : "/images/wires.png"} // replace with your image
-                        alt="Event Banner"
-                        width={300}
-                        height={200}
-                        className="object-cover w-full h-full"
-                        />
+                        {event.thumbnail ? (
+                            <Image
+                                src={event.thumbnail}
+                                alt="Event Banner"
+                                width={300}
+                                height={200}
+                                className="object-cover w-full h-full"
+                            />
+                        ) : null}
                     </div>
 
                     {/* Description */}
