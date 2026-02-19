@@ -19,28 +19,30 @@ const EventInfo = ({event, onClose}: {event: Event, onClose: ()=>void}) => {
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
-        <h1 className='text-2xl font-bold flex-shrink-0'>{event.name}</h1>
-        <div className="w-full h-48 rounded-md overflow-hidden mt-1 flex-shrink-0">
-            <Image
-            src={event.thumbnail? event.thumbnail : "/images/wires.png"} // replace with your image
-            alt="Event Banner"
-            width={300}
-            height={200}
-            className="object-cover w-full h-full"
-            />
+        <h1 className='text-2xl font-bold shrink-0'>{event.name}</h1>
+        <div className="w-full h-48 bg-gray-400 rounded-md overflow-hidden mt-1 shrink-0">
+            {event.thumbnail ? (
+                <Image
+                    src={event.thumbnail}
+                    alt="Event Banner"
+                    width={300}
+                    height={200}
+                    className="object-cover w-full h-full"
+                />
+            ) : null}
         </div>
         <div className="overflow-y-auto flex-1 my-3">
           <p>{event.description}</p>
         </div>
         {/* Location */}
-        <div className="flex items-start h-8 mt-2 flex-shrink-0">
+        <div className="flex items-start h-8 mt-2 shrink-0">
             <Image className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" width={24} height={24}/>
             {/* some location in the database is too long */}
             {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
-            <p>{event.location ? (event.location.length < 35 ? event.location : event.location.slice(0, 35) + "...") : 'TBA'}</p>
+            <p>{event.location ? event.location : 'TBA'}</p>
         </div>
         {/* Time */}
-        <div className="flex flex-shrink-0">
+        <div className="flex shrink-0">
             <Image className="mr-[5px]" src="/Clock.svg" alt="clock logo" width={24} height={24}/>
             <p>{eventTime != "00:00 AM" ? eventTime : "TBD"}</p>
         </div>
