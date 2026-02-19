@@ -163,9 +163,9 @@ export default function EventsSection({ eventsData }: Props) {
                             </div>
                           </div>
 
-                          <div className="shrink-0 text-right text-sm text-white/90 leading-tight">
+                          <div className="shrink-0 text-right text-sm text-white/90 leading-tight max-w-[45%]">
                             <div>{dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
-                            <div>{e.location ?? "TBA"}</div>
+                            <div className="wrap-break-word">{e.location ?? "TBA"}</div>
                           </div>
                         </div>
                       </div>
