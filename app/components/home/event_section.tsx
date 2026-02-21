@@ -4,6 +4,7 @@ import dayjs from "dayjs"
 import Link from "next/link"
 import { useEffect, useMemo, useRef, useState } from "react"
 import { Event } from "@/@types/schema.ds";
+import EventInfo from "@/app/components/events/event_info";
 
 type Props = {
   eventsData: Event[]
@@ -19,8 +20,8 @@ export default function EventsSection({ eventsData }: Props) {
 
   // -------- Desktop carousel state --------
   const [activeIdx, setActiveIdx] = useState(0)
+  const [selectedEvent, setSelectedEvent] = useState<Event | null>(null)
   const scrollerRef = useRef<HTMLDivElement | null>(null)
-  const isProgrammaticScrollRef = useRef(false)
   // -------- Mobile paging state (2 per page) --------
   const [mobilePage, setMobilePage] = useState(0)
   const totalMobilePages = Math.ceil(upcomingEvents.length / 2) // 0..N-1
@@ -36,23 +37,14 @@ export default function EventsSection({ eventsData }: Props) {
     if (mobilePage > totalMobilePages - 1) setMobilePage(0)
   }, [upcomingEvents.length, activeIdx, mobilePage, totalMobilePages])
 
-  // Desktop: scroll to index (align start)
+  // Desktop: scroll to index
   const scrollToIndex = (idx: number) => {
     const el = scrollerRef.current
     if (!el) return
-
     const child = el.querySelector<HTMLElement>(`[data-idx="${idx}"]`)
     if (!child) return
-
-    isProgrammaticScrollRef.current = true
-    child.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" })
-
-    // unlock after scroll settles (tune if needed)
-    window.setTimeout(() => {
-      isProgrammaticScrollRef.current = false
-    }, 350)
+    child.scrollIntoView({ behavior: "smooth", inline: "center", block: "nearest" })
   }
-
 
   // Desktop prev/next (one card)
   const prevDesktop = () => {
@@ -67,49 +59,6 @@ export default function EventsSection({ eventsData }: Props) {
     scrollToIndex(nextIdx)
   }
 
-
-  // Desktop: always select left-most visible card (bulletproof)
-  useEffect(() => {
-    const el = scrollerRef.current
-    if (!el) return
-
-    let raf = 0
-
-    const updateActive = () => {
-      if (isProgrammaticScrollRef.current) return
-
-      const rootRect = el.getBoundingClientRect()
-      const leftEdge = rootRect.left
-      const children = Array.from(el.children) as HTMLElement[]
-
-      for (const child of children) {
-        const rect = child.getBoundingClientRect()
-        if (rect.right > leftEdge + 1) {
-          const idxStr = child.getAttribute("data-idx")
-          if (!idxStr) return
-          const idx = Number(idxStr)
-          if (!Number.isFinite(idx)) return
-          setActiveIdx(idx)
-          break
-        }
-      }
-    }
-
-
-    const onScroll = () => {
-      cancelAnimationFrame(raf)
-      raf = requestAnimationFrame(updateActive)
-    }
-
-    el.addEventListener("scroll", onScroll, { passive: true })
-    updateActive()
-
-    return () => {
-      cancelAnimationFrame(raf)
-      el.removeEventListener("scroll", onScroll)
-    }
-  }, [upcomingEvents.length])
-
   const activeTitle = upcomingEvents[activeIdx]?.name ?? "Upcoming Events"
 
   // -------- Mobile paging (2 events at a time) --------
@@ -120,6 +69,8 @@ export default function EventsSection({ eventsData }: Props) {
   const nextMobile = () => setMobilePage(p => Math.min(totalMobilePages - 1, p + 1))
 
   return (
+    <>
+    {selectedEvent && <EventInfo event={selectedEvent} onClose={() => setSelectedEvent(null)} />}
     <section className="w-full py-12">
       <div className="mx-auto max-w-[95%] px-4">
         <div className="relative p-6 sm:p-8">
@@ -217,7 +168,7 @@ export default function EventsSection({ eventsData }: Props) {
                     mt-6 flex min-w-0 gap-8
                     overflow-x-auto scroll-smooth
                     snap-x snap-mandatory
-                    scroll-pl-4 pr-2
+                    max-w-444
                     [-ms-overflow-style:none]
                     [scrollbar-width:none]
                   "
@@ -236,15 +187,19 @@ export default function EventsSection({ eventsData }: Props) {
                         <div
                           key={e.id}
                           data-idx={idx}
+                          onClick={() => {
+                            if (isActive) { setSelectedEvent(e); }
+                            else { setActiveIdx(idx); scrollToIndex(idx); }
+                          }}
                           className={[
-                            "snap-start shrink-0 w-[260px] sm:w-[320px] overflow-hidden rounded-md",
+                            "snap-center shrink-0 w-65 sm:w-105 overflow-hidden rounded-md",
                             "transition-all duration-200 ease-out origin-left",
-                            isActive ? "scale-100 opacity-100" : "scale-90 opacity-70",
+                            isActive ? "scale-100 opacity-100 cursor-default" : "scale-90 opacity-70 cursor-pointer",
                           ].join(" ")}
                         >
                           <div
                             className={[
-                              "h-[160px] w-full overflow-hidden rounded-md bg-neutral-200",
+                              "h-[160px] sm:h-60 w-full overflow-hidden rounded-md bg-neutral-200",
                               "transition-shadow duration-200",
                               isActive
                                 ? "shadow-[0_16px_40px_rgba(0,0,0,0.35)]"
@@ -316,5 +271,6 @@ export default function EventsSection({ eventsData }: Props) {
         </div>
       </div>
     </section>
+    </>
   )
 }
