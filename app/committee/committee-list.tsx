@@ -3,6 +3,7 @@
 import { CommitteeMember, CommitteeYear } from "@/@types/schema.ds";
 import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import PartyEntry from "../components/committee/party_entry";
+import PartyEntryMobile from "../components/committee/party_entry_mobile";
 import InfoCard from "../components/committee/info_card";
 
 // Simple string hash → deterministic number in a range
@@ -142,16 +143,59 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
       </div>
 
       {/* InfoCard + PartyEntry list side by side, centered */}
-      <div className="w-full flex justify-center p-8">
-        <div className="flex gap-4 items-start">
-          {/* InfoCard on the left (desktop only) */}
+      <div className="w-full flex justify-center p-4 lg:p-8">
+
+        {/* ===== Mobile layout ===== */}
+        <div className="lg:hidden flex flex-col items-center gap-6 w-full">
+          {/* InfoCard above grid */}
+          {displayedMember && (
+            <div className={`transition-all duration-250 ease-in-out ${
+              animState === "exit"
+                ? "opacity-0 translate-y-4"
+                : "opacity-100 translate-y-0"
+            }`}>
+              <InfoCard
+                name={displayedMember.name}
+                role={displayedMember.role}
+                image={displayedMember.image}
+                about={displayedMember.about}
+                social={displayedMember.social}
+                hp={statFromName(displayedMember.name, 1, 1, 99) * 10}
+                sp={statFromName(displayedMember.name, 2, 1, 70) * 10}
+                level={statFromName(displayedMember.name, 3, 1, 100)}
+                atk={statFromName(displayedMember.name, 4, 1, 99)}
+                def={statFromName(displayedMember.name, 5, 1, 99)}
+              />
+            </div>
+          )}
+
+          {/* Mobile party entry grid */}
+          <div className={`flex flex-wrap gap-3 justify-center transition-all duration-250 ease-in-out ${
+            listAnim === "exit"
+              ? "opacity-0 translate-y-4"
+              : "opacity-100 translate-y-0"
+          }`}>
+            {filteredMembers.slice().reverse().map((member: CommitteeMember) => (
+              <PartyEntryMobile
+                key={member.name}
+                name={member.name}
+                role={member.role}
+                image={member.image}
+                selected={selectedMember?.name === member.name}
+                onClick={() => selectMember(member)}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* ===== Desktop layout ===== */}
+        <div className="hidden lg:flex gap-4 items-start">
+          {/* InfoCard on the left */}
           {displayedMember && (
             <div
-              className={`hidden lg:block shrink-0 transition-all duration-250 ease-in-out ${
+              className={`shrink-0 transition-all duration-250 ease-in-out ${
                 animState === "exit"
                   ? "opacity-0 -translate-x-6"
-                  : animState === "enter"
-                  ? "opacity-100 translate-x-0"
                   : "opacity-100 translate-x-0"
               }`}
             >
@@ -198,8 +242,9 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                 </div>
             ))}
           </div>
-        </div>
-      </div>
+        </div>{/* end desktop flex */}
+
+      </div>{/* end outer wrapper */}
     </>
   );
 }
