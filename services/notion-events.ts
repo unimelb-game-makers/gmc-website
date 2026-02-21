@@ -26,6 +26,12 @@ export default class NotionEvents {
                         title: {
                             is_not_empty: true,
                         }
+                    },
+                    {
+                        property: 'Is ready for public',
+                        checkbox: {
+                            equals: true,
+                        }
                     }
                 ]
             },
