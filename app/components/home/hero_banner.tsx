@@ -1,11 +1,18 @@
 import React from 'react'
 import ThreeJSBanner from './three_js_banner'
+import fs from 'fs'
+import path from 'path'
 
 const HeroBanner = () => {
+  const dir = path.join(process.cwd(), 'public', 'images', 'games_examples')
+  const images = fs.readdirSync(dir)
+    .filter(f => /\.(png|jpe?g|webp|gif)$/i.test(f))
+    .map(f => `/images/games_examples/${f}`)
+
   return (
     <div className="relative bg-[#161616] pt-30">
         {/* Three.js background */}
-        <ThreeJSBanner />
+        <ThreeJSBanner images={images} />
 
         {/* Overlay content */}
         <div className="mt-5 absolute inset-0 flex items-center pointer-events-none">
