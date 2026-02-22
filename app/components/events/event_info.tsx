@@ -1,13 +1,20 @@
 import { Event } from '@/@types/schema.ds'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import dayjs from 'dayjs'
+import { BiLoaderAlt } from 'react-icons/bi'
 
-const EventInfo = ({event, onClose}: {event: Event, onClose: ()=>void}) => {
+const EventInfo = ({ event, onClose }: { event: Event, onClose: () => void }) => {
   const eventTime = dayjs(event.date.start).format("h:mm A, MMMM D")
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [event.thumbnail]);
+
   return (
     <div className='fixed inset-0 z-50 flex items-center justify-center text-black  '>
-      <div className="absolute inset-0 bg-black/50" onClick={onClose}/>
+      <div className="absolute inset-0 bg-black/50" onClick={onClose} />
       <div
         className="relative bg-gmc-cream rounded-lg shadow-xl p-5 max-w-xl w-full mx-4 z-10 h-[450px] flex flex-col"
       >
@@ -20,31 +27,38 @@ const EventInfo = ({event, onClose}: {event: Event, onClose: ()=>void}) => {
           </svg>
         </button>
         <h1 className='text-2xl font-bold shrink-0'>{event.name}</h1>
-        <div className="w-full h-48 bg-gray-400 rounded-md overflow-hidden mt-1 shrink-0">
-            {event.thumbnail ? (
-                <Image
-                    src={event.thumbnail}
-                    alt="Event Banner"
-                    width={300}
-                    height={200}
-                    className="object-cover w-full h-full"
-                />
-            ) : null}
+        <div className="relative w-full h-48 bg-gray-400 rounded-md overflow-hidden mt-1 shrink-0 flex items-center justify-center">
+          {isLoading && event.thumbnail && (
+            <div className="absolute inset-0 flex items-center justify-center bg-black/5 z-10 text-gmc-teal">
+              <BiLoaderAlt className="w-8 h-8 animate-spin" />
+            </div>
+          )}
+          {event.thumbnail ? (
+            <Image
+              src={event.thumbnail}
+              alt="Event Banner"
+              width={300}
+              height={200}
+              unoptimized
+              onLoad={() => setIsLoading(false)}
+              className={`object-cover w-full h-full transition-opacity duration-200 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
+            />
+          ) : null}
         </div>
         <div className="overflow-y-auto flex-1 my-3">
           <p>{event.description}</p>
         </div>
         {/* Location */}
         <div className="flex items-start h-8 mt-2 shrink-0">
-            <Image className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" width={24} height={24}/>
-            {/* some location in the database is too long */}
-            {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
-            <p>{event.location ? event.location : 'TBA'}</p>
+          <Image className="mr-[5px]" src="/Mappin.svg" alt="map pin logo" width={24} height={24} />
+          {/* some location in the database is too long */}
+          {/* <p>{location ? location.split('\n')[0] : 'TBA'}</p> */}
+          <p>{event.location ? event.location : 'TBA'}</p>
         </div>
         {/* Time */}
         <div className="flex shrink-0">
-            <Image className="mr-[5px]" src="/Clock.svg" alt="clock logo" width={24} height={24}/>
-            <p>{eventTime != "00:00 AM" ? eventTime : "TBD"}</p>
+          <Image className="mr-[5px]" src="/Clock.svg" alt="clock logo" width={24} height={24} />
+          <p>{eventTime != "00:00 AM" ? eventTime : "TBD"}</p>
         </div>
       </div>
     </div>

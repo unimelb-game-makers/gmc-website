@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { IoPersonCircle } from 'react-icons/io5'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 interface InfoCardProps {
   name: string
@@ -27,16 +28,31 @@ export default function InfoCard({
   atk,
   def,
 }: InfoCardProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Reset loading state when the image source changes
+  useEffect(() => {
+    setIsLoading(true);
+  }, [image]);
+
   return (
     <div className="relative w-85 h-105 bg-[#9D9C94] rounded-2xl pt-5 font-tasa-orbiter text-white shadow-lg flex flex-col">
       {/* Profile image — floats above other content */}
-      <div className="absolute left-5 top-5 z-20 w-40 h-40 rounded-full overflow-hidden border-5 border-gmc-teal-dark shadow-[-8px_8px_0px_0px_rgba(233,120,81,0.5)]">
+      <div className="absolute left-5 top-5 z-20 w-40 h-40 rounded-full overflow-hidden border-5 border-gmc-teal-dark shadow-[-8px_8px_0px_0px_rgba(233,120,81,0.5)] bg-gmc-cream flex items-center justify-center">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/10 z-10 text-gmc-teal">
+            <BiLoaderAlt className="w-10 h-10 animate-spin" />
+          </div>
+        )}
         <Image
           src={image || '/images/cat.jpg'}
           alt={name}
           width={160}
           height={160}
-          className="object-cover w-full h-full"
+          sizes="160px"
+          unoptimized
+          onLoad={() => setIsLoading(false)}
+          className={`object-cover w-full h-full transition-opacity duration-200 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         />
       </div>
 
@@ -47,16 +63,16 @@ export default function InfoCard({
 
         {/* Stats */}
         <div className="flex-1 flex flex-col justify-center gap-1 text-black">
-            <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2 ">{hp}/{hp} HP</span>
-            <div className="w-full h-6 bg-gmc-orange-dark rounded-bl-full" />
-            <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2">{sp}/{sp} SP</span>
-            <div className="w-full h-6 bg-gmc-teal rounded-bl-full" />
+          <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2 ">{hp}/{hp} HP</span>
+          <div className="w-full h-6 bg-gmc-orange-dark rounded-bl-full" />
+          <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2">{sp}/{sp} SP</span>
+          <div className="w-full h-6 bg-gmc-teal rounded-bl-full" />
 
-            {/* Atk / Def */}
-            <div className="text-right text-sm font-bold leading-tight mx-2">
-                <p>Atk {atk}</p>
-                <p>Def {def}</p>
-            </div>
+          {/* Atk / Def */}
+          <div className="text-right text-sm font-bold leading-tight mx-2">
+            <p>Atk {atk}</p>
+            <p>Def {def}</p>
+          </div>
         </div>
       </div>
 

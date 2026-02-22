@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { BiLoaderAlt } from 'react-icons/bi'
 
 interface PartyEntryProps {
   name: string
@@ -18,15 +19,29 @@ export default function PartyEntry({
   sp,
   level,
 }: PartyEntryProps) {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(true);
+  }, [image]);
+
   return (
     <div className="relative flex items-center bg-gmc-cream rounded-tr-3xl rounded-bl-3xl pl-14 sm:pl-16 pr-3 py-4 sm:pr-4 sm:py-3 w-full max-w-2xl font-tasa-orbiter font-extrabold">
       {/* Profile image — floats in front */}
-      <div className="absolute left-2 translate-y-1/4 z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-3 border-gmc-teal-dark">
+      <div className="absolute left-2 translate-y-1/4 z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-3 border-gmc-teal-dark bg-gmc-cream flex items-center justify-center">
+        {isLoading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black/5 z-10 text-gmc-teal">
+            <BiLoaderAlt className="w-6 h-6 animate-spin" />
+          </div>
+        )}
         <Image
           src={image || '/images/cat.jpg'}
           alt={name}
           fill
-          className="object-cover"
+          sizes="96px"
+          unoptimized
+          onLoad={() => setIsLoading(false)}
+          className={`object-cover transition-opacity duration-200 ${isLoading ? 'opacity-0' : 'opacity-100'}`}
         />
       </div>
 

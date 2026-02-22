@@ -8,6 +8,8 @@ import HeroBanner from "./components/home/hero_banner";
 
 import NotionEvents from "@/services/notion-events";
 import NotionEducation from "@/services/notion-education";
+import NotionCommittee from "@/services/notion-committee";
+import CommitteePrefetch from "./components/committee/committee_prefetch";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -15,10 +17,14 @@ export default async function Home() {
 
   const eventsservice = new NotionEvents;
   const eventsData = await eventsservice.getEvents();
-  
+
   const eduservice = new NotionEducation;
   const educationData = await eduservice.getPublishedWorkshopPosts();
   const educations = educationData.slice(0, 3);
+
+  // Prefetch committee images in background
+  const committeeService = new NotionCommittee();
+  const committeeMembers = await committeeService.getCommittee();
 
   return (
     <div>
@@ -29,7 +35,7 @@ export default async function Home() {
 
       {/* about */}
       <div className="relative bg-[#161616] pt-30 pb-15">
-        <SectionTitle fronttext="ABOUT US" backtext="ABOUT"/>
+        <SectionTitle fronttext="ABOUT US" backtext="ABOUT" />
         <section className="w-full py-15">
           <div className="mx-auto w-full lg:w-[75%] px-4">
             {/* relative wrapper for layering */}
@@ -37,21 +43,21 @@ export default async function Home() {
               {/* back strip */}
               <div
                 aria-hidden
-                className="absolute left-40 top-35 h-24 lg:w-[420px] z-0 bg-black"/>
+                className="absolute left-40 top-35 h-24 lg:w-[420px] z-0 bg-black" />
               {/* foreground content */}
               <div className="relative z-10 mx-auto w-fit flex items-stretch">
                 {/* left image */}
                 <div className="w-44 flex-shrink-0">
-                  <img src="/gmc_logo_image.png" alt="" className="lg:h-full lg:w-full object-cover"/>
+                  <img src="/gmc_logo_image.png" alt="" className="lg:h-full lg:w-full object-cover" />
                 </div>
                 {/* right text box */}
                 <div className="max-w-full bg-gmc-cream border border-neutral-300 px-3 lg:px-8 lg:py-6">
                   <p className="text-lg font-semibold leading-snug text-neutral-900">
-                    The University of Melbourne Game Makers Club is a student-led community 
-                    for anyone interested in creating games. We bring together programmers, 
-                    artists, designers, and storytellers to collaborate, learn, and build 
-                    games in a welcoming, hands-on environment. From game jams and workshops 
-                    to talks and socials, we help members of all skill levels turn ideas 
+                    The University of Melbourne Game Makers Club is a student-led community
+                    for anyone interested in creating games. We bring together programmers,
+                    artists, designers, and storytellers to collaborate, learn, and build
+                    games in a welcoming, hands-on environment. From game jams and workshops
+                    to talks and socials, we help members of all skill levels turn ideas
                     into playable experiences.
                   </p>
                 </div>
@@ -59,20 +65,20 @@ export default async function Home() {
             </div>
           </div>
         </section>
-        <Link href="/about/" className = "flex justify-center">
-              <button className="mt-8 px-15 py-3 font-bold font-arsenica text-4xl rounded-tr-xl rounded-bl-xl 
+        <Link href="/about/" className="flex justify-center">
+          <button className="mt-8 px-15 py-3 font-bold font-arsenica text-4xl rounded-tr-xl rounded-bl-xl 
               bg-gmc-orange-dark hover:bg-gmc-orange text-white">
-                About Us →
-              </button>
-            </Link>
+            About Us →
+          </button>
+        </Link>
       </div>
 
       {/* upcomming event */}
       <div className="relative bg-[#161616] pt-15 pb-15">
-        <SectionTitle fronttext="UPCOMING EVENTS" backtext="EVENTS"/>
+        <SectionTitle fronttext="UPCOMING EVENTS" backtext="EVENTS" />
         <section className="w-full py-0">
           <EventsSection
-        eventsData={eventsData}/>
+            eventsData={eventsData} />
         </section>
       </div>
 
@@ -89,7 +95,7 @@ export default async function Home() {
               {/* Events vertically */}
               <div className="flex flex-col gap-6 p-4 pt-[31px] text-black">
                 {educations.map((education, index) => (
-                  <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug}/>
+                  <FeaturedEducationContainer key={education.id} name={education.title} id={String(index)} thumbnail={education.thumbnail} slug={education.slug} />
                 ))}
               </div>
 
@@ -136,7 +142,9 @@ export default async function Home() {
         </div>
       </div>
 
+      {/* Prefetch committee images in background */}
+      <CommitteePrefetch committeeMembers={committeeMembers} />
     </div>
-    
+
   );
 }
