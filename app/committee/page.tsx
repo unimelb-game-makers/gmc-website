@@ -3,7 +3,7 @@ import NotionCommittee from "@/services/notion-committee";
 import { CommitteeYear } from "@/@types/schema.ds";
 import Image from "next/image";
 import CommitteeList from "./committee-list";
-import { BiLoaderAlt } from "react-icons/bi";
+import PageLoading from "../components/shared/page_loading";
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -17,17 +17,6 @@ async function CommitteeContent() {
       <h1 className="hidden sm:block text-vertical-textured text-8xl shrink-0">Committee</h1>
       <div className="flex-1 min-w-0">
         <CommitteeList committeeMembers={committeeMembers} />
-      </div>
-    </div>
-  );
-}
-
-function CommitteeLoading() {
-  return (
-    <div className="flex justify-center items-center py-32">
-      <div className="flex flex-col items-center gap-4 text-gmc-teal">
-        <BiLoaderAlt className="w-12 h-12 animate-spin" />
-        <p className="text-xl font-arsenica font-bold text-white">Loading Committee...</p>
       </div>
     </div>
   );
@@ -47,7 +36,7 @@ export default function Committee() {
             className="w-full h-auto"
           />
         </div>
-        <Suspense fallback={<CommitteeLoading />}>
+        <Suspense fallback={<PageLoading message="Loading Committee..." />}>
           <CommitteeContent />
         </Suspense>
       </main>

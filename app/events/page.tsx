@@ -2,7 +2,7 @@ import React, { Suspense } from 'react'
 import EventsSwitch from '../components/events/events_switch'
 import NotionEvents from '@/services/notion-events';
 import Image from 'next/image';
-import { BiLoaderAlt } from 'react-icons/bi';
+import PageLoading from '../components/shared/page_loading';
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -59,16 +59,7 @@ async function EventsContent() {
   );
 }
 
-function EventsLoading() {
-  return (
-    <div className="flex justify-center items-center py-32">
-      <div className="flex flex-col items-center gap-4 text-gmc-teal">
-        <BiLoaderAlt className="w-12 h-12 animate-spin" />
-        <p className="text-xl font-arsenica font-bold text-white">Loading Events...</p>
-      </div>
-    </div>
-  );
-}
+
 
 export default function EventsPage() {
   return (
@@ -79,7 +70,7 @@ export default function EventsPage() {
               font-extrabold text-white drop-shadow-teal tracking-wide leading-none-translate-y-5">
           EVENTS
         </h1>
-        <Suspense fallback={<EventsLoading />}>
+        <Suspense fallback={<PageLoading message="Loading Events..." />}>
           <EventsContent />
         </Suspense>
       </div>

@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react'
 import NotionEducation from '@/services/notion-education';
 import EducationSearch from '../components/education/education_search';
-import { BiLoaderAlt } from 'react-icons/bi';
+import PageLoading from '../components/shared/page_loading';
 
 export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
@@ -18,22 +18,11 @@ async function EducationContent() {
   );
 }
 
-function EducationLoading() {
-  return (
-    <div className="flex justify-center items-center py-32">
-      <div className="flex flex-col items-center gap-4 text-gmc-teal">
-        <BiLoaderAlt className="w-12 h-12 animate-spin" />
-        <p className="text-xl font-arsenica font-bold text-white">Loading Education...</p>
-      </div>
-    </div>
-  );
-}
-
 export default function EducationPage() {
   return (
     <div className='py-35'>
       <h1 className='text-center drop-shadow-teal font-akira text-6xl'>EDUCATION</h1>
-      <Suspense fallback={<EducationLoading />}>
+      <Suspense fallback={<PageLoading message="Loading Education..." />}>
         <EducationContent />
       </Suspense>
     </div>
