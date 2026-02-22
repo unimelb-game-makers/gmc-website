@@ -8,9 +8,9 @@ const PreviousEvent = ({event, setEvent}: {event: Event, setEvent: (event:Event)
     return (
         <div className='rounded-2xl bg-gmc-cream m-1 h-12 flex items-center'>
             <button onClick={() => setEvent(event)} className='w-full h-full'>
-                <div className='text-black p-2 px-5 flex justify-between items-center w-full h-full'>
-                    <p className='text-left font-tasa-orbiter font-bold'>{event.name}</p>
-                    <p className='text-right whitespace-nowrap font-tasa-orbiter font-bold'>{date}</p>
+                <div className='text-black p-2 px-3 sm:px-5 flex justify-between items-center w-full h-full'>
+                    <p className='text-left text-xs sm:text-base font-tasa-orbiter font-bold'>{event.name}</p>
+                    <p className='text-right text-xs sm:text-base whitespace-nowrap font-tasa-orbiter font-bold'>{date}</p>
                 </div>
             </button>
         </div>

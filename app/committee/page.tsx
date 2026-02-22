@@ -22,8 +22,8 @@ export default async function Committee() {
             className="w-full h-auto"
           />
         </div>
-        <div className="flex items-start w-full py-10">
-          <h1 className="text-vertical-textured text-8xl shrink-0">Committee</h1>
+        <div className="flex items-start w-full py-5">
+          <h1 className="hidden sm:block text-vertical-textured text-8xl shrink-0">Committee</h1>
           <div className="flex-1 min-w-0">
             <CommitteeList committeeMembers={committeeMembers} />
           </div>
