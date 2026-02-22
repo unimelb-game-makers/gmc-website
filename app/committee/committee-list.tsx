@@ -161,11 +161,11 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                 image={displayedMember.image}
                 about={displayedMember.about}
                 social={displayedMember.social}
-                hp={statFromName(displayedMember.name, 1, 0, 99) * 10}
-                sp={statFromName(displayedMember.name, 2, 0, 60) * 10}
-                level={statFromName(displayedMember.name, 3, 0, 100)}
-                atk={statFromName(displayedMember.name, 4, 0, 999)}
-                def={statFromName(displayedMember.name, 5, 0, 999)}
+                hp={statFromName(displayedMember.name, 1, 1, 99) * 10}
+                sp={statFromName(displayedMember.name, 2, 1, 70) * 10}
+                level={statFromName(displayedMember.name, 3, 1, 100)}
+                atk={statFromName(displayedMember.name, 4, 1, 99)}
+                def={statFromName(displayedMember.name, 5, 1, 99)}
               />
             </div>
           )}
@@ -191,9 +191,9 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                     name={member.name}
                     role={member.role}
                     image={member.image}
-                    hp={statFromName(member.name, 1, 0, 99) * 10}
-                    sp={statFromName(member.name, 2, 0, 60) * 10}
-                    level={statFromName(member.name, 3, 0, 100)}
+                    hp={statFromName(member.name, 1, 1, 99) * 10}
+                    sp={statFromName(member.name, 2, 1, 70) * 10}
+                    level={statFromName(member.name, 3, 1, 100)}
                   />
                 </div>
             ))}
