@@ -20,7 +20,7 @@ const Header = () => {
     <nav className='absolute top-0 left-0 w-full flex justify-center mt-12 z-50'>
         <div className='relative flex items-center w-11/12'>
             {/* Logo positioned in front of navbar */}
-            <Link href='/' className='absolute -left-12 z-10'>
+            <Link href='/' className='absolute left-0 lg:-left-12 z-10'>
                 <div className='bg-[#D9D9D9] rounded-tr-4xl rounded-bl-4xl rounded-br-4xl p-1'>
                     <Image src='/gmc_logo.png' alt='gmc_logo' width={120} height={120} />
                 </div>
