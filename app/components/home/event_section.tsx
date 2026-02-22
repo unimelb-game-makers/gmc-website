@@ -114,9 +114,9 @@ export default function EventsSection({ eventsData }: Props) {
                             </div>
                           </div>
 
-                          <div className="shrink-0 text-right text-sm text-white/90 leading-tight max-w-[45%]">
-                            <div>{dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
-                            <div className="wrap-break-word">{e.location ?? "TBA"}</div>
+                          <div className="min-w-0 text-right text-sm text-white/90 leading-tight">
+                            <div className="break-words">{dayjs(e.date.start).format("DD-MM-YYYY hh:mma")}</div>
+                            <div className="break-words">{e.location ?? "TBA"}</div>
                           </div>
                         </div>
                       </div>
@@ -223,11 +223,11 @@ export default function EventsSection({ eventsData }: Props) {
 
                 {/* desktop scroll buttons + active event meta */}
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="min-h-[42px] text-m text-white/90">
+                  <div className="min-h-[42px] text-m text-white/90 min-w-0 max-w-xs">
                     {upcomingEvents[activeIdx] && (
                       <>
-                        <div>{dayjs(upcomingEvents[activeIdx].date.start).format("DD-MM-YYYY hh:mma")}</div>
-                        <div>{upcomingEvents[activeIdx].location ?? "TBA"}</div>
+                        <div className="break-words">{dayjs(upcomingEvents[activeIdx].date.start).format("DD-MM-YYYY hh:mma")}</div>
+                        <div className="break-words">{upcomingEvents[activeIdx].location ?? "TBA"}</div>
                       </>
                     )}
                   </div>
