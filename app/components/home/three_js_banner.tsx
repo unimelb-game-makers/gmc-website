@@ -138,24 +138,7 @@ function PlaneGrid({
   )
 }
 
-const ThreeJSBanner = () => {
-  // Array of image URLs for the planes
-  const images: string[] = [
-    "/images/games_examples/game1.png",
-    "/images/games_examples/game2.png",
-    "/images/games_examples/game3.png",
-    "/images/games_examples/game4.png",
-    "/images/games_examples/game5.png",
-    "/images/games_examples/game6.png",
-    "/images/games_examples/game16.png",
-    "/images/games_examples/game18.png",
-    "/images/games_examples/game19.png",
-    "/images/games_examples/game20.png",
-    "/images/games_examples/game21.png",
-    "/images/games_examples/game23.png",
-    "/images/games_examples/game24.png",
-    "/images/games_examples/game25.png",
-  ]
+const ThreeJSBanner = ({ images = [] }: { images?: string[] }) => {
 
   return (
     <div className="w-full h-175">
