@@ -21,11 +21,14 @@ export async function GET(request: NextRequest) {
         "s3.us-west-2.amazonaws.com",
         "www.notion.so",
         "notion.so",
+        "file.notion.so",
     ];
 
     const isAllowed =
         allowedHosts.includes(parsedUrl.hostname) ||
-        parsedUrl.hostname.endsWith(".s3.us-west-2.amazonaws.com");
+        parsedUrl.hostname.endsWith(".notion.so") ||
+        parsedUrl.hostname.endsWith(".s3.us-west-2.amazonaws.com") ||
+        parsedUrl.hostname.endsWith(".amazonaws.com");
 
     if (!isAllowed) {
         return new NextResponse("Disallowed image host", { status: 403 });
@@ -49,8 +52,8 @@ export async function GET(request: NextRequest) {
             status: 200,
             headers: {
                 "Content-Type": contentType,
-                // Cache for 1 hour on CDN, 30 min in browser
-                "Cache-Control": "public, max-age=1800, s-maxage=3600, stale-while-revalidate=86400",
+                // Cache
+                "Cache-Control": "public, max-age=31536000, immutable",
             },
         });
     } catch {
