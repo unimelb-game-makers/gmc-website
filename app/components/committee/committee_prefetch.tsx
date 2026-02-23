@@ -2,6 +2,7 @@
 
 import { CommitteeMember, CommitteeYear } from "@/@types/schema.ds";
 import { useEffect } from "react";
+import { preloadImage } from "../shared/loading_image";
 
 interface CommitteePrefetchProps {
     committeeMembers: CommitteeYear;
@@ -19,8 +20,7 @@ export default function CommitteePrefetch({ committeeMembers }: CommitteePrefetc
                 Object.values(committees).forEach((members) => {
                     (members as CommitteeMember[]).forEach((member) => {
                         if (member.image) {
-                            const img = new window.Image();
-                            img.src = member.image;
+                            preloadImage(member.image);
                         }
                     });
                 });

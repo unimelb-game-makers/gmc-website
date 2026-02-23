@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import PartyEntry from "../components/committee/party_entry";
 import PartyEntryMobile from "../components/committee/party_entry_mobile";
 import InfoCard from "../components/committee/info_card";
+import { preloadImage } from "../components/shared/loading_image";
 
 // Simple string hash → deterministic number in a range
 function hashName(name: string, seed: number = 0): number {
@@ -98,8 +99,7 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
     const members = membersForYear[selectedCommittee] || [];
     members.forEach((member: CommitteeMember) => {
       if (member.image) {
-        const img = new window.Image();
-        img.src = member.image;
+        preloadImage(member.image);
       }
     });
   }, [selectedCommittee, membersForYear]);
