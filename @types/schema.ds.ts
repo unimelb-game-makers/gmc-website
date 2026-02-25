@@ -21,7 +21,7 @@ export type CommitteeMember = {
     about: string,
     social: string,
     year: number,
-    image: string
+    image: string,
 }
 
 export type CommitteeYear = {

@@ -5,6 +5,7 @@ import { useEffect, useState, useMemo, useRef, useCallback } from "react";
 import PartyEntry from "../components/committee/party_entry";
 import PartyEntryMobile from "../components/committee/party_entry_mobile";
 import InfoCard from "../components/committee/info_card";
+import { preloadImage } from "../components/shared/loading_image";
 
 // Simple string hash → deterministic number in a range
 function hashName(name: string, seed: number = 0): number {
@@ -68,29 +69,39 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
   }, [displayedMember]);
 
   useEffect(() => {
-      const members = membersForYear[selectedCommittee] || [];
+    const members = membersForYear[selectedCommittee] || [];
 
-      // Start exit animation for both list and info card
-      setListAnim("exit");
-      setAnimState("exit");
+    // Start exit animation for both list and info card
+    setListAnim("exit");
+    setAnimState("exit");
 
-      const timeout = setTimeout(() => {
-        setFilteredMembers(members);
-        if (members.length > 0) {
-          const member = members[members.length - 1];
-          setSelectedMember(member);
-          setDisplayedMember(member);
-        }
-        setListAnim("enter");
-        setAnimState("enter");
+    const timeout = setTimeout(() => {
+      setFilteredMembers(members);
+      if (members.length > 0) {
+        const member = members[members.length - 1];
+        setSelectedMember(member);
+        setDisplayedMember(member);
+      }
+      setListAnim("enter");
+      setAnimState("enter");
 
-        setTimeout(() => {
-          setListAnim("idle");
-          setAnimState("idle");
-        }, 300);
-      }, 250);
+      setTimeout(() => {
+        setListAnim("idle");
+        setAnimState("idle");
+      }, 300);
+    }, 250);
 
-      return () => clearTimeout(timeout);
+    return () => clearTimeout(timeout);
+  }, [selectedCommittee, membersForYear]);
+
+  // Preload all images for the current tab into browser cache
+  useEffect(() => {
+    const members = membersForYear[selectedCommittee] || [];
+    members.forEach((member: CommitteeMember) => {
+      if (member.image) {
+        preloadImage(member.image);
+      }
+    });
   }, [selectedCommittee, membersForYear]);
 
   return (
@@ -103,9 +114,8 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
             <button
               key={committee}
               onClick={() => setSelectedCommittee(committee)}
-              className={`px-4 py-2 font-arsenica rounded-md transition-transform duration-100 ease-out transform hover:scale-105 hover:-translate-y-0.5 cursor-pointer text-lg font-bold ${
-                selectedCommittee === committee ? "bg-gmc-teal-dark text-white" : "bg-transparent text-black"
-              }`}
+              className={`px-4 py-2 font-arsenica rounded-md transition-transform duration-100 ease-out transform hover:scale-105 hover:-translate-y-0.5 cursor-pointer text-lg font-bold ${selectedCommittee === committee ? "bg-gmc-teal-dark text-white" : "bg-transparent text-black"
+                }`}
             >
               {committee.toUpperCase()}
             </button>
@@ -149,11 +159,10 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
         <div className="lg:hidden flex flex-col items-center gap-6 w-full">
           {/* InfoCard above grid */}
           {displayedMember && (
-            <div className={`transition-all duration-250 ease-in-out ${
-              animState === "exit"
-                ? "opacity-0 translate-y-4"
-                : "opacity-100 translate-y-0"
-            }`}>
+            <div className={`transition-all duration-250 ease-in-out ${animState === "exit"
+              ? "opacity-0 translate-y-4"
+              : "opacity-100 translate-y-0"
+              }`}>
               <InfoCard
                 name={displayedMember.name}
                 role={displayedMember.role}
@@ -170,11 +179,10 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
           )}
 
           {/* Mobile party entry grid */}
-          <div className={`flex flex-wrap gap-3 justify-center transition-all duration-250 ease-in-out ${
-            listAnim === "exit"
-              ? "opacity-0 translate-y-4"
-              : "opacity-100 translate-y-0"
-          }`}>
+          <div className={`flex flex-wrap gap-3 justify-center transition-all duration-250 ease-in-out ${listAnim === "exit"
+            ? "opacity-0 translate-y-4"
+            : "opacity-100 translate-y-0"
+            }`}>
             {filteredMembers.slice().reverse().map((member: CommitteeMember) => (
               <PartyEntryMobile
                 key={member.name}
@@ -193,11 +201,10 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
           {/* InfoCard on the left */}
           {displayedMember && (
             <div
-              className={`shrink-0 transition-all duration-250 ease-in-out ${
-                animState === "exit"
-                  ? "opacity-0 -translate-x-6"
-                  : "opacity-100 translate-x-0"
-              }`}
+              className={`shrink-0 transition-all duration-250 ease-in-out ${animState === "exit"
+                ? "opacity-0 -translate-x-6"
+                : "opacity-100 translate-x-0"
+                }`}
             >
               <InfoCard
                 name={displayedMember.name}
@@ -215,21 +222,19 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
           )}
 
           {/* PartyEntry list */}
-          <div className={`flex flex-col gap-10 transition-all duration-250 ease-in-out ${
-            listAnim === "exit"
-              ? "opacity-0 translate-y-4"
-              : listAnim === "enter"
+          <div className={`flex flex-col gap-10 transition-all duration-250 ease-in-out ${listAnim === "exit"
+            ? "opacity-0 translate-y-4"
+            : listAnim === "enter"
               ? "opacity-100 translate-y-0"
               : "opacity-100 translate-y-0"
-          }`}>
+            }`}>
             {filteredMembers.slice().reverse()
               .map((member: CommitteeMember) => (
                 <div
                   key={member.name}
                   onClick={() => selectMember(member)}
-                  className={`cursor-pointer transition-transform duration-300 ease-in-out ${
-                    selectedMember?.name === member.name ? "translate-x-0" : "translate-x-4"
-                  }`}
+                  className={`cursor-pointer transition-transform duration-300 ease-in-out ${selectedMember?.name === member.name ? "translate-x-0" : "translate-x-4"
+                    }`}
                 >
                   <PartyEntry
                     name={member.name}
@@ -240,7 +245,7 @@ export default function CommitteeList({ committeeMembers }: CommitteeListProps) 
                     level={statFromName(member.name, 3, 1, 100)}
                   />
                 </div>
-            ))}
+              ))}
           </div>
         </div>{/* end desktop flex */}
 
