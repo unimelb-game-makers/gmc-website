@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react'
+import Image from 'next/image';
 import NotionEducation from '@/services/notion-education';
 import EducationSearch from '../components/education/education_search';
 import PageLoading from '../components/shared/page_loading';
@@ -25,6 +26,13 @@ export default function EducationPage() {
       <Suspense fallback={<PageLoading message="Loading Education..." />}>
         <EducationContent />
       </Suspense>
+      <Image
+        src="/images/gmc-cat-whiteboard.png"
+        alt="GMC cat at whiteboard"
+        width={300}
+        height={256}
+        className="hidden sm:block fixed bottom-25 right-0 h-40 w-auto object-contain pointer-events-none"
+      />
     </div>
   )
 }

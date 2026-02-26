@@ -3,6 +3,7 @@ import { EducationTag, EducationWorkshopPost } from '@/@types/schema.ds'
 import React from 'react'
 import PostEntry from './post_entry'
 import { useState } from 'react'
+import Image from 'next/image'
 
 const colorMap: Record<string, string> = {
   red: 'bg-red-400',
