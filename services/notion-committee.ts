@@ -23,22 +23,14 @@ export default class NotionCommittee {
       this.client.dataSources.query({
         data_source_id: committeeInfoId,
         "filter": {
-          "and": [
+          "or": [
             {
-              "or": [
-                {
-                  "property": "Name",
-                  "rich_text": { "is_not_empty": true }
-                },
-                {
-                  "property": "Display Name",
-                  "rich_text": { "is_not_empty": true }
-                }
-              ]
+              "property": "Name",
+              "rich_text": { "is_not_empty": true }
             },
             {
-              "property": "Photo",
-              "files": { "is_not_empty": true }
+              "property": "Display Name",
+              "rich_text": { "is_not_empty": true }
             }
           ]
         }
@@ -81,7 +73,7 @@ export default class NotionCommittee {
 
           const enrichedMember: CommitteeMember = {
             ...member,
-            image: toProxiedUrl(member.image),
+            image: member.image ? toProxiedUrl(member.image) : "/images/gmc-cat.png",
           };
 
           if (!committeeByYear[enrichedMember.year]) committeeByYear[enrichedMember.year] = {};
