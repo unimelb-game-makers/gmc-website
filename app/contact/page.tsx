@@ -46,7 +46,7 @@ export default function Contact() {
         <div className="fixed top-0 left-0 w-full h-full flex justify-center items-center z-50 bg-black/40 backdrop-blur-[2px]">
           <div className="relative bg-gmc-cream p-10 md:p-14 rounded-2xl shadow-2xl text-center w-full max-w-[400px] md:max-w-[550px] lg:max-w-[650px] mx-4 border border-gmc-teal/20">
             <div className="flex justify-center mb-6">
-              <Image src="/images/wires.png" alt="Wires" width={140} height={140} className="drop-shadow-lg md:scale-125" />
+              <Image src="/images/gmc-cat-mail" alt="Mail" width={140} height={140} className="drop-shadow-lg md:scale-125" />
             </div>
             <p className="text-2xl md:text-3xl font-bold text-black mb-6 font-karla">Message sent! Thank you!</p>
             <button

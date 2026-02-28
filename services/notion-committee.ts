@@ -1,11 +1,17 @@
 import { Client } from "@notionhq/client";
 import { CommitteeYear, CommitteeMember } from "@/@types/schema.ds";
 
+/** Route a Notion S3 image URL through our cached proxy API route */
+function toProxiedUrl(notionImageUrl: string): string {
+  if (!notionImageUrl) return "";
+  return `/api/committee-image?url=${encodeURIComponent(notionImageUrl)}`;
+}
+
 export default class NotionCommittee {
   client: Client
 
   constructor() {
-    this.client = new Client( { auth: process.env.NOTION_TOKEN })
+    this.client = new Client({ auth: process.env.NOTION_TOKEN });
   }
 
   async getCommittee(): Promise<CommitteeYear> {
@@ -14,42 +20,30 @@ export default class NotionCommittee {
 
     // Get database info
     const [committeeInfoRes, committeeYearRes] = await Promise.all([
-      this.client.dataSources.query({ data_source_id: committeeInfoId,
+      this.client.dataSources.query({
+        data_source_id: committeeInfoId,
         "filter": {
-          "and": [
+          "or": [
             {
-              "or": [
-                {
-                  "property": "Name",
-                  "rich_text": {
-                    "is_not_empty": true
-                  }
-                },
-                {
-                  "property": "Display Name",
-                  "rich_text": {
-                    "is_not_empty": true
-                  }
-                }
-              ]
+              "property": "Name",
+              "rich_text": { "is_not_empty": true }
             },
             {
-              "property": "Photo",
-              "files": {
-                "is_not_empty": true
-              }
+              "property": "Display Name",
+              "rich_text": { "is_not_empty": true }
             }
           ]
         }
       }),
-      this.client.dataSources.query({ data_source_id: committeeYearId,
+      this.client.dataSources.query({
+        data_source_id: committeeYearId,
         sorts: [
           {
             property: "Role",
             direction: "descending"
           }
         ],
-       })
+      })
     ]);
 
     // Storing each row with row id as key
@@ -59,28 +53,33 @@ export default class NotionCommittee {
     });
 
     const committeeByYear: CommitteeYear = {};
-    
+
     committeeYearRes.results.forEach((res: any) => {
       const relationId = res.properties["Committee Member"].relation[0]?.id;
       if (relationId) {
         const infoPage = committeeInfoMap.get(relationId);
-
-        // Matching id
         if (infoPage) {
           const member = NotionCommittee.toMember(res, infoPage);
-          const committeeName = res.properties["Committee"]?.formula?.string ?? "General";
+          let committeeName = res.properties["Committee"]?.formula?.string ?? "General";
+          const roleName = res.properties["Role"]?.select?.name || "";
 
-          // Init empty year/committee
-          if (!committeeByYear[member.year]) {
-            committeeByYear[member.year] = {};
-          }
-          if (!committeeByYear[member.year][committeeName]) {
-            committeeByYear[member.year][committeeName] = [];
+          // Override formula fallback for specific roles
+          const roleLower = roleName.toLowerCase();
+          if (roleLower.includes("vice president") || roleLower.includes("vp")) {
+            committeeName = "Executive";
+          } else if (/\barts?\b/.test(roleLower)) {
+            committeeName = "Arts";
           }
 
-          committeeByYear[member.year][committeeName].push(member);
+          const enrichedMember: CommitteeMember = {
+            ...member,
+            image: member.image ? toProxiedUrl(member.image) : "/images/gmc-cat.png",
+          };
+
+          if (!committeeByYear[enrichedMember.year]) committeeByYear[enrichedMember.year] = {};
+          if (!committeeByYear[enrichedMember.year][committeeName]) committeeByYear[enrichedMember.year][committeeName] = [];
+          committeeByYear[enrichedMember.year][committeeName].push(enrichedMember);
         }
-
       }
     });
 
@@ -95,6 +94,6 @@ export default class NotionCommittee {
       image: infoPage.properties["Photo"]?.files[0]?.file.url ?? "",
       about: infoPage.properties["About"]?.rich_text[0]?.plain_text ?? "",
       social: infoPage.properties["Social"]?.url ?? "",
-    }
+    };
   }
 }

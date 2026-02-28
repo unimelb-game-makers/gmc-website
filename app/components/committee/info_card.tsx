@@ -1,6 +1,6 @@
 import React from 'react'
-import Image from 'next/image'
 import { IoPersonCircle } from 'react-icons/io5'
+import LoadingImage from '../shared/loading_image'
 
 interface InfoCardProps {
   name: string
@@ -30,12 +30,14 @@ export default function InfoCard({
   return (
     <div className="relative w-85 h-105 bg-[#9D9C94] rounded-2xl pt-5 font-tasa-orbiter text-white shadow-lg flex flex-col">
       {/* Profile image — floats above other content */}
-      <div className="absolute left-5 top-5 z-20 w-40 h-40 rounded-full overflow-hidden border-5 border-gmc-teal-dark shadow-[-8px_8px_0px_0px_rgba(233,120,81,0.5)]">
-        <Image
+      <div className="absolute left-5 top-5 z-20 w-40 h-40 rounded-full overflow-hidden border-5 border-gmc-teal-dark shadow-[-8px_8px_0px_0px_rgba(233,120,81,0.5)] bg-gmc-cream">
+        <LoadingImage
           src={image || '/images/cat.jpg'}
           alt={name}
           width={160}
           height={160}
+          sizes="160px"
+          spinnerSize="w-10 h-10"
           className="object-cover w-full h-full"
         />
       </div>
@@ -47,16 +49,16 @@ export default function InfoCard({
 
         {/* Stats */}
         <div className="flex-1 flex flex-col justify-center gap-1 text-black">
-            <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2 ">{hp}/{hp} HP</span>
-            <div className="w-full h-6 bg-gmc-orange-dark rounded-bl-full" />
-            <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2">{sp}/{sp} SP</span>
-            <div className="w-full h-6 bg-gmc-teal rounded-bl-full" />
+          <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2 ">{hp}/{hp} HP</span>
+          <div className="w-full h-6 bg-gmc-orange-dark rounded-bl-full" />
+          <span className="text-sm text-right font-extrabold whitespace-nowrap mx-2">{sp}/{sp} SP</span>
+          <div className="w-full h-6 bg-gmc-teal rounded-bl-full" />
 
-            {/* Atk / Def */}
-            <div className="text-right text-sm font-bold leading-tight mx-2">
-                <p>Atk {atk}</p>
-                <p>Def {def}</p>
-            </div>
+          {/* Atk / Def */}
+          <div className="text-right text-sm font-bold leading-tight mx-2">
+            <p>Atk {atk}</p>
+            <p>Def {def}</p>
+          </div>
         </div>
       </div>
 
