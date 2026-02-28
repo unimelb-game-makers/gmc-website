@@ -13,14 +13,16 @@ jobs:
       - name: Send Discord webhook
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+          RELEASE_TAG: ${{ github.event.release.tag_name }}
+          RELEASE_BODY: ${{ github.event.release.body }}
+          RELEASE_URL: ${{ github.event.release.html_url }}
         run: |
+          payload=$(jq -n \
+            --arg title "GMC Website Release: $RELEASE_TAG" \
+            --arg description "$RELEASE_BODY" \
+            --arg url "$RELEASE_URL" \
+            --argjson color 2447200 \
+            '{embeds: [{title: $title, description: $description, url: $url, color: $color}]}')
           curl -s -X POST "$DISCORD_WEBHOOK" \
             -H "Content-Type: application/json" \
-            -d '{
-              "embeds": [{
-                "title": "GMC Website Release: ${{ github.event.release.tag_name }}",
-                "description": ${{ toJson(github.event.release.body) }},
-                "url": "${{ github.event.release.html_url }}",
-                "color": 2447200
-              }]
-            }'
+            -d "$payload"
