@@ -23,22 +23,14 @@ export default class NotionCommittee {
       this.client.dataSources.query({
         data_source_id: committeeInfoId,
         "filter": {
-          "and": [
+          "or": [
             {
-              "or": [
-                {
-                  "property": "Name",
-                  "rich_text": { "is_not_empty": true }
-                },
-                {
-                  "property": "Display Name",
-                  "rich_text": { "is_not_empty": true }
-                }
-              ]
+              "property": "Name",
+              "rich_text": { "is_not_empty": true }
             },
             {
-              "property": "Photo",
-              "files": { "is_not_empty": true }
+              "property": "Display Name",
+              "rich_text": { "is_not_empty": true }
             }
           ]
         }
@@ -68,11 +60,20 @@ export default class NotionCommittee {
         const infoPage = committeeInfoMap.get(relationId);
         if (infoPage) {
           const member = NotionCommittee.toMember(res, infoPage);
-          const committeeName = res.properties["Committee"]?.formula?.string ?? "General";
+          let committeeName = res.properties["Committee"]?.formula?.string ?? "General";
+          const roleName = res.properties["Role"]?.select?.name || "";
+
+          // Override formula fallback for specific roles
+          const roleLower = roleName.toLowerCase();
+          if (roleLower.includes("vice president") || roleLower.includes("vp")) {
+            committeeName = "Executive";
+          } else if (/\barts?\b/.test(roleLower)) {
+            committeeName = "Arts";
+          }
 
           const enrichedMember: CommitteeMember = {
             ...member,
-            image: toProxiedUrl(member.image),
+            image: member.image ? toProxiedUrl(member.image) : "/images/gmc-cat.png",
           };
 
           if (!committeeByYear[enrichedMember.year]) committeeByYear[enrichedMember.year] = {};
