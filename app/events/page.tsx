@@ -28,9 +28,9 @@ async function EventsContent() {
               />
             </div>
             <div className="sm:ml-20">
-              <h1 className="drop-shadow-teal text-4xl sm:text-5xl font-akira">MAKER LABS</h1>
+              <h1 className="drop-shadow-teal text-4xl sm:text-5xl font-akira">MAKER MEETUPS</h1>
               <div className="mt-4 sm:mt-10 bg-gmc-cream max-w-3xl p-4">
-                <p className="text-black font-tasa-orbiter font-bold text-lg sm:text-2xl">Our Weekly Maker Labs are casual meetups where members chat about games and game development, share what they&apos;re working on, and learn from each other. Open to all skill levels, it&apos;s the perfect place to connect, get feedback, and stay inspired.</p>
+                <p className="text-black font-tasa-orbiter font-bold text-lg sm:text-2xl">Our Weekly Maker Meetups are casual get-togethers where members chat about games and game development, share what they&apos;re working on, and learn from each other. Open to all skill levels, it&apos;s the perfect place to connect, get feedback, and stay inspired.</p>
               </div>
             </div>
           </div>
