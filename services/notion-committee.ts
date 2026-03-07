@@ -73,7 +73,7 @@ export default class NotionCommittee {
 
           const enrichedMember: CommitteeMember = {
             ...member,
-            image: member.image ? toProxiedUrl(member.image) : "/images/gmc-cat.png",
+            image: member.image ? toProxiedUrl(member.image) : "/images/gmc_site_avatar.png",
           };
 
           if (!committeeByYear[enrichedMember.year]) committeeByYear[enrichedMember.year] = {};
