@@ -27,7 +27,7 @@ const Header = () => {
             </Link>
 
             {/* Navbar spanning full width with links on the right */}
-            <div className='w-full flex items-center justify-end pl-36 pr-6 py-3 bg-gmc-teal-dark rounded-3xl shadow-md'>
+            <div className={`w-full flex items-center justify-end pl-36 pr-6 py-3 bg-gmc-teal-dark shadow-md ${isMenuOpen ? 'rounded-tl-3xl rounded-tr-3xl rounded-bl-3xl' : 'rounded-3xl'}`}>
             {/* Desktop Navbar */}
             <div className='hidden lg:flex items-center'>
                 {navItems.map(({name, path}, idx) => (
@@ -52,9 +52,9 @@ const Header = () => {
 
             {/* Mobile Dropdown Menu */}
             {isMenuOpen && (
-                <div className='lg:hidden absolute top-full right-0 w-48 bg-[#2d3436] border border-gray-600 rounded-md shadow-lg z-10 flex flex-col'>
+                <div className='lg:hidden absolute top-full right-0 w-48 bg-gmc-teal-dark rounded-b-md shadow-lg z-10 flex flex-col'>
                     {navItems.map(({ name, path }) => (
-                        <Link key={name} href={path} className='block px-4 py-2 text-sm text-white hover:bg-gray-700' onClick={() => setIsMenuOpen(false)}>
+                        <Link key={name} href={path} className='block px-4 py-2 text-sm text-white hover:bg-gmc-teal font-tasa-orbiter' onClick={() => setIsMenuOpen(false)}>
                             {name}
                         </Link>
                     ))}
