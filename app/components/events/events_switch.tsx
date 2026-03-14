@@ -14,8 +14,8 @@ const EventsSwitch = ({events}: {events: Event[]}) => {
     const [selectedEvent, setSelectedEvent] = useState<Event | null>(null);
 
     const date = dayjs();
-    const upcomingEvents = events.filter(event => dayjs(event.date.start).isAfter(date));
-    const previousEvents = events.filter(event => dayjs(event.date.start).isBefore(date));
+    const upcomingEvents = events.filter(event => dayjs(event.date.end).isAfter(date));
+    const previousEvents = events.filter(event => dayjs(event.date.end).isBefore(date));
     return (
         <div className='m-2'>
             {/* Mobile layout: centered column */}
