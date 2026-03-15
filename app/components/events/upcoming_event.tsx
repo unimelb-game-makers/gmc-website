@@ -6,9 +6,11 @@ import LoadingImage from '../shared/loading_image'
 const UpcomingEvent = ({ event, setEvent }: { event: Event, setEvent: (event: Event) => void }) => {
     const eventTime = dayjs(event.date.start).format("h:mm A, MMMM D")
     const eventDescription = event.description ? (event.description.length < 35 ? event.description : event.description.slice(0, 90) + "...") : "..."
+    const now = dayjs()
+    const isOngoing = now.isAfter(dayjs(event.date.start)) && event.date.end && now.isBefore(dayjs(event.date.end))
 
     return (
-        <div className="w-64 rounded-2xl bg-gmc-cream p-4 text-black">
+        <div className={`w-64 rounded-2xl p-4 text-black ${isOngoing ? 'bg-gmc-orange' : 'bg-gmc-cream'}`}>
             <button onClick={() => { setEvent(event) }}>
                 {/* Title */}
                 <h2 className="h-12 text-center text-xl font-semibold mb-3">{event.name}</h2>
