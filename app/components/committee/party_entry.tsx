@@ -23,7 +23,7 @@ export default function PartyEntry({
       {/* Profile image — floats in front */}
       <div className="absolute left-2 translate-y-1/4 z-10 w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-3 border-gmc-teal-dark bg-gmc-cream">
         <LoadingImage
-          src={image || '/images/cat.jpg'}
+          src={image || '/images/gmc_site_avatar.png'}
           alt={name}
           fill
           sizes="96px"

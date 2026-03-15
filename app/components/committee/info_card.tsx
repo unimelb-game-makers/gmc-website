@@ -32,7 +32,7 @@ export default function InfoCard({
       {/* Profile image — floats above other content */}
       <div className="absolute left-5 top-5 z-20 w-40 h-40 rounded-full overflow-hidden border-5 border-gmc-teal-dark shadow-[-8px_8px_0px_0px_rgba(233,120,81,0.5)] bg-gmc-cream">
         <LoadingImage
-          src={image || '/images/cat.jpg'}
+          src={image || '/images/gmc_site_avatar.png'}
           alt={name}
           width={160}
           height={160}

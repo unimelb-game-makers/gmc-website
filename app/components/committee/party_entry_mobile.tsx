@@ -18,7 +18,7 @@ const PartyEntryMobile = ({ name, image, onClick, selected }: PartyEntryMobilePr
     >
       <div className="relative w-full aspect-square bg-gmc-cream overflow-hidden">
         <LoadingImage
-          src={image || '/images/cat.jpg'}
+          src={image || '/images/gmc_site_avatar.png'}
           alt={name}
           width={80}
           height={80}
