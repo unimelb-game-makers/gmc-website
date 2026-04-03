@@ -8,8 +8,10 @@ export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
 async function EducationContent() {
   const service = new NotionEducation;
-  const posts = await service.getPublishedWorkshopPosts();
-  const tags = await service.getWorkshopTags();
+  const [posts, tags] = await Promise.all([
+    service.getPublishedWorkshopPosts(),
+    service.getWorkshopTags(),
+  ]);
 
   return (
     <div className='mt-10 flex justify-start items-start'>
