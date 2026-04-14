@@ -58,10 +58,13 @@ export default class NotionEducation {
 
 
         const page = response.results[0];
-        const mdBlocks = await this.n2m.pageToMarkdown(page.id);
+        const [mdBlocks, transformedPost] = await Promise.all([
+            this.n2m.pageToMarkdown(page.id),
+            this.educationTransformer(page),
+        ]);
 
         markdown = this.n2m.toMarkdownString(mdBlocks);
-        post = await this.educationTransformer(page);
+        post = transformedPost;
 
         return {
             post,
