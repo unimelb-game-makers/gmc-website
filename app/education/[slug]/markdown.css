@@ -33,6 +33,19 @@
   color: #d4d4d4;
 }
 
+/* Blockquotes */
+.markdown blockquote {
+  background-color: #2e2e2e;
+  border: 1px solid #3a3a3a;
+  border-radius: 0.5rem;
+  padding: 1rem 1.5rem;
+  margin: 1em 0;
+}
+
+.markdown blockquote p {
+  margin: 0;
+}
+
 /* Images */
 .markdown img {
   display: block;
