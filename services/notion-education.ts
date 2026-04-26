@@ -9,6 +9,11 @@ export default class NotionEducation {
     constructor() {
         this.client = new Client( { auth: process.env.NOTION_TOKEN })
         this.n2m = new NotionToMarkdown( { notionClient: this.client } )
+        this.n2m.setCustomTransformer("paragraph", async (block: any) => {
+            const richText = block.paragraph?.rich_text ?? [];
+            if (richText.length === 0) return "&nbsp;";
+            return false; // fall through to default handler
+        })
     }
 
     async getPublishedWorkshopPosts(): Promise<EducationWorkshopPost[]> {
@@ -55,7 +60,6 @@ export default class NotionEducation {
         if (!response.results[0]) {
             throw 'No results available';
         }
-
 
         const page = response.results[0];
         const [mdBlocks, transformedPost] = await Promise.all([
