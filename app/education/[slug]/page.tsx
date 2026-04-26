@@ -93,6 +93,10 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
                                     const id = String(children).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                                     return <h3 id={id}>{children}</h3>;
                                 },
+                                p: ({children}) => {
+                                    if (children === '\u00a0') return <br />;
+                                    return <p>{children}</p>;
+                                },
                             }}
                         >
                             {page.markdown.parent}
