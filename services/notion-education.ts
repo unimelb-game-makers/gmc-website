@@ -70,8 +70,6 @@ export default class NotionEducation {
         markdown = this.n2m.toMarkdownString(mdBlocks);
         post = transformedPost;
 
-        console.log(markdown)
-
         return {
             post,
             markdown
