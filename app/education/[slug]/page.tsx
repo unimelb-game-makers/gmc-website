@@ -40,7 +40,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
 
             <div className="flex gap-8">
                 {/* Left Sidebar */}
-                <div className="w-48 shrink-0 self-start hidden md:block">
+                <div className="w-48 shrink-0 hidden md:block sticky top-8 self-start">
                     {/* Table of Contents */}
                     <div className="mb-8 bg-gmc-cream p-3 rounded-lg">
                         {headings.map((heading, index) => (
