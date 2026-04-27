@@ -9,7 +9,34 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
+}
+
+model Game {
+  id Int @id @default(autoincrement())
+  name String
+  thumbnail String
+  link String
+  description String
+  approved Boolean
+  create_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  tags GameTag[]
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  name String 
+  description String
+  
+  games GameTag[]
+}
+
+model GameTag {
+  id Int @id @default(autoincrement())
+  gameId Int
+  tagId Int  
+  game Game @relation(fields: [gameId], references: [id])
+  tag Tag @relation(fields: [tagId], references: [id])
 }
