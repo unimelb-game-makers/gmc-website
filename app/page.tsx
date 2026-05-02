@@ -15,16 +15,12 @@ export const revalidate = 1800; // Revalidate every 30 minutes (in seconds)
 
 export default async function Home() {
 
-  const eventsservice = new NotionEvents;
-  const eventsData = await eventsservice.getEvents();
-
-  const eduservice = new NotionEducation;
-  const educationData = await eduservice.getPublishedWorkshopPosts();
+  const [eventsData, educationData, committeeMembers] = await Promise.all([
+    new NotionEvents().getEvents(),
+    new NotionEducation().getPublishedWorkshopPosts(),
+    new NotionCommittee().getCommittee(),
+  ]);
   const educations = educationData.slice(0, 3);
-
-  // Prefetch committee images in background
-  const committeeService = new NotionCommittee();
-  const committeeMembers = await committeeService.getCommittee();
 
   return (
     <div>
