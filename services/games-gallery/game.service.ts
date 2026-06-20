@@ -1,23 +1,33 @@
 import { db } from "@/lib/db";
+import { Prisma } from "@/app/generated/prisma";
+
+const gameTagsInclude = { tags: { include: { tag: true } } } satisfies Prisma.GameInclude;
+
+type GameWithTags = Prisma.GameGetPayload<{ include: typeof gameTagsInclude }>;
+
+function flattenTags(game: GameWithTags) {
+  return { ...game, tags: game.tags.map(({ tag }) => tag) };
+}
 
 export async function getGames() {
-  return db.game.findMany({
-    include: { tags: { include: { tag: true } } },
-  });
+  const games = await db.game.findMany({ include: gameTagsInclude });
+  return games.map(flattenTags);
 }
 
 export async function getApprovedGames() {
-  return db.game.findMany({
+  const games = await db.game.findMany({
     where: { approved: true },
-    include: { tags: { include: { tag: true } } },
+    include: gameTagsInclude,
   });
+  return games.map(flattenTags);
 }
 
 export async function getGameById(id: number) {
-  return db.game.findUnique({
+  const game = await db.game.findUnique({
     where: { id },
-    include: { tags: { include: { tag: true } } },
+    include: gameTagsInclude,
   });
+  return game ? flattenTags(game) : null;
 }
 
 export async function createGame(data: {

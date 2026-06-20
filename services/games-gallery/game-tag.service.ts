@@ -13,6 +13,13 @@ export async function getGameTagsByGame(gameId: number) {
   });
 }
 
+export async function getGameTagsByTag(tagId: number) {
+  return db.gameTag.findMany({
+    where: { tagId },
+    include: { game: true },
+  });
+}
+
 export async function createGameTag(gameId: number, tagId: number) {
   return db.gameTag.create({ data: { gameId, tagId } });
 }
