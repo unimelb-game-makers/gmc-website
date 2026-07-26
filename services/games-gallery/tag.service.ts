@@ -1,7 +1,13 @@
 import { db } from "@/lib/db";
 
 export async function getTags() {
-  return db.tag.findMany();
+  return db.tag.findMany({
+      select: {
+          id: true,
+          name: true,
+          description: true,
+      },
+  });
 }
 
 export async function getTagById(id: number) {

@@ -1,0 +1,7 @@
+-- AlterTable
+ALTER TABLE "Game" ALTER COLUMN "thumbnail" DROP NOT NULL,
+ALTER COLUMN "link" DROP NOT NULL,
+ALTER COLUMN "description" DROP NOT NULL;
+
+-- AlterTable
+ALTER TABLE "Tag" ALTER COLUMN "description" DROP NOT NULL;
