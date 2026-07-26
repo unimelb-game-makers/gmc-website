@@ -1,0 +1,13 @@
+model Creator {
+    id Int @id @default(autoincrement())
+    name String
+    picture String
+    about String
+}
+
+model CreatorLink {
+    id String @id @default(uuid())
+    name String
+    link String
+}
+
