@@ -1,13 +1,32 @@
 model Creator {
-    id Int @id @default(autoincrement())
+    id String @id @db.Uuid
+    user_id String? @db.Uuid
     name String
     picture String
     about String
+
+    creator_links CreatorLink[]
+    games CreatorGame[]
+}
+
+model CreatorGame {
+    id String @id @db.Uuid
+    game_id String @db.Uuid
+    creator_id String @db.Uuid
+    role String
+
+    game Game @relation(fields: [game_id], references: [id])
+    creator Creator @relation(fields: [creator_id], references: [id])
+
 }
 
 model CreatorLink {
-    id String @id @default(uuid())
+    id String @id @db.Uuid
     name String
     link String
+    creator_id String @db.Uuid
+
+    creator Creator @relation(fields: [creator_id], references: [id])
+
 }
 

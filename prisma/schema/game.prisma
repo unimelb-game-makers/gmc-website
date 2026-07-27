@@ -1,5 +1,5 @@
 model Game {
-  id Int @id @default(autoincrement())
+  id String @id @db.Uuid
   name String
   thumbnail String?
   link String?
@@ -9,6 +9,8 @@ model Game {
   updated_at DateTime @default(now())
 
   tags GameTag[]
+  creators CreatorGame[]
+
 }
 
 model Tag {
@@ -16,16 +18,18 @@ model Tag {
   name String 
   description String?
 
-  games GameTag[]
+  games GameTag[] 
+
+
 }
 
 model GameTag {
-  gameId Int
-  tagId  Int
-  game   Game @relation(fields: [gameId], references: [id])
-  tag    Tag  @relation(fields: [tagId], references: [id])
+  game_id String @db.Uuid
+  tag_id  Int
+  game   Game @relation(fields: [game_id], references: [id])
+  tag    Tag  @relation(fields: [tag_id], references: [id])
 
-  @@id([gameId, tagId])
+  @@id([game_id, tag_id])
 }
 
 
