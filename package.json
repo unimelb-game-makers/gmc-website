@@ -15,6 +15,8 @@
     "@prisma/client": "^7.8.0",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "@supabase/ssr": "^0.12.3",
+    "@supabase/supabase-js": "^2.110.9",
     "dayjs": "^1.11.18",
     "next": "^15.3.6",
     "notion-to-md": "^3.1.9",

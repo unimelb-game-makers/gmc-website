@@ -1,9 +1,9 @@
 model Creator {
-    id String @id @db.Uuid
+    id String @id @default(uuid()) @db.Uuid 
     user_id String? @db.Uuid
     name String
-    picture String
-    about String
+    picture String?
+    about String?
 
     creator_links CreatorLink[]
     games CreatorGame[]
@@ -29,4 +29,4 @@ model CreatorLink {
     creator Creator @relation(fields: [creator_id], references: [id])
 
 }
-
+ 
