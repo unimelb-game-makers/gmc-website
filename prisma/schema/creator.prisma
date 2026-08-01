@@ -1,6 +1,6 @@
 model Creator {
     id String @id @default(uuid()) @db.Uuid 
-    user_id String? @db.Uuid
+    user_id String? @db.Uuid @unique
     name String
     picture String?
     about String?
