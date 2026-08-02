@@ -1,4 +1,4 @@
-import { loginWithPassword } from '@/services/games-gallery/auth.service'
+import { login } from "@/app/gallery/user"
 
 
 export default function LoginPage({
@@ -28,7 +28,7 @@ export default function LoginPage({
       </div>
 
       <div className="flex gap-2">
-        <button formAction={loginWithPassword} className="border px-4 py-2 flex-1">
+        <button formAction={login} className="border px-4 py-2 flex-1">
           Log in
         </button>
       </div>

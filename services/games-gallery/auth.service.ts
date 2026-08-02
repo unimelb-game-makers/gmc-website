@@ -44,23 +44,16 @@ export async function getCurrentUser() {
   return data.user
 }
 
-export async function loginWithPassword(formData: FormData) {
-    const email = formData.get('email') as string;
-    const password = formData.get('password') as string;
-
+export async function loginWithPassword(email: string, password: string) {
+    
     const supabase = await createClient();
     const { data, error } = await supabase.auth.signInWithPassword({
         email, password
     })
 
     if (error) throw new Error(error.message)
-
-    if (error) {
-        console.log(error);
-        return null
-    }
-    redirect('/gallery');
-    // return data.user
+ 
+    return data
 }
 //
 export async function createUser(email: string, username: string, password: string) {
@@ -85,8 +78,7 @@ export async function createUser(email: string, username: string, password: stri
 }
 //
 
-export async function logout() {
+export async function logoutUser() {
     const supabase = await createClient()
     await supabase.auth.signOut()
-    redirect('/gallery')
 }
