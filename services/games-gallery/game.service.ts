@@ -1,45 +1,5 @@
 import { db } from "@/lib/db";
 
-// import { Prisma } from "@/app/generated/prisma";
-// import { Game, Tag} from "@/@types/gallery-schema";
-
-// type PrismaGame = Prisma.GameGetPayload<{
-//     include: {
-//         tags: {
-//             include: {
-//                 tag: true
-//             }
-//         }
-//     }
-// }>;
-//
-// type PrismaGameTag = Prisma.GameTagGetPayload<{
-//     include: {
-//         tag: true
-//     }
-// }>;
-//
-// // Mapping
-//
-// function mapGame(input: PrismaGame): Game {
-//     return {
-//         id: input.id,
-//         name: input.name,
-//         description: input.description,
-//         thumbnail: input.thumbnail,
-//         link: input.link,
-//         approved: input.approved,
-//         created_at: input.create_at,
-//         updated_at: input.updated_at,
-//
-//         tags: input.tags.map((tag: PrismaGameTag): Tag => {
-//             return tag.tag;
-//         }),
-//
-//         creators: [],
-//     }
-// }
-
 // CRUD Functions
 
 // Create Game
@@ -89,7 +49,7 @@ export async function getGames() {
 } 
 
 // Read specific game data
-export async function getGameById(id: number) {
+export async function getGameById(id: string) {
 const game = await db.game.findUnique({
     where: { id },
     include: {
@@ -111,7 +71,7 @@ const game = await db.game.findUnique({
 
 // Update Game Info
 export async function updateGame(
-  id: number,
+  id: string,
   data: Partial<{
     name: string;
     thumbnail: string;
@@ -124,6 +84,6 @@ export async function updateGame(
 }
 
 // Delete Game
-export async function deleteGame(id: number) {
+export async function deleteGame(id: string) {
   return db.game.delete({ where: { id } });
 }

@@ -1,5 +1,5 @@
 model Game {
-  id String @id @db.Uuid
+  id String @id @db.Uuid @default(uuid())
   name String
   thumbnail String?
   link String?
