@@ -2,7 +2,7 @@
 
 import { redirect } from 'next/navigation'
 
-import { createUser, loginWithPassword, logoutUser } from '@/services/games-gallery/auth.service'
+import { loginWithPassword, logoutUser } from '@/services/games-gallery/auth.service'
 
 export async function login(formData: FormData) {
     const email = formData.get('email') as string;

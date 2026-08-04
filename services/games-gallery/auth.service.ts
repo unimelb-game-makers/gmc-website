@@ -4,9 +4,6 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 
 import { db } from '@/lib/db'
-import { User } from '@/app/generated/prisma'
-import { redirect } from 'next/navigation'
-
 
 async function createClient() {
     const cookieStore = await cookies()

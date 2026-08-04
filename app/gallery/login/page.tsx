@@ -1,21 +1,10 @@
 import { login } from "@/app/gallery/user"
 
 
-export default function LoginPage({
-  searchParams,
-}: {
-  searchParams: { error?: string; message?: string }
-}) {
+export default async function LoginPage() {
   return (
     <form className="max-w-sm mx-auto mt-20 space-y-4">
       <h1 className="text-xl font-semibold">Log in</h1>
-
-      {searchParams.error && (
-        <p className="text-red-600 text-sm">{searchParams.error}</p>
-      )}
-      {searchParams.message && (
-        <p className="text-green-600 text-sm">{searchParams.message}</p>
-      )}
 
       <div>
         <label htmlFor="email">Email</label>

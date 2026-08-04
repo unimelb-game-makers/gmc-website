@@ -1,4 +1,4 @@
-import { logout } from '@/services/games-gallery/auth.service'
+import { logout } from '@/app/gallery/user'
 
 export function LogoutButton() {
   return (

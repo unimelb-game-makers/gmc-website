@@ -6,17 +6,17 @@ export async function getGameTags() {
   });
 }
 
-export async function getGameTagsByGame(gameId: number) {
+export async function getGameTagsByGame(gameId: string) {
   return db.gameTag.findMany({
-    where: { gameId },
+    where: { game_id: gameId },
     include: { tag: true },
   });
 }
 
-export async function createGameTag(gameId: number, tagId: number) {
-  return db.gameTag.create({ data: { gameId, tagId } });
+export async function createGameTag(gameId: string, tagId: number) {
+  return db.gameTag.create({ data: { game_id: gameId, tag_id: tagId } });
 }
 
-export async function deleteGameTag(gameId: number, tagId: number) {
-  return db.gameTag.delete({ where: { gameId_tagId: { gameId, tagId } } });
+export async function deleteGameTag(gameId: string, tagId: number) {
+  return db.gameTag.delete({ where: { game_id_tag_id: { game_id: gameId, tag_id: tagId } } });
 }
