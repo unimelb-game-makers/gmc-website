@@ -9,7 +9,7 @@ export async function createGame(data: {
   link: string;
   description: string;
   tagIds: number[];
-  // creators: number[];
+  // creators: string[];
 }) {
   return db.game.create({ data: {
       name: data.name,

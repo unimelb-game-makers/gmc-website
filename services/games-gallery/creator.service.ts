@@ -19,3 +19,13 @@ export async function getCreatorByUserId(id: string) {
     });
     return creator;
 }
+
+export async function updateCreator(
+    id: string, 
+    data: Partial<{
+        name: string,
+        picture: string,
+        about: string,
+    }>) {
+        return db.creator.update({ where: { id }, data });
+}

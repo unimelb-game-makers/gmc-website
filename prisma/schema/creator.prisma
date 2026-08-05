@@ -10,7 +10,6 @@ model Creator {
 }
 
 model CreatorGame {
-    id String @id @db.Uuid
     game_id String @db.Uuid
     creator_id String @db.Uuid
     role String
@@ -18,6 +17,7 @@ model CreatorGame {
     game Game @relation(fields: [game_id], references: [id])
     creator Creator @relation(fields: [creator_id], references: [id])
 
+    @@id([creator_id, game_id])
 }
 
 model CreatorLink {
@@ -27,6 +27,5 @@ model CreatorLink {
     creator_id String @db.Uuid
 
     creator Creator @relation(fields: [creator_id], references: [id])
-
 }
  
