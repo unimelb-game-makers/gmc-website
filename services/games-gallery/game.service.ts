@@ -1,6 +1,9 @@
 import { db } from "@/lib/db";
 
-// CRUD Functions
+interface creator {
+    creator_id: string,
+    role: string,
+}
 
 // Create Game
 export async function createGame(data: {
@@ -9,7 +12,7 @@ export async function createGame(data: {
   link: string;
   description: string;
   tagIds: number[];
-  // creators: string[];
+  creators: creator[];
 }) {
   return db.game.create({ data: {
       name: data.name,
@@ -24,6 +27,14 @@ export async function createGame(data: {
               }
           }))
       },
+      creators: {
+          create: data.creators.map((creator_info) => ({
+              role: creator_info.role,
+              creator: {
+                  connect: { id: creator_info.creator_id }
+              }
+          }))
+      }
  }});
 }
 
