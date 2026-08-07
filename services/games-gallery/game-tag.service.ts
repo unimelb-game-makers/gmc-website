@@ -14,7 +14,7 @@ export async function editTags(gameId: string, edits: gameTagEdit[]) {
     const game_tags = await getGameTagsByGame(gameId)
 
     edits.forEach(edit => {
-        const tag_exists = !game_tags.some(game_tag => game_tag.tag_id === edit.tag_id)
+        const tag_exists = game_tags.some(game_tag => game_tag.tag_id === edit.tag_id)
         switch (edit.action) {
             
             case Action.Add:
@@ -29,6 +29,7 @@ export async function editTags(gameId: string, edits: gameTagEdit[]) {
 
     })
 }
+
 export async function getGameTag(gameId: string, tagId: number) {
     return db.gameTag.findFirst({
         where: { game_id: gameId, tag_id: tagId }
