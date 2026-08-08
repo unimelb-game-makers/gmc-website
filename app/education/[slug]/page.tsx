@@ -40,7 +40,7 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
 
             <div className="flex gap-8">
                 {/* Left Sidebar */}
-                <div className="w-48 shrink-0 self-start hidden md:block">
+                <div className="w-48 shrink-0 hidden md:block sticky top-8 self-start">
                     {/* Table of Contents */}
                     <div className="mb-8 bg-gmc-cream p-3 rounded-lg">
                         {headings.map((heading, index) => (
@@ -92,6 +92,10 @@ const page = async ({ params }: { params: Promise<{ slug: string }>;} ) => {
                                 h3: ({children}) => {
                                     const id = String(children).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
                                     return <h3 id={id}>{children}</h3>;
+                                },
+                                p: ({children}) => {
+                                    if (children === '\u00a0') return <br />;
+                                    return <p>{children}</p>;
                                 },
                             }}
                         >
