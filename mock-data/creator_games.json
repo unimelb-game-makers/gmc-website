@@ -1,0 +1,26 @@
+[
+  {
+    "id": "5656c858-fe97-43bd-a9b1-42b90e5fa6ac",
+    "game_id": "5c7140a6-8555-4717-aa62-14e4bf636242",
+    "creator_id": "ecc720d8-1fd3-454c-8856-9ca0b24bd614",
+    "role": "Lead Developer"
+  },
+  {
+    "id": "354bda5e-a8e6-422b-992e-77ebd079b476",
+    "game_id": "5c7140a6-8555-4717-aa62-14e4bf636242",
+    "creator_id": "aff363f9-f218-4403-86df-665f9d83b086",
+    "role": "3D Artist"
+  },
+  {
+    "id": "b49e360c-8b05-4458-a35b-58fdff05783c",
+    "game_id": "ebed0022-5a67-4e8d-8fdc-2882f8772ac9",
+    "creator_id": "ecc720d8-1fd3-454c-8856-9ca0b24bd614",
+    "role": "Game Designer"
+  },
+  {
+    "id": "f2882abc-c8ba-45bb-af6c-a318037b2a33",
+    "game_id": "e73ab7a5-498b-4019-8a1f-e0b26ff999da",
+    "creator_id": "aa3491d1-76e1-4e1a-8143-8e68284171ed",
+    "role": "Publisher & Studio"
+  }
+]
