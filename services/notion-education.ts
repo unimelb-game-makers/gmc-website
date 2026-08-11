@@ -17,7 +17,11 @@ export default class NotionEducation {
     }
 
     async getPublishedWorkshopPosts(): Promise<EducationWorkshopPost[]> {
-        const database = process.env.NOTION_EDUCATION ?? '';
+        const database = process.env.NOTION_EDUCATION;
+
+        if (!process.env.NOTION_TOKEN || !database) {
+            return [];
+        }
 
         const response = await this.client.dataSources.query({
             data_source_id: database,
@@ -43,7 +47,11 @@ export default class NotionEducation {
     async getSinglePost(slug: string): Promise<EducationPostPage> {
         let post, markdown
 
-        const database = process.env.NOTION_EDUCATION ?? '';
+        const database = process.env.NOTION_EDUCATION;
+
+        if (!process.env.NOTION_TOKEN || !database) {
+            throw new Error('Notion education is not configured');
+        }
 
         const response = await this.client.dataSources.query({
             data_source_id: database,
@@ -77,7 +85,11 @@ export default class NotionEducation {
     }
 
     async getWorkshopTags(): Promise<EducationTag[]> {
-        const database = process.env.NOTION_EDUCATION ?? '';
+        const database = process.env.NOTION_EDUCATION;
+
+        if (!process.env.NOTION_TOKEN || !database) {
+            return [];
+        }
         const response = await this.client.dataSources.retrieve({
             data_source_id: database
         });

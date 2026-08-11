@@ -1,0 +1,20 @@
+[
+  {
+    "id": "7cebf2a0-af38-44c2-b504-477e5141da2d",
+    "name": "Twitter / X",
+    "link": "https://x.com/alexmercer_dev",
+    "creator_id": "ecc720d8-1fd3-454c-8856-9ca0b24bd614"
+  },
+  {
+    "id": "af72acf1-8ce4-42e4-ad3e-6f64205625c3",
+    "name": "Portfolio",
+    "link": "https://alexmercer.artstation.com",
+    "creator_id": "ecc720d8-1fd3-454c-8856-9ca0b24bd614"
+  },
+  {
+    "id": "57f679af-9e22-4304-8b7c-5d1027d4c41a",
+    "name": "ArtStation",
+    "link": "https://artstation.com/elenarostova",
+    "creator_id": "aff363f9-f218-4403-86df-665f9d83b086"
+  }
+]
