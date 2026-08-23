@@ -1,4 +1,4 @@
-import { Client } from "@notionhq/client";
+import { Client, collectPaginatedAPI } from "@notionhq/client";
 import { CommitteeYear, CommitteeMember } from "@/@types/schema.ds";
 
 /** Route a Notion S3 image URL through our cached proxy API route */
@@ -18,9 +18,9 @@ export default class NotionCommittee {
     const committeeInfoId = process.env.NOTION_COMMITTEE_INFO ?? '';
     const committeeYearId = process.env.NOTION_COMMITTEE_YEAR ?? '';
 
-    // Get database info
-    const [committeeInfoRes, committeeYearRes] = await Promise.all([
-      this.client.dataSources.query({
+    // Get database info — paginated, since a query caps out at 100 results per page
+    const [committeeInfoResults, committeeYearResults] = await Promise.all([
+      collectPaginatedAPI(this.client.dataSources.query, {
         data_source_id: committeeInfoId,
         "filter": {
           "or": [
@@ -35,7 +35,7 @@ export default class NotionCommittee {
           ]
         }
       }),
-      this.client.dataSources.query({
+      collectPaginatedAPI(this.client.dataSources.query, {
         data_source_id: committeeYearId,
         sorts: [
           {
@@ -48,13 +48,13 @@ export default class NotionCommittee {
 
     // Storing each row with row id as key
     const committeeInfoMap = new Map();
-    committeeInfoRes.results.forEach((res: any) => {
+    committeeInfoResults.forEach((res: any) => {
       committeeInfoMap.set(res.id, res);
     });
 
     const committeeByYear: CommitteeYear = {};
 
-    committeeYearRes.results.forEach((res: any) => {
+    committeeYearResults.forEach((res: any) => {
       const relationId = res.properties["Committee Member"].relation[0]?.id;
       if (relationId) {
         const infoPage = committeeInfoMap.get(relationId);
