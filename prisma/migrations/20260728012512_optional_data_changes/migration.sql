@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "Creator" ALTER COLUMN "picture" DROP NOT NULL,
+ALTER COLUMN "about" DROP NOT NULL;
