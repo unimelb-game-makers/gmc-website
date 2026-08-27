@@ -14,8 +14,15 @@ export type GalleryGame = {
   name: string
   description: string
   thumbnail: string
-  tags: string[]
+  tags: GalleryTag[]
   creators: GalleryCreator[]
+}
+
+export type GalleryTag = {
+    id: number,
+    name: string,
+    description: string,
+
 }
 
 type FeaturedGameCarouselProps = {

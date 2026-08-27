@@ -2,6 +2,8 @@ import React from 'react'
 
 import FeaturedGameCarousel, { type GalleryGame } from '../components/gallery/featured-game-carousel'
 import GalleryBrowser from '../components/gallery/gallery-browser'
+import { getGames } from '@/services/games-gallery/game.service'
+import { getTags } from '@/services/games-gallery/tag.service'
 
 const galleryGames: GalleryGame[] = [
   {
@@ -221,7 +223,12 @@ const galleryGames: GalleryGame[] = [
 
 const featuredGames = galleryGames.slice(0, 4)
 
-const GalleryPage = () => {
+const GalleryPage = async () => {
+    const games = await getGames()
+    console.log(games)
+    const tags = await getTags();
+    console.log(tags)
+
   return (
     <main className="min-h-screen bg-[#252525] px-4 pb-20 pt-44 sm:px-8 sm:pt-48 lg:px-12">
       <h1 className="mx-auto max-w-6xl text-center font-akira text-3xl font-extrabold tracking-wide text-white drop-shadow-teal sm:text-5xl lg:text-6xl">
@@ -233,7 +240,7 @@ const GalleryPage = () => {
       </section>
 
       <section className="mx-auto mt-10 max-w-7xl">
-        <GalleryBrowser games={galleryGames} />
+        <GalleryBrowser games={games} />
       </section>
     </main>
   )

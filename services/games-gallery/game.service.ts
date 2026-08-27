@@ -1,9 +1,48 @@
+
 import { db } from "@/lib/db";
+import { Prisma } from "@/prisma/generated/prisma";
+
+const prismaGame = Prisma.validator<Prisma.GameDefaultArgs>()({
+  include: {
+    tags: {
+      include: {
+        tag: {
+          select: {
+            id: true,
+            name: true,
+            description: true,
+          },
+        },
+      },
+    },
+    creators: {
+      include: {
+        creator: {
+          select: {
+            name: true,
+            picture: true,
+          },
+        },
+      },
+    },
+  },
+});
+
+// Derive the type directly — no function needed
+type Game = Prisma.GameGetPayload<typeof prismaGame>;
 
 interface creator {
     creator_id: string,
     role: string,
 }
+
+function mapGame(game: Game) {
+    return {
+        ...game,
+        tags: game.tags.map((t) => t.tag.name),
+    }
+}
+
 
 // Create Game
 export async function createGame(data: {
@@ -42,42 +81,18 @@ export async function createGame(data: {
 export async function getGames() {
   const games = await db.game.findMany({
       where: { approved: true },
-      include: {
-          tags: {
-              include: {
-                  tag: {
-                      select: {
-                          id: true,
-                          name: true,
-                          description: true,
-                      }
-                  }
-              }
-          }
-      }
+      ...prismaGame,
   });
-  return games;
+  return games.map((game) => mapGame(game));
 } 
 
 // Read specific game data
 export async function getGameById(id: string) {
-const game = await db.game.findUnique({
-    where: { id },
-    include: {
-          tags: {
-              include: {
-                  tag: {
-                      select: {
-                          id: true,
-                          name: true,
-                          description: true,
-                      }
-                  }
-              }
-          }
-      }
-    });
-    return game;
+  const game = await db.game.findUnique({
+      where: { id },
+      ...prismaGame,
+  });
+  return game ? mapGame(game) : null;
 }
 
 // Update Game Info
