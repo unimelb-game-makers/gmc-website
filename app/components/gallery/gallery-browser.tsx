@@ -15,10 +15,10 @@ const hashValue = (value: string) => {
   return hash
 }
 
-const pickDefaultEventGames = (games: GalleryGame[], eventName: string) => {
+const pickDefaultTagGames = (games: GalleryGame[], tagName: string) => {
   const orderedGames = [...games].sort(
     (leftGame, rightGame) =>
-      hashValue(`${eventName}-${leftGame.name}`) - hashValue(`${eventName}-${rightGame.name}`)
+      hashValue(`${tagName}-${leftGame.name}`) - hashValue(`${tagName}-${rightGame.name}`)
   )
   const displayCount = games.length >= 8 ? 8 : Math.min(4, games.length)
 
@@ -49,22 +49,22 @@ const GalleryBrowser = ({ games }: { games: GalleryGame[] }) => {
   })
 
   const groupedGames = games.reduce<Record<string, GalleryGame[]>>((groups, game) => {
-    const eventName = game.description
+    game.tags.forEach((tag) => {
+      if (!groups[tag]) {
+        groups[tag] = []
+      }
 
-    if (!groups[eventName]) {
-      groups[eventName] = []
-    }
-
-    groups[eventName].push(game)
+      groups[tag].push(game)
+    })
 
     return groups
   }, {})
 
   const defaultSections = Object.entries(groupedGames)
-    .sort(([leftEvent], [rightEvent]) => leftEvent.localeCompare(rightEvent))
-    .map(([eventName, eventGames]) => ({
-      eventName,
-      games: pickDefaultEventGames(eventGames, eventName),
+    .sort(([leftTag], [rightTag]) => leftTag.localeCompare(rightTag))
+    .map(([tagName, tagGames]) => ({
+      tagName,
+      games: pickDefaultTagGames(tagGames, tagName),
     }))
 
   const toggleTag = (tag: string) => {
@@ -152,15 +152,15 @@ const GalleryBrowser = ({ games }: { games: GalleryGame[] }) => {
         </div>
       ) : (
         <div className="space-y-10">
-          {defaultSections.map(({ eventName, games: eventGames }) => (
-            <section key={eventName} className="space-y-4">
+          {defaultSections.map(({ tagName, games: tagGames }) => (
+            <section key={tagName} className="space-y-4">
               <h2 className="text-center font-tasa-orbiter text-3xl font-extrabold text-white sm:text-4xl">
-                {eventName}
+                {tagName}
               </h2>
 
               <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                {eventGames.map((game) => (
-                  <GameMiniCard key={`${eventName}-${game.name}`} game={game} />
+                {tagGames.map((game) => (
+                  <GameMiniCard key={`${tagName}-${game.name}`} game={game} />
                 ))}
               </div>
             </section>
