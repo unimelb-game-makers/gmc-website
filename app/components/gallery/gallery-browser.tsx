@@ -2,7 +2,7 @@
 
 import React, { useDeferredValue, useState } from 'react'
 
-import { type GalleryGame } from './featured-game-carousel'
+import { type GalleryGame, type GalleryTag } from './featured-game-carousel'
 import GameMiniCard from './game-mini-card'
 
 const hashValue = (value: string) => {
@@ -25,53 +25,63 @@ const pickDefaultTagGames = (games: GalleryGame[], tagName: string) => {
   return orderedGames.slice(0, displayCount)
 }
 
-const GalleryBrowser = ({ games }: { games: GalleryGame[] }) => {
+const GalleryBrowser = ({
+  games,
+  featuredTags = [],
+}: {
+  games: GalleryGame[]
+  featuredTags?: GalleryTag[]
+}) => {
   const [query, setQuery] = useState('')
   const [isFilterOpen, setIsFilterOpen] = useState(false)
-  const [selectedTags, setSelectedTags] = useState<string[]>([])
+  const [selectedTagIds, setSelectedTagIds] = useState<number[]>([])
   const deferredQuery = useDeferredValue(query.trim().toLowerCase())
 
-  const availableTags = Array.from(new Set(games.flatMap((game) => game.tags))).sort((leftTag, rightTag) =>
-    leftTag.localeCompare(rightTag)
-  )
+  const availableTags = Array.from(
+    new Map(games.flatMap((game) => game.tags).map((tag) => [tag.id, tag])).values()
+  ).sort((leftTag, rightTag) => leftTag.name.localeCompare(rightTag.name))
 
-  const hasActiveFilters = deferredQuery.length > 0 || selectedTags.length > 0
+  const hasActiveFilters = deferredQuery.length > 0 || selectedTagIds.length > 0
   const matchingGames = games.filter((game) => {
     const matchesQuery =
       deferredQuery.length === 0 ||
       game.name.toLowerCase().includes(deferredQuery) ||
       game.description.toLowerCase().includes(deferredQuery) ||
-      game.tags.some((tag) => tag.toLowerCase().includes(deferredQuery)) ||
+      game.tags.some((tag) => tag.name.toLowerCase().includes(deferredQuery)) ||
       game.creators.some((creator) => creator.name.toLowerCase().includes(deferredQuery))
-    const matchesTags = selectedTags.every((tag) => game.tags.includes(tag))
+    const matchesTags = selectedTagIds.every((tagId) => game.tags.some((tag) => tag.id === tagId))
 
     return matchesQuery && matchesTags
   })
 
   const groupedGames = games.reduce<Record<string, GalleryGame[]>>((groups, game) => {
     game.tags.forEach((tag) => {
-      if (!groups[tag]) {
-        groups[tag] = []
+      if (!groups[tag.name]) {
+        groups[tag.name] = []
       }
 
-      groups[tag].push(game)
+      groups[tag.name].push(game)
     })
 
     return groups
   }, {})
 
-  const defaultSections = Object.entries(groupedGames)
-    .sort(([leftTag], [rightTag]) => leftTag.localeCompare(rightTag))
+  const defaultSections = (
+    featuredTags.length > 0
+      ? featuredTags.map((tag) => [tag.name, groupedGames[tag.name] ?? []] as const)
+      : Object.entries(groupedGames).sort(([leftTag], [rightTag]) => leftTag.localeCompare(rightTag))
+  )
+    .filter(([, tagGames]) => tagGames.length > 0)
     .map(([tagName, tagGames]) => ({
       tagName,
       games: pickDefaultTagGames(tagGames, tagName),
     }))
 
-  const toggleTag = (tag: string) => {
-    setSelectedTags((currentTags) =>
-      currentTags.includes(tag)
-        ? currentTags.filter((currentTag) => currentTag !== tag)
-        : [...currentTags, tag]
+  const toggleTag = (tagId: number) => {
+    setSelectedTagIds((currentTagIds) =>
+      currentTagIds.includes(tagId)
+        ? currentTagIds.filter((currentTagId) => currentTagId !== tagId)
+        : [...currentTagIds, tagId]
     )
   }
 
@@ -109,18 +119,18 @@ const GalleryBrowser = ({ games }: { games: GalleryGame[] }) => {
           <div className="flex-1 px-6 py-4">
             <div className="flex flex-wrap gap-3">
               {availableTags.map((tag) => {
-                const isSelected = selectedTags.includes(tag)
+                const isSelected = selectedTagIds.includes(tag.id)
 
                 return (
                   <button
                     type="button"
-                    key={tag}
-                    onClick={() => toggleTag(tag)}
+                    key={tag.id}
+                    onClick={() => toggleTag(tag.id)}
                     className={`rounded-full px-4 py-1.5 font-tasa-orbiter text-sm font-semibold transition-colors ${
                       isSelected ? 'bg-gmc-teal-dark text-white' : 'bg-[#B6B6B6] text-neutral-800 hover:bg-[#A8A8A8]'
                     }`}
                   >
-                    {tag}
+                    {tag.name}
                   </button>
                 )
               })}

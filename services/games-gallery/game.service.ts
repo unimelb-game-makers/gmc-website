@@ -21,6 +21,7 @@ const prismaGame = Prisma.validator<Prisma.GameDefaultArgs>()({
           select: {
             name: true,
             picture: true,
+            about: true,
           },
         },
       },
@@ -39,7 +40,18 @@ interface creator {
 function mapGame(game: Game) {
     return {
         ...game,
-        tags: game.tags.map((t) => t.tag.name),
+        thumbnail: game.thumbnail ?? "",
+        description: game.description ?? "",
+        tags: game.tags.map((t) => ({
+            id: t.tag.id,
+            name: t.tag.name,
+            description: t.tag.description ?? "",
+        })),
+        creators: game.creators.map((c) => ({
+            name: c.creator.name,
+            picture: c.creator.picture ?? "",
+            about: c.creator.about ?? "",
+        })),
     }
 }
 

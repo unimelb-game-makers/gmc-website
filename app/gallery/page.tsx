@@ -1,16 +1,35 @@
 import React from 'react'
 
-import FeaturedGameCarousel, { type GalleryGame } from '../components/gallery/featured-game-carousel'
+import FeaturedGameCarousel, { type GalleryGame, type GalleryTag } from '../components/gallery/featured-game-carousel'
 import GalleryBrowser from '../components/gallery/gallery-browser'
 import { getGames } from '@/services/games-gallery/game.service'
-import { getTags } from '@/services/games-gallery/tag.service'
+import { getFeaturedTags } from '@/services/games-gallery/tag.service'
+
+const tagRegistry = new Map<string, GalleryTag>()
+let nextTagId = 1
+
+const toTags = (tagNames: string[]): GalleryTag[] =>
+  tagNames.map((name) => {
+    const existingTag = tagRegistry.get(name)
+
+    if (existingTag) {
+      return existingTag
+    }
+
+    const tag: GalleryTag = { id: nextTagId, name, description: name }
+
+    nextTagId += 1
+    tagRegistry.set(name, tag)
+
+    return tag
+  })
 
 const galleryGames: GalleryGame[] = [
   {
     name: 'Anatis',
     description: '2025 Mid Sem Winner',
     thumbnail: '/images/games_examples/game27.png',
-    tags: ['Puzzle', 'Casual', 'Fantasy'],
+    tags: toTags(['Puzzle', 'Casual', 'Fantasy']),
     creators: [
       {
         name: 'GMC Artist',
@@ -28,7 +47,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Neon Relay',
     description: '2025 Mid Sem Winner',
     thumbnail: '/images/games_examples/game2.png',
-    tags: ['Arcade', 'Speed', 'Sci-Fi'],
+    tags: toTags(['Arcade', 'Speed', 'Sci-Fi']),
     creators: [
       {
         name: 'GMC Designer',
@@ -41,7 +60,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Petal Shift',
     description: '2025 Mid Sem Winner',
     thumbnail: '/images/games_examples/game3.png',
-    tags: ['Strategy', 'Fantasy', 'Card'],
+    tags: toTags(['Strategy', 'Fantasy', 'Card']),
     creators: [
       {
         name: 'GMC Illustrator',
@@ -54,7 +73,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Velvet Zero',
     description: '2025 Mid Sem Winner',
     thumbnail: '/images/games_examples/game4.png',
-    tags: ['Action', 'Sci-Fi', 'Boss Rush'],
+    tags: toTags(['Action', 'Sci-Fi', 'Boss Rush']),
     creators: [
       {
         name: 'GMC Developer',
@@ -67,7 +86,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Cassidy Dungeon',
     description: 'Winter Jam 2026',
     thumbnail: '/images/games_examples/game1.png',
-    tags: ['Dungeon', 'Pixel', 'Action'],
+    tags: toTags(['Dungeon', 'Pixel', 'Action']),
     creators: [
       {
         name: 'GMC Designer',
@@ -80,7 +99,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Frostbyte Sprint',
     description: 'Winter Jam 2026',
     thumbnail: '/images/games_examples/game5.png',
-    tags: ['Platformer', 'Winter', 'Arcade'],
+    tags: toTags(['Platformer', 'Winter', 'Arcade']),
     creators: [
       {
         name: 'GMC Artist',
@@ -93,7 +112,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Lantern Loop',
     description: 'Winter Jam 2026',
     thumbnail: '/images/games_examples/game6.png',
-    tags: ['Puzzle', 'Cozy', 'Adventure'],
+    tags: toTags(['Puzzle', 'Cozy', 'Adventure']),
     creators: [
       {
         name: 'GMC Programmer',
@@ -106,7 +125,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Snowglobe Signal',
     description: 'Winter Jam 2026',
     thumbnail: '/images/games_examples/game7.png',
-    tags: ['Narrative', 'Winter', 'Mystery'],
+    tags: toTags(['Narrative', 'Winter', 'Mystery']),
     creators: [
       {
         name: 'GMC Developer',
@@ -119,7 +138,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Clockwork Orbit',
     description: 'GMC x CISSA 2026',
     thumbnail: '/images/games_examples/game25.png',
-    tags: ['Arcade', 'Precision', 'Jam'],
+    tags: toTags(['Arcade', 'Precision', 'Jam']),
     creators: [
       {
         name: 'GMC Developer',
@@ -132,7 +151,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Wireframe Run',
     description: 'GMC x CISSA 2026',
     thumbnail: '/images/games_examples/game16.png',
-    tags: ['Racing', 'Sci-Fi', 'Multiplayer'],
+    tags: toTags(['Racing', 'Sci-Fi', 'Multiplayer']),
     creators: [
       {
         name: 'GMC Programmer',
@@ -145,7 +164,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Switchblade Garden',
     description: 'GMC x CISSA 2026',
     thumbnail: '/images/games_examples/game18.png',
-    tags: ['Action', 'Fantasy', 'Co-op'],
+    tags: toTags(['Action', 'Fantasy', 'Co-op']),
     creators: [
       {
         name: 'GMC Illustrator',
@@ -158,7 +177,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Echo Cabinet',
     description: 'GMC x CISSA 2026',
     thumbnail: '/images/games_examples/game19.png',
-    tags: ['Horror', 'Mystery', 'Puzzle'],
+    tags: toTags(['Horror', 'Mystery', 'Puzzle']),
     creators: [
       {
         name: 'GMC Artist',
@@ -171,7 +190,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Eye Bloom',
     description: '2025 Showcase',
     thumbnail: '/images/games_examples/game20.png',
-    tags: ['Experimental', 'Art', 'Casual'],
+    tags: toTags(['Experimental', 'Art', 'Casual']),
     creators: [
       {
         name: 'GMC Illustrator',
@@ -184,7 +203,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Cardboard Crown',
     description: '2025 Showcase',
     thumbnail: '/images/games_examples/game21.png',
-    tags: ['Adventure', 'Comedy', 'Card'],
+    tags: toTags(['Adventure', 'Comedy', 'Card']),
     creators: [
       {
         name: 'GMC Designer',
@@ -197,7 +216,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Moon Static',
     description: '2025 Showcase',
     thumbnail: '/images/games_examples/game23.png',
-    tags: ['Sci-Fi', 'Narrative', 'Exploration'],
+    tags: toTags(['Sci-Fi', 'Narrative', 'Exploration']),
     creators: [
       {
         name: 'GMC Programmer',
@@ -210,7 +229,7 @@ const galleryGames: GalleryGame[] = [
     name: 'Prism Patrol',
     description: '2025 Showcase',
     thumbnail: '/images/games_examples/game24.png',
-    tags: ['Shooter', 'Arcade', 'Color'],
+    tags: toTags(['Shooter', 'Arcade', 'Color']),
     creators: [
       {
         name: 'GMC Artist',
@@ -224,10 +243,8 @@ const galleryGames: GalleryGame[] = [
 const featuredGames = galleryGames.slice(0, 4)
 
 const GalleryPage = async () => {
-    const games = await getGames()
-    console.log(games)
-    const tags = await getTags();
-    console.log(tags)
+  const games = await getGames()
+  const featuredTags = await getFeaturedTags()
 
   return (
     <main className="min-h-screen bg-[#252525] px-4 pb-20 pt-44 sm:px-8 sm:pt-48 lg:px-12">
@@ -240,7 +257,7 @@ const GalleryPage = async () => {
       </section>
 
       <section className="mx-auto mt-10 max-w-7xl">
-        <GalleryBrowser games={games} />
+        <GalleryBrowser games={games} featuredTags={featuredTags} />
       </section>
     </main>
   )
