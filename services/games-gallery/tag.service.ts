@@ -25,6 +25,19 @@ export async function getFeaturedTags() {
   return tags.map((tag) => ({ ...tag, description: tag.description ?? "" }));
 }
 
+// Read all tags along with their frontpage-featured state, for the admin page
+export async function getTagsWithFeaturedState() {
+  return db.tag.findMany({
+      orderBy: [{ featured_order: "asc" }, { name: "asc" }],
+      select: {
+          id: true,
+          name: true,
+          featured: true,
+          featured_order: true,
+      },
+  });
+}
+
 export async function getTagById(id: number) {
   return db.tag.findUnique({ where: { id } });
 }
@@ -35,7 +48,7 @@ export async function createTag(data: { name: string; description: string; featu
 
 export async function updateTag(
   id: number,
-  data: Partial<{ name: string; description: string; featured: boolean; featured_order: number }>
+  data: Partial<{ name: string; description: string; featured: boolean; featured_order: number | null }>
 ) {
   return db.tag.update({ where: { id }, data });
 }
