@@ -22,5 +22,17 @@
     "game_id": "e73ab7a5-498b-4019-8a1f-e0b26ff999da",
     "creator_id": "aa3491d1-76e1-4e1a-8143-8e68284171ed",
     "role": "Publisher & Studio"
+  },
+  {
+    "id": "test-credit-4",
+    "game_id": "5c7140a6-8555-4717-aa62-14e4bf636242",
+    "creator_id": "creator-test-4",
+    "role": "Composer"
+  },
+  {
+    "id": "test-credit-5",
+    "game_id": "5c7140a6-8555-4717-aa62-14e4bf636242",
+    "creator_id": "creator-test-5",
+    "role": "Writer"
   }
 ]

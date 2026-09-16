@@ -2,9 +2,35 @@
   {
     "id": "5c7140a6-8555-4717-aa62-14e4bf636242",
     "name": "Neon Odyssey",
-    "thumbnail": "https://example.com/thumbs/neon.jpg",
-    "link": "https://store.steampowered.com/app/123456",
-    "description": "A cyberpunk action RPG with dynamic lighting.",
+    "thumbnail": "/images/gmc_site_avatar.png",
+    "trailer": null,
+    "screenshots": [
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png"
+    ],
+    "links": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1091500/Cyberpunk_2077/"
+      },
+      {
+        "name": "Itch.io",
+        "url": "https://itch.io/games"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/watch?v=8X2kIfS6fb8"
+      }
+    ],
+    "description": "A cyberpunk action RPG set in a sprawling neon city. Players explore dense urban districts, fight hostile factions, and uncover the secrets behind a mysterious digital network.",
+    "tags": ["Action", "RPG", "Cyberpunk"],
+    "event": "Winner of GMC Winter Game Jam 2026",
+    "creators": [
+      "creator-1",
+      "creator-2",
+      "creator-3"
+    ],
     "approved": true,
     "created_at": "2026-01-15T10:00:00Z",
     "updated_at": "2026-01-15T10:00:00Z"
@@ -12,9 +38,34 @@
   {
     "id": "ebed0022-5a67-4e8d-8fdc-2882f8772ac9",
     "name": "Chronos Drift",
-    "thumbnail": "https://example.com/thumbs/chronos.jpg",
-    "link": "https://itch.io/games/chronos-drift",
-    "description": "Time-bending puzzle platformer.",
+    "thumbnail": "/images/gmc_site_avatar.png",
+    "trailer": null,
+    "screenshots": [
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png"
+    ],
+    "links": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1091500/Cyberpunk_2077/"
+      },
+      {
+        "name": "Itch.io",
+        "url": "https://itch.io/games"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/watch?v=8X2kIfS6fb8"
+      }
+    ],
+    "description": "A time-bending puzzle platformer where players manipulate the flow of time to solve increasingly complex environmental challenges.",
+    "tags": ["Puzzle", "Platformer", "Sci-Fi"],
+    "event": "Finalist at GMC Mid-Semester Showcase 2026",
+    "creators": [
+      "creator-2",
+      "creator-4"
+    ],
     "approved": true,
     "created_at": "2026-02-01T14:30:00Z",
     "updated_at": "2026-02-05T09:15:00Z"
@@ -22,9 +73,33 @@
   {
     "id": "e73ab7a5-498b-4019-8a1f-e0b26ff999da",
     "name": "Void Echoes",
-    "thumbnail": null,
-    "link": null,
-    "description": "Sci-fi horror survival game currently in beta.",
+    "thumbnail": "/images/gmc_site_avatar.png",
+    "trailer": null,
+    "screenshots": [
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png",
+      "/images/gmc_site_avatar.png"
+    ],
+    "links": [
+      {
+        "name": "Steam",
+        "url": "https://store.steampowered.com/app/1091500/Cyberpunk_2077/"
+      },
+      {
+        "name": "Itch.io",
+        "url": "https://itch.io/games"
+      },
+      {
+        "name": "YouTube",
+        "url": "https://www.youtube.com/watch?v=8X2kIfS6fb8"
+      }
+    ],
+    "description": "A sci-fi horror survival game set aboard an abandoned research vessel. Explore dark corridors, restore failing systems, and survive the creatures lurking inside.",
+    "tags": ["Horror", "Survival", "Sci-Fi"],
+    "event": "GMC Experimental Games Showcase 2026",
+    "creators": [
+      "creator-1"
+    ],
     "approved": false,
     "created_at": "2026-03-10T18:20:00Z",
     "updated_at": "2026-03-10T18:20:00Z"
