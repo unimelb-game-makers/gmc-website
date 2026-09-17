@@ -2,7 +2,7 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 
 export type GalleryCreator = {
   name: string
@@ -20,7 +20,6 @@ export type GalleryGame = {
 
 type FeaturedGameCarouselProps = {
   games: GalleryGame[]
-  intervalMs?: number
 }
 
 const toRouteSlug = (name: string) =>
@@ -30,37 +29,61 @@ const toRouteSlug = (name: string) =>
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '')
 
-const FeaturedGameCarousel = ({
-  games,
-  intervalMs = 4500,
-}: FeaturedGameCarouselProps) => {
+const FeaturedGameCarousel = ({ games }: FeaturedGameCarouselProps) => {
   const [activeIndex, setActiveIndex] = useState(0)
+  const pointerStartRef = useRef<{ x: number; y: number } | null>(null)
 
-  useEffect(() => {
-    if (games.length <= 1) {
+  const goToNext = () => {
+    setActiveIndex((currentIndex) => (currentIndex + 1) % games.length)
+  }
+
+  const goToPrevious = () => {
+    setActiveIndex((currentIndex) => (currentIndex - 1 + games.length) % games.length)
+  }
+
+  const handlePointerDown = (event: React.PointerEvent) => {
+    pointerStartRef.current = { x: event.clientX, y: event.clientY }
+  }
+
+  const handlePointerUp = (event: React.PointerEvent) => {
+    const start = pointerStartRef.current
+    pointerStartRef.current = null
+
+    if (!start || games.length <= 1) {
       return
     }
 
-    const timer = window.setInterval(() => {
-      setActiveIndex((currentIndex) => (currentIndex + 1) % games.length)
-    }, intervalMs)
+    const deltaX = event.clientX - start.x
+    const deltaY = event.clientY - start.y
+    const SWIPE_THRESHOLD = 40
 
-    return () => window.clearInterval(timer)
-  }, [games.length, intervalMs])
+    if (Math.abs(deltaX) < SWIPE_THRESHOLD || Math.abs(deltaX) < Math.abs(deltaY)) {
+      return
+    }
 
-  const visibleGames = useMemo(() => {
-    if (games.length === 0) {
+    if (deltaX < 0) {
+      goToNext()
+    } else {
+      goToPrevious()
+    }
+  }
+
+  const slides = useMemo(() => {
+    const total = games.length
+
+    if (total === 0) {
       return []
     }
 
-    return [-1, 0, 1].map((offset) => {
-      const index = (activeIndex + offset + games.length) % games.length
+    return games
+      .map((game, index) => {
+        const raw = index - activeIndex
+        const wrapped = ((raw % total) + total) % total
+        const offset = wrapped > total / 2 ? wrapped - total : wrapped
 
-      return {
-        game: games[index],
-        offset,
-      }
-    })
+        return { game, index, offset }
+      })
+      .filter(({ offset }) => Math.abs(offset) <= 1)
   }, [activeIndex, games])
 
   if (games.length === 0) {
@@ -76,25 +99,45 @@ const FeaturedGameCarousel = ({
 
   return (
     <div className="relative mx-auto flex min-h-[240px] w-full max-w-6xl flex-col items-center justify-center py-2 sm:min-h-[320px] lg:min-h-[400px]">
-      <div className="relative h-[230px] w-full max-w-6xl sm:h-[300px] lg:h-[380px]">
-        {visibleGames.map(({ game, offset }) => {
+      <div
+        className="relative h-[230px] w-full max-w-6xl touch-pan-y select-none sm:h-[300px] lg:h-[380px]"
+        onDragStart={(event) => event.preventDefault()}
+        onPointerDown={handlePointerDown}
+        onPointerUp={handlePointerUp}
+      >
+        {slides.map(({ game, index, offset }) => {
           const isActive = offset === 0
           const positionClass = isActive
-            ? 'left-1/2 top-3 z-20 w-[68%] max-w-[800px] -translate-x-1/2 scale-100 opacity-100 shadow-2xl sm:top-4'
-            : offset < 0
-              ? 'left-0 top-8 z-10 w-[58%] translate-x-0 scale-95 opacity-85 sm:top-16'
-              : 'right-0 top-8 z-10 w-[58%] translate-x-0 scale-95 opacity-85 sm:top-16'
+            ? 'top-3 z-20 w-[68%] max-w-[800px] opacity-100 shadow-2xl sm:top-4'
+            : 'top-8 z-10 w-[58%] opacity-85 sm:top-16'
+          // Every slide is anchored at the same `left: 50%` and positioned purely via
+          // `transform: translateX(...)`, so the animation only ever changes one
+          // property. Anchoring left/right neighbors with `left-0`/`right-0` instead
+          // would switch CSS properties between center <-> side transitions, which
+          // cannot be interpolated and causes the position to snap instead of slide.
+          const translateX = isActive ? -50 : offset < 0 ? -86.2069 : -13.7931
+          const scale = isActive ? 1 : 0.95
 
           return (
             <article
-              className={`absolute aspect-[2/1] overflow-hidden rounded-md bg-black transition-all duration-700 ${positionClass}`}
-              key={`${game.name}-${offset}`}
+              className={`absolute left-1/2 aspect-[2/1] overflow-hidden rounded-md bg-black transition-all duration-700 ${positionClass}`}
+              key={`slide-${index}`}
+              style={{ transform: `translateX(${translateX}%) scale(${scale})` }}
             >
-              <Link
-                aria-label={`Open ${game.name}`}
-                className="absolute inset-0 z-10"
-                href={`/gallery/games/${toRouteSlug(game.name)}`}
-              />
+              {isActive ? (
+                <Link
+                  aria-label={`Open ${game.name}`}
+                  className="absolute inset-0 z-10"
+                  href={`/gallery/games/${toRouteSlug(game.name)}`}
+                />
+              ) : (
+                <button
+                  aria-label={`Show ${game.name}`}
+                  className="absolute inset-0 z-10"
+                  onClick={() => setActiveIndex(index)}
+                  type="button"
+                />
+              )}
               <Image
                 src={game.thumbnail}
                 alt=""

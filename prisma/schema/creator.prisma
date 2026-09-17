@@ -1,0 +1,31 @@
+model Creator {
+    id String @id @default(uuid()) @db.Uuid 
+    user_id String? @db.Uuid @unique
+    name String
+    picture String?
+    about String?
+
+    creator_links CreatorLink[]
+    games CreatorGame[]
+}
+
+model CreatorGame {
+    game_id String @db.Uuid
+    creator_id String @db.Uuid
+    role String
+
+    game Game @relation(fields: [game_id], references: [id])
+    creator Creator @relation(fields: [creator_id], references: [id])
+
+    @@id([creator_id, game_id])
+}
+
+model CreatorLink {
+    id String @id @db.Uuid
+    name String
+    link String
+    creator_id String @db.Uuid
+
+    creator Creator @relation(fields: [creator_id], references: [id])
+}
+ 

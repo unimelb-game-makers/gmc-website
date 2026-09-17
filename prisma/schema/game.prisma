@@ -1,0 +1,35 @@
+model Game {
+  id String @id @db.Uuid @default(uuid())
+  name String
+  thumbnail String?
+  link String?
+  description String?
+  approved Boolean
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  tags GameTag[]
+  creators CreatorGame[]
+
+}
+
+model Tag {
+  id Int @id @default(autoincrement())
+  name String 
+  description String?
+
+  games GameTag[] 
+
+
+}
+
+model GameTag {
+  game_id String @db.Uuid
+  tag_id  Int
+  game   Game @relation(fields: [game_id], references: [id])
+  tag    Tag  @relation(fields: [tag_id], references: [id])
+
+  @@id([game_id, tag_id])
+}
+
+
