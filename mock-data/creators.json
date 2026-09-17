@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ecc720d8-1fd3-454c-8856-9ca0b24bd614",
+    "user_id": "cbfda681-05bb-4fd1-bba5-3d44b4f7f29f",
+    "name": "Alex Mercer",
+    "picture": "https://example.com/avatars/alex.png",
+    "about": "Indie game developer specializing in pixel art RPGs."
+  },
+  {
+    "id": "aff363f9-f218-4403-86df-665f9d83b086",
+    "user_id": "6e51a071-a956-4735-b7d3-9798028d2fa3",
+    "name": "Elena Rostova",
+    "picture": "https://example.com/avatars/elena.png",
+    "about": "3D Environment Artist and level designer."
+  },
+  {
+    "id": "aa3491d1-76e1-4e1a-8143-8e68284171ed",
+    "user_id": null,
+    "name": "Cyberpunk Studios",
+    "picture": "https://example.com/avatars/studio.png",
+    "about": "Independent game studio based in Berlin."
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Action",
+    "description": "Fast-paced gameplay focusing on physical challenges."
+  },
+  {
+    "id": 2,
+    "name": "RPG",
+    "description": "Role-playing video game with character progression."
+  },
+  {
+    "id": 3,
+    "name": "Puzzle",
+    "description": "Brain-teasing problem solving mechanics."
+  },
+  {
+    "id": 4,
+    "name": "Indie",
+    "description": "Developed by independent creators or small teams."
+  }
+]

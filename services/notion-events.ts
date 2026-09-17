@@ -9,7 +9,13 @@ export default class NotionEvents {
     }
 
     async getEvents(): Promise<Event[]> {
-        const database = process.env.NOTION_PROJECTS ?? '';
+        const database = process.env.NOTION_PROJECTS;
+
+        // Notion is optional for local gallery development. Without both values,
+        // render the rest of the site with an empty events section.
+        if (!process.env.NOTION_TOKEN || !database) {
+            return [];
+        }
 
         const response = await this.client.dataSources.query({
             data_source_id: database,

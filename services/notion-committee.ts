@@ -15,8 +15,12 @@ export default class NotionCommittee {
   }
 
   async getCommittee(): Promise<CommitteeYear> {
-    const committeeInfoId = process.env.NOTION_COMMITTEE_INFO ?? '';
-    const committeeYearId = process.env.NOTION_COMMITTEE_YEAR ?? '';
+    const committeeInfoId = process.env.NOTION_COMMITTEE_INFO;
+    const committeeYearId = process.env.NOTION_COMMITTEE_YEAR;
+
+    if (!process.env.NOTION_TOKEN || !committeeInfoId || !committeeYearId) {
+      return {};
+    }
 
     // Get database info
     const [committeeInfoRes, committeeYearRes] = await Promise.all([

@@ -1,0 +1,32 @@
+[
+  {
+    "id": "5c7140a6-8555-4717-aa62-14e4bf636242",
+    "name": "Neon Odyssey",
+    "thumbnail": "https://example.com/thumbs/neon.jpg",
+    "link": "https://store.steampowered.com/app/123456",
+    "description": "A cyberpunk action RPG with dynamic lighting.",
+    "approved": true,
+    "created_at": "2026-01-15T10:00:00Z",
+    "updated_at": "2026-01-15T10:00:00Z"
+  },
+  {
+    "id": "ebed0022-5a67-4e8d-8fdc-2882f8772ac9",
+    "name": "Chronos Drift",
+    "thumbnail": "https://example.com/thumbs/chronos.jpg",
+    "link": "https://itch.io/games/chronos-drift",
+    "description": "Time-bending puzzle platformer.",
+    "approved": true,
+    "created_at": "2026-02-01T14:30:00Z",
+    "updated_at": "2026-02-05T09:15:00Z"
+  },
+  {
+    "id": "e73ab7a5-498b-4019-8a1f-e0b26ff999da",
+    "name": "Void Echoes",
+    "thumbnail": null,
+    "link": null,
+    "description": "Sci-fi horror survival game currently in beta.",
+    "approved": false,
+    "created_at": "2026-03-10T18:20:00Z",
+    "updated_at": "2026-03-10T18:20:00Z"
+  }
+]
