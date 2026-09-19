@@ -229,7 +229,7 @@ const GalleryPage = () => {
       </h1>
 
       <section className="mx-auto mt-8 max-w-7xl">
-        <FeaturedGameCarousel games={featuredGames} intervalMs={4500} />
+        <FeaturedGameCarousel games={featuredGames} />
       </section>
 
       <section className="mx-auto mt-10 max-w-7xl">
