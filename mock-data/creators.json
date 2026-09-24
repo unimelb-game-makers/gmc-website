@@ -19,5 +19,19 @@
     "name": "Cyberpunk Studios",
     "picture": "https://example.com/avatars/studio.png",
     "about": "Independent game studio based in Berlin."
+  },
+  {
+    "id": "creator-test-4",
+    "user_id": null,
+    "name": "Jamie Chen",
+    "picture": "https://example.com/avatars/jamie.png",
+    "about": "Placeholder creator for layout testing."
+  },
+  {
+    "id": "creator-test-5",
+    "user_id": null,
+    "name": "Morgan Lee",
+    "picture": "https://example.com/avatars/morgan.png",
+    "about": "Placeholder creator for layout testing."
   }
 ]
